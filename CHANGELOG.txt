@@ -1,0 +1,9 @@
+= CHANGELOG =
+
+03/07/2026 Version 1.0.0-demo
+  - Added the player
+  - Added basic enemies
+  - Added a basic level
+  - Added player death
+  - Added win state
+  - Added some textures
