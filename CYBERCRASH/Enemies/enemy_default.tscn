@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7d33i4ppd5sr"]
+
+[ext_resource type="Script" uid="uid://cwbmah6ggg26i" path="res://Enemies/enemy_default.gd" id="1_rk0i2"]
+[ext_resource type="Shader" uid="uid://snfemhqgn486" path="res://Enemies/enemy.gdshader" id="2_a6vfm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ej6o"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6vfm"]
+render_priority = 0
+shader = ExtResource("2_a6vfm")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a6vfm"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/enemy_1.png-5505c76f2ebf122a2b703a5afe19a6ff.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7877w"]
+resource_local_to_scene = true
+albedo_texture = SubResource("CompressedTexture2D_a6vfm")
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_es5fm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_7877w")
+
+[sub_resource type="Gradient" id="Gradient_a6vfm"]
+offsets = PackedFloat32Array(0, 0.8601695, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.427493, 0.42749307, 0.42749307, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7877w"]
+gradient = SubResource("Gradient_a6vfm")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_es5fm"]
+shading_mode = 0
+albedo_color = Color(0.57254905, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_7877w")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e320y"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_es5fm")
+size = Vector2(2, 0.25)
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6vfm"]
+size = Vector3(3, 2, 1.5)
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rk0i2")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("BoxShape3D_8ej6o")
+
+[node name="Texture" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_a6vfm")
+mesh = SubResource("CylinderMesh_es5fm")
+
+[node name="HealthBar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2025282, 0)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Health" type="MeshInstance3D" parent="HealthBar"]
+mesh = SubResource("PlaneMesh_e320y")
+skeleton = NodePath("../..")
+
+[node name="HitArea" type="Area3D" parent="."]
+collision_layer = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6689453, 0, 0)
+shape = SubResource("BoxShape3D_a6vfm")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Attack" type="Timer" parent="Timers"]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_exited" from="HitArea" to="." method="_on_hit_area_body_exited"]
+[connection signal="timeout" from="Timers/Attack" to="." method="_on_attack_timeout"]

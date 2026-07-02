@@ -1,0 +1,189 @@
+[gd_scene load_steps=8 format=3 uid="uid://cydmmgv7h24dm"]
+
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="1_3b2xv"]
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="2_8j6ht"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8h85p"]
+font = ExtResource("1_3b2xv")
+font_size = 48
+outline_size = 1
+shadow_size = 2
+shadow_color = Color(1, 1, 1, 0.19607843)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3b2xv"]
+font = ExtResource("2_8j6ht")
+font_size = 256
+font_color = Color(0.10980392, 0.8627451, 0.10980392, 1)
+outline_size = 12
+outline_color = Color(0, 1, 1, 0.49803922)
+shadow_size = 4
+shadow_color = Color(1, 0, 0, 0.5019608)
+shadow_offset = Vector2(-4, 0)
+
+[sub_resource type="Animation" id="Animation_8j6ht"]
+resource_name = "Intro"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/Quote:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/Quote:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.5, 5, 6, 8, 10, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.49, 0.49, 0.73, 0.73, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main/Title:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/Title:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 14.5, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_l554h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/Quote:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/Quote:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main/Title:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/Title:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l554h"]
+_data = {
+&"Intro": SubResource("Animation_8j6ht"),
+&"RESET": SubResource("Animation_l554h")
+}
+
+[node name="IntroductionScene" type="CanvasLayer"]
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Quote" type="Label" parent="Main"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "\"The sky above the port was the colour of a television, tuned to a dead channel.\"
+- William Gibson, Neuromancer"
+label_settings = SubResource("LabelSettings_8h85p")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Title" type="Label" parent="Main"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CYBERCRASH"
+label_settings = SubResource("LabelSettings_3b2xv")
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l554h")
+}
+autoplay = "Intro"

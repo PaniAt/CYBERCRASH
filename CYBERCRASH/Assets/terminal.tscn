@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4q7iajpl0day"]
+
+[ext_resource type="Texture2D" uid="uid://cnfu77lo1mvhl" path="res://GFX/terminals/terminal_0.png" id="1_764e4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lat63"]
+transparency = 1
+albedo_texture = ExtResource("1_764e4")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_764e4"]
+material = SubResource("StandardMaterial3D_lat63")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lat63"]
+size = Vector3(2, 2, 2)
+
+[node name="Terminal" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_764e4")
+
+[node name="Collision" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="Collision"]
+shape = SubResource("BoxShape3D_lat63")
+
+[node name="ScreenLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2979386)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.5
+omni_attenuation = 0.0
+metadata/_edit_lock_ = true
