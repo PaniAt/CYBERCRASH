@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgivm18vep163"
-path.s3tc="res://.godot/imported/colour_remap.png-b99bd6e0e4a551fe583d6fe2b818a8c3.s3tc.ctex"
+uid="uid://cv8xgdox5etxs"
+path="res://.godot/imported/pickup_rifle.png-1b8874b970022f705b4e790b614058d6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://GFX/colour_remap.png"
-dest_files=["res://.godot/imported/colour_remap.png-b99bd6e0e4a551fe583d6fe2b818a8c3.s3tc.ctex"]
+source_file="res://GFX/GunTextures/pickup_rifle.png"
+dest_files=["res://.godot/imported/pickup_rifle.png-1b8874b970022f705b4e790b614058d6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
