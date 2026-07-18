@@ -1,0 +1,79 @@
+[gd_scene load_steps=18 format=3 uid="uid://vm0sjrweh8ni"]
+
+[ext_resource type="PackedScene" uid="uid://c146xlq5td6mn" path="res://Enemies/enemy.tscn" id="1_4aavr"]
+[ext_resource type="Script" uid="uid://cii06xa3q44ks" path="res://Enemies/enemy_strengthened.gd" id="2_1cmov"]
+[ext_resource type="Texture2D" uid="uid://bc2qt6ifhu7cr" path="res://GFX/characters/enemy/enemy_0.png" id="3_104oh"]
+[ext_resource type="Texture2D" uid="uid://3soxs6vatwi" path="res://GFX/characters/enemy/enemy_1.png" id="4_uqpg5"]
+[ext_resource type="Texture2D" uid="uid://dokeh6alp1ddb" path="res://GFX/characters/enemy/enemy_2.png" id="5_306t6"]
+[ext_resource type="Texture2D" uid="uid://bk5ltyjqwpijl" path="res://GFX/characters/enemy/enemy_3.png" id="6_6842n"]
+[ext_resource type="Texture2D" uid="uid://bcywsno6pnkha" path="res://GFX/characters/enemy/enemy_4.png" id="7_7ylji"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_104oh"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/enemy_1.png-5505c76f2ebf122a2b703a5afe19a6ff.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqpg5"]
+resource_local_to_scene = true
+albedo_texture = SubResource("CompressedTexture2D_104oh")
+metallic = 1.0
+texture_filter = 0
+stencil_flags = 2
+stencil_color = Color(0, 0.4509804, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_306t6"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_uqpg5")
+
+[sub_resource type="Gradient" id="Gradient_bxkaj"]
+offsets = PackedFloat32Array(0, 0.8601695, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.427493, 0.42749307, 0.42749307, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_47qgu"]
+gradient = SubResource("Gradient_bxkaj")
+width = 128
+height = 8
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_572h1"]
+shading_mode = 0
+albedo_color = Color(0.57254905, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_47qgu")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1cmov"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_572h1")
+size = Vector2(2, 0.25)
+orientation = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_104oh"]
+points = PackedVector3Array(0.6, 1.2, 0.6, 0.6, 1.2, -0.6, 0.6, -1.2, -0.6, 0.6, -1.2, 0.6, 1.6, 1.4, 0.8, 1.6, 1.4, -0.8, 1.6, -1.4, -0.8, 1.6, -1.4, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_104oh"]
+size = Vector3(1.2, 2.4, 1.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_104oh"]
+radius = 12.0
+
+[node name="StrongEnemy" instance=ExtResource("1_4aavr")]
+script = ExtResource("2_1cmov")
+MAX_SPEED = 4.0
+MAX_HEALTH = 80
+BASE_STRENGTH = 60
+TEXTURES = Array[CompressedTexture2D]([ExtResource("3_104oh"), ExtResource("4_uqpg5"), ExtResource("5_306t6"), ExtResource("6_6842n"), ExtResource("7_7ylji")])
+
+[node name="Texture" parent="." index="1"]
+mesh = SubResource("CylinderMesh_306t6")
+
+[node name="Health" parent="HealthBar" index="0"]
+mesh = SubResource("PlaneMesh_1cmov")
+
+[node name="Hitbox" parent="HitArea" index="0"]
+shape = SubResource("ConvexPolygonShape3D_104oh")
+
+[node name="Hitbox2" type="CollisionShape3D" parent="HitArea" index="1"]
+shape = SubResource("BoxShape3D_104oh")
+
+[node name="Hitbox" parent="DetectArea" index="0"]
+shape = SubResource("SphereShape3D_104oh")

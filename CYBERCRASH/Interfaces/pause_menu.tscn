@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://hlqix1yd7cxu"]
+
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_vvf2u"]
+[ext_resource type="Script" uid="uid://crfmrpc0avlpc" path="res://Interfaces/pause_menu.gd" id="1_yvgl8"]
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="2_5cmvl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5cmvl"]
+font = ExtResource("1_vvf2u")
+font_size = 128
+font_color = Color(0, 0.78431374, 0, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_yvgl8"]
+colors = PackedColorArray(0, 0, 0, 0.39215687, 0, 0, 0, 0.39215687)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvgl8"]
+gradient = SubResource("Gradient_yvgl8")
+width = 512
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_ib6ty"]
+colors = PackedColorArray(0, 0, 0, 0.5882353, 0, 0, 0, 0.5882353)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ntuyk"]
+gradient = SubResource("Gradient_ib6ty")
+width = 512
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_ntuyk"]
+colors = PackedColorArray(0, 0, 0, 0.29411766, 0, 0, 0, 0.29411766)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ib6ty"]
+gradient = SubResource("Gradient_ntuyk")
+width = 512
+height = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_yvgl8"]
+font = ExtResource("2_5cmvl")
+font_size = 64
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_yvgl8")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="PausedText" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -269.0
+offset_right = 269.0
+offset_bottom = 161.0
+grow_horizontal = 2
+text = "GAME PAUSED"
+label_settings = SubResource("LabelSettings_5cmvl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -144.0
+offset_right = 256.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="ResumeButton" type="TextureButton" parent="Main/Buttons"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yvgl8")
+texture_pressed = SubResource("GradientTexture2D_ntuyk")
+texture_hover = SubResource("GradientTexture2D_ib6ty")
+
+[node name="ResumeText" type="Label" parent="Main/Buttons/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+label_settings = SubResource("LabelSettings_yvgl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="Main/Buttons"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yvgl8")
+texture_pressed = SubResource("GradientTexture2D_ntuyk")
+texture_hover = SubResource("GradientTexture2D_ib6ty")
+
+[node name="SettingsText" type="Label" parent="Main/Buttons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_yvgl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Main/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]

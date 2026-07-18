@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://c146xlq5td6mn"]
+
+[ext_resource type="Shader" uid="uid://snfemhqgn486" path="res://Enemies/enemy.gdshader" id="1_3ih25"]
+[ext_resource type="Script" uid="uid://bdcclqm028djr" path="res://Enemies/enemy.gd" id="1_bxkaj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chnrf"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxkaj"]
+render_priority = 0
+shader = ExtResource("1_3ih25")
+
+[sub_resource type="Gradient" id="Gradient_bxkaj"]
+offsets = PackedFloat32Array(0, 0.8601695, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.427493, 0.42749307, 0.42749307, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_47qgu"]
+gradient = SubResource("Gradient_bxkaj")
+width = 128
+height = 8
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_572h1"]
+shading_mode = 0
+albedo_color = Color(0.57254905, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_47qgu")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rt1x0"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_572h1")
+size = Vector2(2, 0.25)
+orientation = 2
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_bxkaj")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("BoxShape3D_chnrf")
+metadata/_edit_lock_ = true
+
+[node name="Texture" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_bxkaj")
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2025282, 0)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Health" type="MeshInstance3D" parent="HealthBar"]
+mesh = SubResource("PlaneMesh_rt1x0")
+
+[node name="HitArea" type="Area3D" parent="."]
+collision_layer = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitArea"]
+
+[node name="DetectArea" type="Area3D" parent="."]
+collision_layer = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="DetectArea"]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Attack" type="Timer" parent="Timers"]
+one_shot = true
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_exited" from="HitArea" to="." method="_on_hit_area_body_exited"]
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
+[connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="timeout" from="Timers/Attack" to="." method="_on_attack_timeout"]

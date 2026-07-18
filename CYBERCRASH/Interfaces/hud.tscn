@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7qhrvmcpeeqn"]
+[gd_scene load_steps=34 format=3 uid="uid://c7qhrvmcpeeqn"]
 
 [ext_resource type="Script" uid="uid://ctkcmk1jd5f1j" path="res://Interfaces/hud.gd" id="1_iyidl"]
 [ext_resource type="Shader" uid="uid://cjtqj4fgfru74" path="res://Interfaces/hud.gdshader" id="1_keoer"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cu2y03r4c2hms" path="res://Interfaces/Graphics/crosshair_hit.png" id="3_cg4nn"]
 [ext_resource type="Shader" uid="uid://7pnqf5lfbjs4" path="res://Interfaces/healthbar.gdshader" id="5_yriyj"]
 [ext_resource type="Shader" uid="uid://b5qs6bmm35r10" path="res://Interfaces/screentear.gdshader" id="6_ymjf2"]
+[ext_resource type="Texture2D" uid="uid://3xqnfbo6wikm" path="res://GFX/GunTextures/pickup_pistol.png" id="7_kur22"]
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="8_kj55f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kur22"]
 shader = ExtResource("6_ymjf2")
@@ -44,6 +46,67 @@ height = 50
 noise = SubResource("FastNoiseLite_ymjf2")
 color_ramp = SubResource("Gradient_yriyj")
 
+[sub_resource type="Gradient" id="Gradient_4540o"]
+colors = PackedColorArray(0, 0.2784314, 0.46666667, 1, 0.003921569, 0.41960785, 0.7294118, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mb8t3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_10rno"]
+width = 400
+height = 50
+noise = SubResource("FastNoiseLite_mb8t3")
+color_ramp = SubResource("Gradient_4540o")
+
+[sub_resource type="Gradient" id="Gradient_7n33t"]
+colors = PackedColorArray(0, 0.63529414, 1, 1, 0, 1, 0.8156863, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eeftb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ntbsk"]
+width = 400
+height = 50
+noise = SubResource("FastNoiseLite_eeftb")
+color_ramp = SubResource("Gradient_7n33t")
+
+[sub_resource type="Gradient" id="Gradient_ymjf2"]
+colors = PackedColorArray(0.3529412, 0.3529412, 0.3529412, 1, 0.47058824, 0.47058824, 0.47058824, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kur22"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kj55f"]
+width = 360
+height = 30
+noise = SubResource("FastNoiseLite_kur22")
+color_ramp = SubResource("Gradient_ymjf2")
+
+[sub_resource type="Gradient" id="Gradient_kur22"]
+colors = PackedColorArray(0.6666667, 0.6666667, 0.6666667, 1, 0.8627451, 0.8627451, 0.8627451, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kj55f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4540o"]
+width = 360
+height = 30
+noise = SubResource("FastNoiseLite_kj55f")
+color_ramp = SubResource("Gradient_kur22")
+
+[sub_resource type="Gradient" id="Gradient_kj55f"]
+interpolation_mode = 1
+colors = PackedColorArray(0.1764706, 0.39215687, 0.1764706, 0.6784314, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4540o"]
+gradient = SubResource("Gradient_kj55f")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.87, 0.87)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4540o"]
+font = ExtResource("8_kj55f")
+font_size = 32
+font_color = Color(0.8235294, 1, 0.8235294, 1)
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_iyidl")
 
@@ -67,6 +130,17 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
+[node name="Flash" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
 [node name="Crosshair" type="Control" parent="Main"]
 layout_mode = 1
 anchors_preset = 15
@@ -75,6 +149,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Texture" type="TextureRect" parent="Main/Crosshair"]
 material = SubResource("ShaderMaterial_cg4nn")
@@ -111,16 +186,13 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_cg4nn")
 
-[node name="HealthBar" type="Control" parent="Main"]
+[node name="Bars" type="Control" parent="Main"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
+grow_vertical = 2
 
-[node name="Bar" type="TextureProgressBar" parent="Main/HealthBar"]
+[node name="Health" type="TextureProgressBar" parent="Main/Bars"]
 material = SubResource("ShaderMaterial_ymjf2")
 layout_mode = 1
 anchors_preset = 2
@@ -135,3 +207,110 @@ step = 0.0
 value = 50.0
 texture_under = SubResource("NoiseTexture2D_iyidl")
 texture_progress = SubResource("NoiseTexture2D_kur22")
+
+[node name="Text" type="Label" parent="Main/Bars/Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -11.5
+offset_right = 45.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "HP: 50 / 100"
+
+[node name="Concentration" type="TextureProgressBar" parent="Main/Bars"]
+material = SubResource("ShaderMaterial_ymjf2")
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 70.0
+step = 0.0
+value = 50.0
+texture_under = SubResource("NoiseTexture2D_10rno")
+texture_progress = SubResource("NoiseTexture2D_ntbsk")
+
+[node name="Text" type="Label" parent="Main/Bars/Concentration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -11.5
+offset_right = 45.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Concentration: 50 / 100"
+
+[node name="Sprint" type="TextureProgressBar" parent="Main/Bars"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -112.0
+offset_right = 380.0
+offset_bottom = -82.0
+grow_vertical = 0
+step = 0.0
+value = 50.0
+texture_under = SubResource("NoiseTexture2D_kj55f")
+texture_progress = SubResource("NoiseTexture2D_4540o")
+
+[node name="Weapon" type="Control" parent="Main"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Highlight" type="TextureRect" parent="Main/Weapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4540o")
+
+[node name="Display" type="TextureRect" parent="Main/Weapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_kur22")
+
+[node name="Ammo" type="Label" parent="Main/Weapon"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "2/2"
+label_settings = SubResource("LabelSettings_4540o")

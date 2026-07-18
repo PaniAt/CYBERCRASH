@@ -2,31 +2,31 @@
 
 [ext_resource type="PackedScene" uid="uid://bbu48bx10d67g" path="res://player.tscn" id="1_iac22"]
 [ext_resource type="Script" uid="uid://v7sa5c6qug4b" path="res://Levels/prototype_level.gd" id="1_p50v3"]
-[ext_resource type="PackedScene" uid="uid://b7d33i4ppd5sr" path="res://Enemies/enemy_default.tscn" id="2_4h5u6"]
 [ext_resource type="PackedScene" uid="uid://c7qhrvmcpeeqn" path="res://Interfaces/hud.tscn" id="3_pmced"]
 [ext_resource type="Texture2D" uid="uid://ddly7bpvflwdt" path="res://GFX/floorTexture.png" id="4_6sa31"]
 [ext_resource type="PackedScene" uid="uid://c4q7iajpl0day" path="res://Assets/terminal.tscn" id="5_4o5f7"]
 [ext_resource type="Texture2D" uid="uid://bjuugryqw85aq" path="res://GFX/terminals/terminal_5.png" id="6_8hmpj"]
+[ext_resource type="PackedScene" uid="uid://b6yj7uv7il1fx" path="res://Enemies/basic_enemy.tscn" id="8_op5fs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wlj3e"]
 size = Vector3(32, 1, 32)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sa31"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hmpj"]
 albedo_texture = ExtResource("4_6sa31")
 uv1_scale = Vector3(4, 4, 4)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p50v3"]
-material = SubResource("StandardMaterial3D_6sa31")
+material = SubResource("StandardMaterial3D_8hmpj")
 size = Vector2(32, 32)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hmpj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op5fs"]
 transparency = 1
 albedo_texture = ExtResource("6_8hmpj")
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_op5fs"]
-material = SubResource("StandardMaterial3D_8hmpj")
+material = SubResource("StandardMaterial3D_op5fs")
 size = Vector3(2, 2, 2)
 
 [sub_resource type="Environment" id="Environment_wlj3e"]
@@ -93,11 +93,11 @@ environment = SubResource("Environment_wlj3e")
 [node name="Enemies" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_4h5u6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7736354, 7.371216)
+[node name="Enemy3" parent="Enemies" instance=ExtResource("8_op5fs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7.5)
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("2_4h5u6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.831705, 3.479258, 0)
+[node name="Enemy4" parent="Enemies" instance=ExtResource("8_op5fs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, 0)
 
 [node name="WinPortal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.496888, -17.560719)

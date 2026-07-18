@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://7valxkinj4rw"]
+
+[ext_resource type="Script" uid="uid://wr50mucv1654" path="res://Levels/level.gd" id="1_gtnvv"]
+[ext_resource type="PackedScene" uid="uid://c7qhrvmcpeeqn" path="res://Interfaces/hud.tscn" id="1_s41d2"]
+[ext_resource type="PackedScene" uid="uid://bbu48bx10d67g" path="res://player.tscn" id="3_wav5q"]
+
+[sub_resource type="Environment" id="Environment_wav5q"]
+background_color = Color(1, 1, 1, 1)
+sky_rotation = Vector3(1.5707964, 0, 0)
+fog_light_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+fog_light_energy = 0.5
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_gtnvv")
+
+[node name="HUD" parent="." instance=ExtResource("1_s41d2")]
+
+[node name="Geometry" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("3_wav5q")]
+
+[node name="Camera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Lights" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Sunlight" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="Enemies" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wav5q")
+
+[node name="WinPortal" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Detection" type="Area3D" parent="WinPortal"]
+collision_layer = 0
+
+[node name="Hitbox" type="CollisionShape3D" parent="WinPortal/Detection"]
+
+[connection signal="body_entered" from="WinPortal/Detection" to="." method="_on_detection_body_entered"]

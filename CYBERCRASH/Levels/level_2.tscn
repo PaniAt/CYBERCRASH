@@ -1,0 +1,603 @@
+[gd_scene load_steps=66 format=3 uid="uid://d2d6x73dtflkm"]
+
+[ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_ll1bl"]
+[ext_resource type="Script" uid="uid://dg847d8o3487t" path="res://Levels/level_2.gd" id="2_kbe2v"]
+[ext_resource type="Texture2D" uid="uid://ddly7bpvflwdt" path="res://GFX/floorTexture.png" id="3_arsda"]
+[ext_resource type="Texture2D" uid="uid://iwhxserxe325" path="res://GFX/metalPanel.png" id="4_dgq3b"]
+[ext_resource type="Texture2D" uid="uid://blbrfaomfxe1h" path="res://GFX/binarywall.png" id="5_bcgyv"]
+[ext_resource type="PackedScene" uid="uid://b6yj7uv7il1fx" path="res://Enemies/basic_enemy.tscn" id="6_fbld2"]
+[ext_resource type="PackedScene" uid="uid://vm0sjrweh8ni" path="res://Enemies/enemy_strengthened.tscn" id="7_s275v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbe2v"]
+size = Vector3(32, 1, 88)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16yl7"]
+albedo_texture = ExtResource("3_arsda")
+uv1_scale = Vector3(6, 12, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbe2v"]
+material = SubResource("StandardMaterial3D_16yl7")
+size = Vector3(33, 1, 88)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arsda"]
+size = Vector3(25, 4, 4)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_arsda"]
+load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcgyv"]
+albedo_texture = SubResource("CompressedTexture2D_arsda")
+uv1_scale = Vector3(5, 1, 1)
+uv1_offset = Vector3(0.333, 0, 0)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_fbld2"]
+material = SubResource("StandardMaterial3D_bcgyv")
+size = Vector3(25, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgq3b"]
+size = Vector3(9, 21, 19)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbld2"]
+albedo_texture = ExtResource("4_dgq3b")
+metallic = 0.5
+uv1_scale = Vector3(4, 7, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_s275v"]
+material = SubResource("StandardMaterial3D_fbld2")
+size = Vector3(9, 21, 19)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcgyv"]
+size = Vector3(9, 11.3, 56)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dgq3b"]
+load_path = "res://.godot/imported/metalPanel.png-7c20c074cef32f5b45f4ea76e3dd045f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s275v"]
+albedo_texture = SubResource("CompressedTexture2D_dgq3b")
+metallic = 0.5
+uv1_scale = Vector3(12, 8, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pml6m"]
+material = SubResource("StandardMaterial3D_s275v")
+size = Vector3(8.999, 11.3, 56)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbld2"]
+size = Vector3(40, 30, 35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pml6m"]
+albedo_texture = ExtResource("3_arsda")
+metallic = 0.5
+uv1_scale = Vector3(12, 8, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vltsr"]
+material = SubResource("StandardMaterial3D_pml6m")
+size = Vector3(40, 30, 35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s275v"]
+size = Vector3(12, 1, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bcgyv"]
+load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vltsr"]
+albedo_texture = SubResource("CompressedTexture2D_bcgyv")
+uv1_scale = Vector3(4, 8, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rp5ft"]
+material = SubResource("StandardMaterial3D_vltsr")
+size = Vector3(12, 1, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pml6m"]
+size = Vector3(90, 1, 320)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fbld2"]
+load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rp5ft"]
+albedo_texture = SubResource("CompressedTexture2D_fbld2")
+uv1_scale = Vector3(18, 44, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qeqk5"]
+material = SubResource("StandardMaterial3D_rp5ft")
+size = Vector3(90, 1, 320)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vltsr"]
+size = Vector3(90, 46, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qeqk5"]
+albedo_texture = ExtResource("3_arsda")
+uv1_scale = Vector3(18, 7, 1)
+uv1_offset = Vector3(0, 0.1, 0)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1soli"]
+material = SubResource("StandardMaterial3D_qeqk5")
+size = Vector3(90, 46, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rp5ft"]
+size = Vector3(16, 46, 160)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1soli"]
+albedo_color = Color(0, 1, 0, 1)
+albedo_texture = ExtResource("5_bcgyv")
+uv1_scale = Vector3(9, 32, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4pbjs"]
+material = SubResource("StandardMaterial3D_1soli")
+size = Vector3(16, 46, 160)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pbjs"]
+albedo_color = Color(0.6378432, 0.6378432, 0.63784313, 1)
+albedo_texture = ExtResource("4_dgq3b")
+metallic = 1.0
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bcgyv"]
+material = SubResource("StandardMaterial3D_4pbjs")
+size = Vector2(160, 46)
+orientation = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s275v"]
+load_path = "res://.godot/imported/metalPanel.png-7c20c074cef32f5b45f4ea76e3dd045f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmqi1"]
+albedo_texture = SubResource("CompressedTexture2D_s275v")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5yfph"]
+material = SubResource("StandardMaterial3D_lmqi1")
+size = Vector2(160, 46)
+orientation = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qeqk5"]
+size = Vector3(60, 1, 70)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yfph"]
+albedo_texture = ExtResource("3_arsda")
+uv1_scale = Vector3(12, 8, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6yvm"]
+material = SubResource("StandardMaterial3D_5yfph")
+size = Vector3(60, 1, 70)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1soli"]
+size = Vector3(52, 46, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcvcn"]
+albedo_texture = ExtResource("3_arsda")
+uv1_scale = Vector3(10, 16, 1)
+uv1_offset = Vector3(0.06, 0, 0)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ttnk"]
+material = SubResource("StandardMaterial3D_jcvcn")
+size = Vector3(52, 45.99, 80.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4pbjs"]
+size = Vector3(36, 39, 93)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vltsr"]
+load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ttnk"]
+albedo_texture = SubResource("CompressedTexture2D_vltsr")
+uv1_scale = Vector3(7.2, 16, 1)
+uv1_offset = Vector3(-0.05, 0, 0)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3vm6"]
+material = SubResource("StandardMaterial3D_0ttnk")
+size = Vector3(35.999, 39, 93)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmqi1"]
+size = Vector3(9, 1, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pml6m"]
+load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6yvm"]
+albedo_texture = SubResource("CompressedTexture2D_pml6m")
+uv1_scale = Vector3(1.5, 1, 1)
+uv1_offset = Vector3(0.25, 0, 0)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_jcvcn"]
+material = SubResource("StandardMaterial3D_w6yvm")
+size = Vector3(9, 1, 9)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kbe2v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6yvm"]
+size = Vector3(107.7417, 12.113281, 79.345215)
+
+[sub_resource type="Gradient" id="Gradient_s275v"]
+colors = PackedColorArray(0.64705884, 0.13725491, 0.34509805, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pml6m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s275v"]
+noise = SubResource("FastNoiseLite_pml6m")
+color_ramp = SubResource("Gradient_s275v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3vm6"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.63529414, 0.2509804, 0.73333335, 0.19607843)
+albedo_texture = SubResource("NoiseTexture2D_s275v")
+
+[sub_resource type="BoxMesh" id="BoxMesh_16yl7"]
+material = SubResource("StandardMaterial3D_v3vm6")
+size = Vector3(9, 9, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yfph"]
+size = Vector3(9, 9, 1)
+
+[node name="Level" instance=ExtResource("1_ll1bl")]
+script = ExtResource("2_kbe2v")
+
+[node name="Geometry" parent="." index="1"]
+metadata/_edit_group_ = true
+
+[node name="Floor" type="StaticBody3D" parent="Geometry" index="0"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Floor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+shape = SubResource("BoxShape3D_kbe2v")
+
+[node name="Texture1" type="MeshInstance3D" parent="Geometry/Floor" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+mesh = SubResource("BoxMesh_kbe2v")
+
+[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Floor" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -17)
+shape = SubResource("BoxShape3D_arsda")
+
+[node name="Texture2" type="MeshInstance3D" parent="Geometry/Floor" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -17)
+mesh = SubResource("BoxMesh_fbld2")
+
+[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/Floor" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -16, -4, 13)
+shape = SubResource("BoxShape3D_dgq3b")
+
+[node name="Texture3" type="MeshInstance3D" parent="Geometry/Floor" index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -16, -4, 13)
+mesh = SubResource("BoxMesh_s275v")
+
+[node name="Hitbox4" type="CollisionShape3D" parent="Geometry/Floor" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.1, -18)
+shape = SubResource("BoxShape3D_bcgyv")
+
+[node name="Texture4" type="MeshInstance3D" parent="Geometry/Floor" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.1, -18)
+mesh = SubResource("BoxMesh_pml6m")
+
+[node name="Hitbox5" type="CollisionShape3D" parent="Geometry/Floor" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 15, -63)
+shape = SubResource("BoxShape3D_fbld2")
+
+[node name="Texture5" type="MeshInstance3D" parent="Geometry/Floor" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 15, -63)
+mesh = SubResource("BoxMesh_vltsr")
+
+[node name="Hitbox6" type="CollisionShape3D" parent="Geometry/Floor" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 15, -63)
+shape = SubResource("BoxShape3D_fbld2")
+
+[node name="Texture6" type="MeshInstance3D" parent="Geometry/Floor" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 15, -63)
+mesh = SubResource("BoxMesh_vltsr")
+
+[node name="Hitbox7" type="CollisionShape3D" parent="Geometry/Floor" index="12"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -4, 9, -61)
+shape = SubResource("BoxShape3D_s275v")
+
+[node name="Texture7" type="MeshInstance3D" parent="Geometry/Floor" index="13"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -4, 9, -61)
+mesh = SubResource("BoxMesh_rp5ft")
+
+[node name="Hitbox8" type="CollisionShape3D" parent="Geometry/Floor" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -45, -220)
+shape = SubResource("BoxShape3D_pml6m")
+
+[node name="Texture8" type="MeshInstance3D" parent="Geometry/Floor" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -45, -220)
+mesh = SubResource("BoxMesh_qeqk5")
+
+[node name="Hitbox9" type="CollisionShape3D" parent="Geometry/Floor" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -23, -60)
+shape = SubResource("BoxShape3D_vltsr")
+
+[node name="Texture9" type="MeshInstance3D" parent="Geometry/Floor" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -23, -60)
+mesh = SubResource("BoxMesh_1soli")
+
+[node name="Hitbox10" type="CollisionShape3D" parent="Geometry/Floor" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -23, -220)
+shape = SubResource("BoxShape3D_rp5ft")
+
+[node name="Texture10" type="MeshInstance3D" parent="Geometry/Floor" index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -23, -220)
+mesh = SubResource("BoxMesh_4pbjs")
+
+[node name="Texture10_1" type="MeshInstance3D" parent="Geometry/Floor" index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.001, -23, -220)
+mesh = SubResource("PlaneMesh_bcgyv")
+
+[node name="Texture10_2" type="MeshInstance3D" parent="Geometry/Floor" index="21"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.001, -23, -220)
+mesh = SubResource("PlaneMesh_5yfph")
+
+[node name="Hitbox11" type="CollisionShape3D" parent="Geometry/Floor" index="22"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -4, -32, -440)
+shape = SubResource("BoxShape3D_qeqk5")
+
+[node name="Texture11" type="MeshInstance3D" parent="Geometry/Floor" index="23"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -4, -32, -440)
+mesh = SubResource("BoxMesh_w6yvm")
+
+[node name="Hitbox12" type="CollisionShape3D" parent="Geometry/Floor" index="24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -23, -260)
+shape = SubResource("BoxShape3D_1soli")
+
+[node name="Texture12" type="MeshInstance3D" parent="Geometry/Floor" index="25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -23, -260)
+mesh = SubResource("BoxMesh_0ttnk")
+
+[node name="Hitbox13" type="CollisionShape3D" parent="Geometry/Floor" index="26"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -31, -40, -189.5)
+shape = SubResource("BoxShape3D_4pbjs")
+
+[node name="Texture13" type="MeshInstance3D" parent="Geometry/Floor" index="27"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, -31, -40, -189.5)
+mesh = SubResource("BoxMesh_v3vm6")
+
+[node name="Hitbox14" type="CollisionShape3D" parent="Geometry/Floor" index="28"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -14, -485)
+shape = SubResource("BoxShape3D_lmqi1")
+
+[node name="Texture14" type="MeshInstance3D" parent="Geometry/Floor" index="29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -14, -485)
+mesh = SubResource("BoxMesh_jcvcn")
+
+[node name="Death" type="Area3D" parent="Geometry" index="1"]
+collision_layer = 0
+
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Death" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
+shape = SubResource("WorldBoundaryShape3D_kbe2v")
+
+[node name="Player" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 33.01803)
+
+[node name="Enemies" parent="." index="4"]
+metadata/_edit_group_ = true
+
+[node name="BasicEnemy1" parent="Enemies" index="0" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6321163, 2.429935, 2.9585614)
+
+[node name="BasicEnemy2" parent="Enemies" index="1" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0477476, 2.429935, -4.1166396)
+
+[node name="BasicEnemy3" parent="Enemies" index="2" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.229393, 12.901213, -28.938192)
+
+[node name="BasicEnemy4" parent="Enemies" index="3" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8426075, 12.901213, -60.07651)
+
+[node name="BasicEnemy5" parent="Enemies" index="4" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8426075, -39.85434, -91.79865)
+
+[node name="BasicEnemy6" parent="Enemies" index="5" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.42095, -39.85434, -125.67182)
+
+[node name="BasicEnemy7" parent="Enemies" index="6" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.979362, -39.854336, -79.533936)
+
+[node name="BasicEnemy8" parent="Enemies" index="7" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1963882, -39.854336, -127.16931)
+
+[node name="BasicEnemy9" parent="Enemies" index="8" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1344795, -39.854336, -114.189804)
+
+[node name="BasicEnemy10" parent="Enemies" index="9" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.018715, -39.854336, -85.4058)
+
+[node name="BasicEnemy11" parent="Enemies" index="10" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.573435, -39.854336, -107.5495)
+
+[node name="BasicEnemy12" parent="Enemies" index="11" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0478, -39.854336, -79.888466)
+
+[node name="BasicEnemy13" parent="Enemies" index="12" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8959732, -39.854336, -120.99994)
+
+[node name="BasicEnemy14" parent="Enemies" index="13" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.3642, -39.854336, -104.97085)
+
+[node name="BasicEnemy15" parent="Enemies" index="14" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.819576, -39.854336, -135.1742)
+
+[node name="BasicEnemy16" parent="Enemies" index="15" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.625902, -39.854336, -158.10757)
+
+[node name="BasicEnemy17" parent="Enemies" index="16" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.580805, -39.854336, -178.03098)
+
+[node name="BasicEnemy18" parent="Enemies" index="17" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.477777, -39.854336, -203.57407)
+
+[node name="BasicEnemy19" parent="Enemies" index="18" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.639757, -39.854336, -166.36769)
+
+[node name="BasicEnemy20" parent="Enemies" index="19" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.039049, -39.854336, -218.96773)
+
+[node name="BasicEnemy21" parent="Enemies" index="20" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.56842, -39.854336, -223.96582)
+
+[node name="BasicEnemy22" parent="Enemies" index="21" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.016603, -39.854336, -240.46509)
+
+[node name="BasicEnemy23" parent="Enemies" index="22" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.725685, -39.854336, -265.08276)
+
+[node name="BasicEnemy24" parent="Enemies" index="23" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.894012, -39.85434, -322.43954)
+
+[node name="BasicEnemy25" parent="Enemies" index="24" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.349693, -39.85434, -316.62988)
+
+[node name="BasicEnemy26" parent="Enemies" index="25" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.428621, -39.85434, -292.2863)
+
+[node name="BasicEnemy27" parent="Enemies" index="26" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7578526, -39.85434, -341.10767)
+
+[node name="BasicEnemy28" parent="Enemies" index="27" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.19605, -39.85434, -338.44864)
+
+[node name="BasicEnemy29" parent="Enemies" index="28" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.259293, -39.85434, -319.39212)
+
+[node name="BasicEnemy30" parent="Enemies" index="29" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.053116, -39.85434, -356.723)
+
+[node name="BasicEnemy31" parent="Enemies" index="30" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.786354, -39.85434, -364.81317)
+
+[node name="BasicEnemy32" parent="Enemies" index="31" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.180481, -39.85434, -346.668)
+
+[node name="BasicEnemy33" parent="Enemies" index="32" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7942505, -19.053722, -442.9292)
+
+[node name="BasicEnemy34" parent="Enemies" index="33" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0921612, -19.053722, -440.58618)
+
+[node name="BasicEnemy35" parent="Enemies" index="34" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.002079, -19.053722, -430.01953)
+
+[node name="BasicEnemy36" parent="Enemies" index="35" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.322952, 2.7908516, -287.35156)
+
+[node name="BasicEnemy37" parent="Enemies" index="36" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2544346, 2.7908516, -281.27856)
+
+[node name="BasicEnemy38" parent="Enemies" index="37" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.831476, 2.7908516, -275.6593)
+
+[node name="BasicEnemy39" parent="Enemies" index="38" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.781309, 2.7908497, -223.85423)
+
+[node name="BasicEnemy40" parent="Enemies" index="39" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.931677, 2.7908497, -194.77771)
+
+[node name="BasicEnemy41" parent="Enemies" index="40" instance=ExtResource("6_fbld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5450478, 2.7908497, -159.74393)
+
+[node name="StrongEnemy1" parent="Enemies" index="41" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9425478, 2.2183104, -32.906654)
+
+[node name="StrongEnemy2" parent="Enemies" index="42" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2404194, 2.2183104, -26.632734)
+
+[node name="StrongEnemy3" parent="Enemies" index="43" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.491129, 12.458449, -11.366476)
+
+[node name="StrongEnemy4" parent="Enemies" index="44" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.491129, -40.02114, -127.38667)
+
+[node name="StrongEnemy5" parent="Enemies" index="45" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.208309, -40.02114, -108.883316)
+
+[node name="StrongEnemy6" parent="Enemies" index="46" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.802074, -40.02114, -84.26658)
+
+[node name="StrongEnemy7" parent="Enemies" index="47" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.581059, -40.02114, -98.55759)
+
+[node name="StrongEnemy8" parent="Enemies" index="48" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.706831, -40.02114, -74.16445)
+
+[node name="StrongEnemy9" parent="Enemies" index="49" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.489185, -40.02114, -153.57169)
+
+[node name="StrongEnemy10" parent="Enemies" index="50" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.504915, -40.02114, -145.59972)
+
+[node name="StrongEnemy11" parent="Enemies" index="51" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.411196, -40.02114, -195.22575)
+
+[node name="StrongEnemy12" parent="Enemies" index="52" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.934122, -40.02114, -175.93799)
+
+[node name="StrongEnemy13" parent="Enemies" index="53" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.046873, -40.02114, -260.57166)
+
+[node name="StrongEnemy14" parent="Enemies" index="54" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.41607, -40.02114, -280.24884)
+
+[node name="StrongEnemy15" parent="Enemies" index="55" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.039135, -40.02114, -322.93256)
+
+[node name="StrongEnemy16" parent="Enemies" index="56" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.06717, -40.02114, -327.59436)
+
+[node name="StrongEnemy17" parent="Enemies" index="57" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.320286, -40.021133, -357.92404)
+
+[node name="StrongEnemy18" parent="Enemies" index="58" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.53378, -40.021133, -344.68365)
+
+[node name="StrongEnemy19" parent="Enemies" index="59" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.310654, 1.8093007, -295.4658)
+
+[node name="StrongEnemy20" parent="Enemies" index="60" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.002655, 1.8093007, -243.71394)
+
+[node name="StrongEnemy21" parent="Enemies" index="61" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.098577, 1.8093007, -249.4424)
+
+[node name="StrongEnemy22" parent="Enemies" index="62" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.021624, 1.8093007, -246.075)
+
+[node name="StrongEnemy23" parent="Enemies" index="63" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.00901, 1.8093007, -235.1531)
+
+[node name="StrongEnemy24" parent="Enemies" index="64" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.296875, 1.8093007, -269.44708)
+
+[node name="StrongEnemy25" parent="Enemies" index="65" instance=ExtResource("7_s275v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.199608, 1.8093007, -269.897)
+
+[node name="NoticeArea" type="Area3D" parent="Enemies" index="66"]
+collision_layer = 0
+
+[node name="Hitbox" type="CollisionShape3D" parent="Enemies/NoticeArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.815544, -4.0410423, -106.260735)
+shape = SubResource("BoxShape3D_w6yvm")
+
+[node name="WinPortal" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -9, -489)
+
+[node name="Texture" type="MeshInstance3D" parent="WinPortal" index="0"]
+mesh = SubResource("BoxMesh_16yl7")
+skeleton = NodePath("../..")
+
+[node name="Hitbox" parent="WinPortal/Detection" index="0"]
+shape = SubResource("BoxShape3D_5yfph")
+
+[connection signal="body_entered" from="Geometry/Death" to="." method="_on_death_body_entered"]
+[connection signal="body_entered" from="Enemies/NoticeArea" to="." method="_on_notice_area_body_entered"]

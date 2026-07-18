@@ -64,6 +64,7 @@ _data = {
 }
 
 [node name="ScreenTransition" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_m7dtq")
 
 [node name="Black" type="ColorRect" parent="."]

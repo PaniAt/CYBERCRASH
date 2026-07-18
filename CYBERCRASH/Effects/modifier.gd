@@ -1,5 +1,5 @@
 class_name Modifier
-extends Node
+extends Object
 
 enum Fade
 {

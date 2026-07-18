@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://c67cgtkg4mqpm"]
+
+[ext_resource type="Script" uid="uid://lscvy4jrwwqh" path="res://Assets/weapon_console.gd" id="1_0s0vk"]
+[ext_resource type="Texture2D" uid="uid://c2u1ev6r0agyh" path="res://GFX/terminals/terminal_1.png" id="1_ixlfq"]
+[ext_resource type="Texture2D" uid="uid://cnfu77lo1mvhl" path="res://GFX/terminals/terminal_0.png" id="2_awj2j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3at1g"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awj2j"]
+albedo_texture = ExtResource("1_ixlfq")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_3at1g"]
+material = SubResource("StandardMaterial3D_awj2j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixlfq"]
+albedo_texture = ExtResource("2_awj2j")
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_awj2j"]
+material = SubResource("StandardMaterial3D_ixlfq")
+left_to_right = 0.0
+size = Vector3(0.999, 1.999, 0.999)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awj2j"]
+size = Vector3(1.5, 3, 1.5)
+
+[node name="WeaponConsole" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_0s0vk")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3at1g")
+
+[node name="Texture1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_3at1g")
+
+[node name="Texture2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_awj2j")
+
+[node name="Detection" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="Hitbox" type="CollisionShape3D" parent="Detection"]
+shape = SubResource("BoxShape3D_awj2j")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

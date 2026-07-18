@@ -9,6 +9,7 @@ void vertex() {
 
 void fragment() {
 	COLOR.rgb = texture(SCREEN_TEXTURE, UV).rgb;
+	COLOR = round(COLOR * 8.0) / 8.0;
 }
 
 //void light() {

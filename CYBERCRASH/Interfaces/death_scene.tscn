@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://do2rqfbqnejja"]
+[gd_scene load_steps=8 format=3 uid="uid://do2rqfbqnejja"]
 
+[ext_resource type="Script" uid="uid://cicggdpw2pj3o" path="res://Interfaces/death_scene.gd" id="1_amd8i"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_nll34"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amd8i"]
@@ -26,10 +27,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RetryButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RetryButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_nll34"]
 resource_name = "death_text"
-length = 2.5
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,6 +67,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RetryButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RetryButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_amd8i"]
 _data = {
@@ -49,7 +98,18 @@ _data = {
 &"death_text": SubResource("Animation_nll34")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_nll34"]
+font = ExtResource("1_nll34")
+font_size = 128
+font_color = Color(0.10980392, 0.8627451, 0.10980392, 1)
+outline_size = 12
+outline_color = Color(0, 1, 1, 0.49803922)
+shadow_size = 4
+shadow_color = Color(1, 0, 0, 0.5019608)
+shadow_offset = Vector2(-4, 0)
+
 [node name="DeathScene" type="CanvasLayer"]
+script = ExtResource("1_amd8i")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -78,3 +138,29 @@ libraries = {
 &"": SubResource("AnimationLibrary_amd8i")
 }
 autoplay = "death_text"
+
+[node name="RetryButton" type="TextureButton" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.7
+anchor_right = 0.7
+anchor_bottom = 0.85
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Label" parent="RetryButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry?"
+label_settings = SubResource("LabelSettings_nll34")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]

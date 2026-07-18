@@ -1,5 +1,9 @@
-class_name Enemy
+class_name EnemyDefault
 extends CharacterBody3D
+
+# WARNING This class is the old version of the enemy class for the
+# WARNING demo version of the game. It is no longer supported and
+# WARNING should not be used.
 
 # Constants
 const SPEED = 5.0
@@ -20,7 +24,7 @@ enum EnemyTexture
 	NONE = 0, #     on screen
 	IDLE = 1, # ... on screen
 	NOTE = 2, # !!! on screen
-	ANGY = 3, # >:( on screen
+	HURT = 3, # >:( on screen
 	DEAD = 4, # X X on screen
 }
 
@@ -31,6 +35,14 @@ var can_hit_player := true
 var strength := 30
 var dead := false
 var sees_player := false
+
+func _ready() -> void:
+	# ALERT: Don't make an instance of this please
+	printerr(
+		"ALERT: An instance of EnemyDefault was instantiated!
+		This class is no longer supported internally, and WILL
+		cause errors in the code."
+	)
 
 func _process(delta: float) -> void:
 	tick_damage_flash(delta)
@@ -61,9 +73,6 @@ func look_for_player() -> void:
 
 func _physics_process(delta: float) -> void:
 	if dead: return # Nope your too late i already died
-	# I'm not trying to ruin your fun
-	# You're just a little bit late, I guess you're alreay done
-	# But there's this feeling I can
 	
 	try_hitting_player()
 	
@@ -84,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		if self.health < self.MAX_HEALTH:
-			set_texture(EnemyTexture.ANGY)
+			set_texture(EnemyTexture.HURT)
 		else:
 			set_texture(EnemyTexture.NOTE)
 	else:
