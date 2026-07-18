@@ -7,3 +7,14 @@
   - Added player death
   - Added win state
   - Added some textures
+
+19/06/2026 Version 1.1.0-MVP and Section 2
+  - Added 4 levels
+  - Added weapon customisation
+  - Added abilities
+  - Added 2 enemy types
+  - Remade win state
+  - Added pause menu
+  - Added start menu
+  - Added settings menu
+  - Added restarting after death
