@@ -6,6 +6,7 @@ func _ready() -> void:
 	for player: Player in get_tree().get_nodes_in_group("Players"):
 		$Main/Bars.show()
 		player.connect("hurt", healthbar_damage)
+		player.connect("heal", healthbar_heal)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -70,3 +71,12 @@ func healthbar_damage(amount: int, _health: int) -> void:
 	)
 	var flash := 1.0 * amount / Player.MAX_HEALTH
 	$Main/Flash.color = Color(1.0, 0.0, 0.0, flash)
+
+func healthbar_heal(amount: int, _health: int) -> void:
+	var mat = $Main/Bars/Health.material
+	mat.set_shader_parameter("progress", mat.get_shader_parameter(
+		"progress"
+		) + 0.5
+	)
+	var flash := 1.0 * amount / Player.MAX_HEALTH
+	$Main/Flash.color = Color(0.0, 1.0, 0.0, flash)

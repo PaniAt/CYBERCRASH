@@ -120,6 +120,7 @@ ITEMWHEEL={
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Enemies"
 3d_physics/layer_3="Objects"
+3d_physics/layer_9="Moving Platforms"
 
 [rendering]
 
