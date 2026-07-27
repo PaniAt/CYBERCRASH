@@ -1,0 +1,147 @@
+[gd_scene load_steps=27 format=3 uid="uid://bpecf50j6qf77"]
+
+[ext_resource type="PackedScene" uid="uid://c146xlq5td6mn" path="res://Enemies/enemy.tscn" id="1_6i5pt"]
+[ext_resource type="Script" uid="uid://b26vhhmegik6f" path="res://Enemies/enemy_sentry.gd" id="2_u71v2"]
+[ext_resource type="Texture2D" uid="uid://ujavksan2g5k" path="res://GFX/characters/sentry/sentryBody.png" id="3_45qde"]
+[ext_resource type="Shader" uid="uid://snfemhqgn486" path="res://Enemies/enemy.gdshader" id="4_4gtrt"]
+[ext_resource type="Texture2D" uid="uid://bc2qt6ifhu7cr" path="res://GFX/characters/enemy/enemy_0.png" id="4_7e7p8"]
+[ext_resource type="Texture2D" uid="uid://3soxs6vatwi" path="res://GFX/characters/enemy/enemy_1.png" id="4_gn7r5"]
+[ext_resource type="Texture2D" uid="uid://iwhxserxe325" path="res://GFX/metalPanel.png" id="4_w3xy1"]
+[ext_resource type="Texture2D" uid="uid://dokeh6alp1ddb" path="res://GFX/characters/enemy/enemy_2.png" id="5_pb6li"]
+[ext_resource type="Texture2D" uid="uid://bk5ltyjqwpijl" path="res://GFX/characters/enemy/enemy_3.png" id="6_j44fa"]
+[ext_resource type="Texture2D" uid="uid://bcywsno6pnkha" path="res://GFX/characters/enemy/enemy_4.png" id="7_d6sxg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45qde"]
+size = Vector3(1, 2, 1.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gtrt"]
+albedo_texture = ExtResource("4_gn7r5")
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u57q3"]
+material = SubResource("StandardMaterial3D_4gtrt")
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7e7p8"]
+albedo_texture = ExtResource("4_w3xy1")
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4gtrt"]
+material = SubResource("StandardMaterial3D_7e7p8")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxkaj"]
+render_priority = 0
+shader = ExtResource("4_4gtrt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u71v2"]
+albedo_texture = ExtResource("3_45qde")
+texture_filter = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u71v2"]
+material = SubResource("StandardMaterial3D_u71v2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45qde"]
+albedo_texture = ExtResource("3_45qde")
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_45qde"]
+material = SubResource("StandardMaterial3D_45qde")
+top_radius = 0.1
+bottom_radius = 0.2
+height = 0.75
+
+[sub_resource type="Gradient" id="Gradient_bxkaj"]
+offsets = PackedFloat32Array(0, 0.8601695, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.427493, 0.42749307, 0.42749307, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_47qgu"]
+gradient = SubResource("Gradient_bxkaj")
+width = 128
+height = 8
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_572h1"]
+shading_mode = 0
+albedo_color = Color(0.57254905, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_47qgu")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u71v2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_572h1")
+size = Vector2(2, 0.25)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gn7r5"]
+radius = 20.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u71v2"]
+radius = 40.0
+
+[node name="SentryEnemy" instance=ExtResource("1_6i5pt")]
+script = ExtResource("2_u71v2")
+MAX_HEALTH = 1000
+BASE_STRENGTH = 20
+TEXTURES = Array[CompressedTexture2D]([ExtResource("4_7e7p8"), ExtResource("4_gn7r5"), ExtResource("5_pb6li"), ExtResource("6_j44fa"), ExtResource("7_d6sxg")])
+
+[node name="Hitbox" parent="." index="0"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0.05, 0)
+visible = true
+shape = SubResource("BoxShape3D_45qde")
+
+[node name="Texture" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_u57q3")
+
+[node name="Turret" type="MeshInstance3D" parent="Texture" index="0"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0.85, 0.35, 0)
+mesh = SubResource("CylinderMesh_4gtrt")
+skeleton = NodePath("../..")
+
+[node name="OtherTextures" type="Node3D" parent="." index="2"]
+
+[node name="Body" type="MeshInstance3D" parent="OtherTextures" index="0"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_bxkaj")
+mesh = SubResource("CapsuleMesh_u71v2")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Leg1" type="MeshInstance3D" parent="OtherTextures" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.3)
+mesh = SubResource("CylinderMesh_45qde")
+skeleton = NodePath("../..")
+
+[node name="Leg2" type="MeshInstance3D" parent="OtherTextures" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.3)
+mesh = SubResource("CylinderMesh_45qde")
+skeleton = NodePath("../..")
+
+[node name="Leg3" type="MeshInstance3D" parent="OtherTextures" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.3)
+mesh = SubResource("CylinderMesh_45qde")
+skeleton = NodePath("../..")
+
+[node name="Leg4" type="MeshInstance3D" parent="OtherTextures" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.3)
+mesh = SubResource("CylinderMesh_45qde")
+skeleton = NodePath("../..")
+
+[node name="Health" parent="HealthBar" index="0"]
+mesh = SubResource("PlaneMesh_u71v2")
+
+[node name="Hitbox" parent="HitArea" index="0"]
+shape = SubResource("SphereShape3D_gn7r5")
+debug_color = Color(0.9882353, 0, 0.3137255, 1)
+
+[node name="Hitbox" parent="DetectArea" index="0"]
+shape = SubResource("SphereShape3D_u71v2")
+
+[node name="Attack" parent="Timers" index="0"]
+wait_time = 0.5

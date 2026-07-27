@@ -20,6 +20,8 @@ enum EnemyTexture
 	DEAD = 4,
 }
 
+static var time_scale := 1.0
+
 # Instance variables
 @onready var health := MAX_HEALTH
 @onready var speed := MAX_SPEED
@@ -36,14 +38,18 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if CameraController.paused: return
+	delta *= Enemy.time_scale
 	if always_sees_player:
 		sees_player = true
+	if Player.invisible_time > 0.0:
+		sees_player = false
 	
 	tick_damage_flash(delta)
 	determine_texture(delta)
 
 func _physics_process(delta: float) -> void:
 	if CameraController.paused: return
+	delta *= Enemy.time_scale
 	if dead: return # Nope your too late i already died
 	
 	try_hitting_player()
@@ -103,8 +109,8 @@ func enemy_movement(delta: float) -> void:
 		rotation.y = lerp_angle(rotation.y, target, delta * 12.0)
 		
 		# Actually move
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * speed * Enemy.time_scale
+		velocity.z = direction.z * speed * Enemy.time_scale
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)

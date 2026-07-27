@@ -35,7 +35,8 @@ orientation = 2
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 261
+platform_floor_layers = 4294967040
 script = ExtResource("1_bxkaj")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]

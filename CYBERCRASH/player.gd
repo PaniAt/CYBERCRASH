@@ -10,18 +10,37 @@ const ABILITY_COOLDOWNS: Dictionary[Ability, float] = {
 	Ability.XRAY: 45.0,
 	Ability.GLITCH: 2.0,
 	Ability.AGILITY: 0.0,
+	Ability.GLITCH_FAR: 1.7,
+	Ability.SLOW_TIME: 30.0,
+	Ability.SWAP: 4.0,
+	Ability.CORRUPT: 30.0,
+	Ability.PREDICT: 0.0,
+	Ability.INVISIBILITY: 30.0,
+	Ability.TRIPLE_JUMP: 0.0,
+	Ability.HIGH_JUMP: 0.0,
+	Ability.BASH: 0.0,
 }
 const ABILITY_COSTS: Dictionary[Ability, float] = {
 	Ability.NONE: 0.0,
 	Ability.XRAY: 25.0,
 	Ability.GLITCH: 15.0,
 	Ability.AGILITY: 0.0,
+	Ability.GLITCH_FAR: 15.0,
+	Ability.SLOW_TIME: 50.0,
+	Ability.SWAP: 40.0,
+	Ability.CORRUPT: 50.0,
+	Ability.PREDICT: 0.0,
+	Ability.INVISIBILITY: 40.0,
+	Ability.TRIPLE_JUMP: 0.0,
+	Ability.HIGH_JUMP: 0.0,
+	Ability.BASH: 0.0,
 }
 const ITEM_WHEEL_SCENE = preload("res://Interfaces/item_wheel.tscn")
 
 # Signals
 signal shoot()	## Player shoots
 signal hurt(amount: int, health: int) ## Nine Inch Nails?
+signal heal(amount: int, health: int)
 
 # Enum for player abilities
 enum Ability
@@ -30,6 +49,15 @@ enum Ability
 	XRAY,
 	GLITCH,
 	AGILITY,
+	GLITCH_FAR, # Glitch 2: Electric Boogaloo
+	SLOW_TIME,
+	SWAP,
+	CORRUPT,
+	PREDICT,
+	INVISIBILITY,
+	TRIPLE_JUMP,
+	HIGH_JUMP,
+	BASH,
 }
 
 # Pseudo-constant Static Variables
@@ -48,8 +76,11 @@ static var weapon := weapon_inventory[0]
 static var queued_weapon := -1
 static var health := MAX_HEALTH
 static var sprint := MAX_SPRINT
-static var ability := Ability.NONE
+static var ability := Ability.CORRUPT
 static var concentration := MAX_CONCENTRATION
+static var slow_time := 0.0
+static var corrupt_time := 0.0
+static var invisible_time := 0.0
 
 # Pseudo-constants
 var speed := BASE_SPEED	## Player move speed
@@ -59,6 +90,7 @@ var deceleration := BASE_DECELERATION	## Multiplier for decel
 # General Variables
 var camera_direction := Vector3.ZERO	## Direction of camera
 var double_jump := true	## Can the player double jump
+var triple_jump := false ## Can the player triple jump
 var is_crouching := false	## Is the player crouching
 var iframes := 0.0
 var is_sprinting := false
@@ -100,7 +132,7 @@ func _physics_process(delta: float) -> void:
 
 static func restart() -> void:
 	health = MAX_HEALTH
-	#sprint = MAX_SPRINT
+	sprint = MAX_SPRINT
 	concentration = MAX_CONCENTRATION
 
 func set_look_direction() -> void:
@@ -152,6 +184,15 @@ func calculate_speed(delta: float) -> void:
 	if ability == Ability.AGILITY: # Hey! That rhymes.
 		speed *= 1.2
 		jump_velocity *= 1.2
+	elif ability == Ability.TRIPLE_JUMP:
+		speed *= 1.2
+		jump_velocity *= 1.1
+	elif ability == Ability.HIGH_JUMP:
+		speed *= 1.3
+		jump_velocity *= 1.5
+	elif ability == Ability.BASH:
+		speed *= 1.5
+		jump_velocity *= 0.9
 	
 	# Deceleration calculations
 	deceleration = BASE_DECELERATION
@@ -183,6 +224,8 @@ func player_movement(delta: float) -> void:
 				)
 			CameraController.set_fov_mod(&"AIRBORNE_FADE", modifier)
 			CameraController.del_fov_mod(&"AIRBORNE")
+		if ability == Ability.TRIPLE_JUMP:
+			triple_jump = true
 	
 	# Jump
 	if Input.is_action_just_pressed("JUMP"):
@@ -190,6 +233,12 @@ func player_movement(delta: float) -> void:
 			velocity.y = jump_velocity
 		elif double_jump:
 			double_jump = false
+			if ability == Ability.HIGH_JUMP:
+				velocity.y = jump_velocity * 2.0
+			else:
+				velocity.y = jump_velocity * 1.25
+		elif triple_jump:
+			triple_jump = false
 			velocity.y = jump_velocity * 1.25
 	
 	# Crouch
@@ -329,6 +378,57 @@ func gun_fire() -> void:
 			Player.hit_something = 1.0
 
 func player_abilities(delta: float) -> void:
+	# Slow time ability
+	if slow_time > 0.0:
+		slow_time = max(slow_time - delta, 0.0)
+		Enemy.time_scale = 0.25
+	else:
+		slow_time = 0.0
+		Enemy.time_scale = move_toward(Enemy.time_scale, 1.0, delta)
+	
+	# Corrupt abiltiy
+	if corrupt_time > 0.0:
+		corrupt_time = max(corrupt_time - delta, 0.0)
+		var target_dir: Vector2
+		var ang_dist: float
+		var dist: float
+		for enemy: Enemy in get_tree().get_nodes_in_group(&"Enemies"):
+			target_dir = Math.atan3(Player.pos - enemy.global_position + Vector3(0.0, 1.0, 0.0))
+			ang_dist = Vector2(
+				angle_difference(camera_direction.y, target_dir.x),
+				angle_difference(camera_direction.x, target_dir.y)
+				).length_squared()
+			if ang_dist < 0.030461741978670857: # 0.030461741978670857 = rad(10˚) ** 2.0
+				enemy.xray_time = 0.25
+				enemy.take_damage(1)
+			else:
+				dist = (enemy.global_position - Player.pos).length_squared()
+				if dist < 16.0:
+					enemy.xray_time = 0.25
+					enemy.take_damage(1)
+	else:
+		corrupt_time = 0.0
+	
+	# Invisibility ability
+	if invisible_time > 0.0:
+		invisible_time = max(invisible_time - delta, 0.0)
+	else:
+		invisible_time = 0.0
+	
+	# Predict ability
+	if Player.ability == Ability.PREDICT:
+		var target_dir: Vector2
+		var ang_dist: float
+		for enemy: Enemy in get_tree().get_nodes_in_group(&"Enemies"):
+			target_dir = Math.atan3(Player.pos - enemy.global_position)
+			ang_dist = Vector2(
+				angle_difference(camera_direction.y, target_dir.x),
+				angle_difference(camera_direction.x, target_dir.y)
+			).length_squared()
+			if ang_dist < 0.6168502750680849: # 0.6168502750680849 = rad(45˚) ** 2.0
+				enemy.xray_time = move_toward(enemy.xray_time, 1.0, delta * 4.0)
+	
+	# Ability triggering
 	if $Timers/Ability.is_stopped() and concentration < regen_concentration:
 		concentration += delta * 12.0
 		concentration = clampf(concentration, 0.0, regen_concentration)
@@ -342,7 +442,7 @@ func player_abilities(delta: float) -> void:
 		if cooldown == 0.0: # No ability used value
 			can_use_ability = true # We actually can
 		else:
-			$Timers/Ability.wait_time = use_player_ability()
+			$Timers/Ability.wait_time = cooldown
 			$Timers/Ability.start()
 
 ## Triggers a player ability function, and returns the
@@ -354,8 +454,26 @@ func use_player_ability() -> float:
 		Ability.XRAY:
 			use_xray_ability()
 		Ability.GLITCH:
-			use_glitch_ability()
+			use_glitch_ability(16.0)
 		Ability.AGILITY:
+			pass
+		Ability.GLITCH_FAR:
+			use_glitch_ability(24.0)
+		Ability.SLOW_TIME:
+			use_slow_time_ability()
+		Ability.SWAP:
+			use_swap_ability()
+		Ability.CORRUPT:
+			use_corrupt_ability()
+		Ability.PREDICT:
+			pass
+		Ability.INVISIBILITY:
+			use_invisibility_ability()
+		Ability.TRIPLE_JUMP:
+			pass
+		Ability.HIGH_JUMP:
+			pass
+		Ability.BASH:
 			pass
 	
 	return ABILITY_COOLDOWNS[ability] # Fallback
@@ -364,9 +482,9 @@ func use_xray_ability() -> void:
 	for enemy: Enemy in get_tree().get_nodes_in_group(&"Enemies"):
 		enemy.xray_time = 25.0
 
-func use_glitch_ability() -> void:
+func use_glitch_ability(power: float) -> void:
 	var disp = Math.proj(camera_direction)
-	disp *= 9.0 # 8.0 + 1.0 (+1 discarded later)
+	disp *= (power + 1.0) # (+1 discarded later)
 	$Raycast.target_position = disp
 	$Raycast.force_raycast_update()
 	var target: Vector3
@@ -381,7 +499,30 @@ func use_glitch_ability() -> void:
 	
 	global_position = target
 
+func use_slow_time_ability() -> void:
+	slow_time = 15.0
+
+func use_swap_ability() -> void:
+	var disp = Math.proj(camera_direction)
+	disp *= 64.0
+	$Raycast.target_position = disp
+	$Raycast.force_raycast_update()
+	if $Raycast.is_colliding():
+		if $Raycast.get_collider() is Enemy:
+			var target: Vector3 = $Raycast.get_collider().global_position
+			$Raycast.get_collider().global_position = global_position
+			global_position = target
+			iframes += 0.25
+
+func use_corrupt_ability() -> void:
+	corrupt_time = 10.0
+
+func use_invisibility_ability() -> void: # Hey that rhymes!
+	Player.invisible_time = 15.0
+
 func damage(amount: int, iframe := 0.1) -> int:
+	if ability == Ability.BASH and velocity.length_squared() > 1.0:
+		amount /= 4
 	if iframes > 0.0:
 		return Player.health
 	Player.health -= amount
@@ -390,6 +531,14 @@ func damage(amount: int, iframe := 0.1) -> int:
 	iframes += iframe
 	if Player.health <= 0:
 		ScreenTransition.change_scene("res://Interfaces/death_scene.tscn")
+	return Player.health
+
+## Can't use the word "heal" twice, but it has basically
+## the exact same effect.
+func undamage(amount: int) -> int:
+	Player.health += amount
+	Player.health = clampi(Player.health, 0, Player.MAX_HEALTH)
+	heal.emit(amount, Player.health)
 	return Player.health
 
 ## Player has reloaded
@@ -401,3 +550,20 @@ func _on_attack_timeout() -> void:
 
 func _on_ability_timeout() -> void:
 	can_use_ability = true
+
+func _on_bash_area_body_entered(body: Enemy) -> void:
+	if ability != Ability.BASH or not body is Enemy:
+		return
+	
+	if velocity.length_squared() > 1.0:
+		body.take_damage(int(velocity.length_squared() / 16))
+		CameraController.camera_shake_time = 0.25
+		CameraController.camera_shake_power = 0.3
+		body.velocity.y += 6.0
+		iframes += 0.05
+		if body.dead and not body.has_connections(&"die"):
+			body.connect(&"die", _on_enemy_bash_death)
+			body.collision_layer = 0
+
+func _on_enemy_bash_death() -> void:
+	undamage(10)

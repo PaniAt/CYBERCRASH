@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv54vo0u0x5i1"]
+
+[ext_resource type="Script" uid="uid://d2716t53vpgb7" path="res://Effects/bullet.gd" id="1_ux8kv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7t46k"]
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t46k"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7t46k"]
+material = SubResource("StandardMaterial3D_7t46k")
+radius = 0.1
+height = 0.5
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ux8kv"]
+radius = 0.1
+
+[node name="Bullet" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_ux8kv")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7t46k")
+
+[node name="Texture" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+mesh = SubResource("SphereMesh_7t46k")
+
+[node name="DetectArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="Hitbox" type="CollisionShape3D" parent="DetectArea"]
+shape = SubResource("SphereShape3D_ux8kv")
+
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]

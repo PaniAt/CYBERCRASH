@@ -410,62 +410,100 @@ omni_range = 24.0
 
 [node name="BasicEnemy1" parent="Enemies" index="0" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 9, -7)
+collision_mask = 5
+platform_floor_layers = 4294967295
 metadata/_edit_lock_ = true
 
 [node name="BasicEnemy2" parent="Enemies" index="1" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 9, 8)
+collision_mask = 5
+platform_floor_layers = 4294967295
 metadata/_edit_lock_ = true
 
 [node name="BasicEnemy3" parent="Enemies" index="2" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -45, 0)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy4" parent="Enemies" index="3" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.37051, -45, -22.027538)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy5" parent="Enemies" index="4" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.367825, -45, -15.500647)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy6" parent="Enemies" index="5" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.728867, -45, -31.785717)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy7" parent="Enemies" index="6" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.699276, -45, -61.187996)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy8" parent="Enemies" index="7" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.094894, -45, -49.993885)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy9" parent="Enemies" index="8" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.87067, -45, -41.593624)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy10" parent="Enemies" index="9" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.173397, -45, -46.342262)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy11" parent="Enemies" index="10" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.125305, -45, -24.680382)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="BasicEnemy12" parent="Enemies" index="11" instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.83901, -45, -62.631447)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy1" parent="Enemies" index="12" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -26.30798)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy2" parent="Enemies" index="13" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -32.342728)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy3" parent="Enemies" index="14" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -38.042534)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy4" parent="Enemies" index="15" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.61618, -45, -68.59347)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy5" parent="Enemies" index="16" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.1407, -45, -40.568058)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy6" parent="Enemies" index="17" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.40567, -45, -9.821724)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="StrongEnemy7" parent="Enemies" index="18" instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.01317, -45, -61.29067)
+collision_mask = 5
+platform_floor_layers = 4294967295
 
 [node name="NoticeArea" type="Area3D" parent="Enemies" index="19"]
 collision_layer = 0
