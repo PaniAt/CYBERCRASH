@@ -18,3 +18,20 @@
   - Added start menu
   - Added settings menu
   - Added restarting after death
+
+03/08/2026 Version 1.2.1-s3
+  - Noticed I forgot to write the changelog for
+    the previous version (1.2.0-s3)
+  - Decided not to write the chanelog for the
+    previous version
+  - Created the branch abilities for glitch, xray,
+    and agility. Along with their respective selector
+    interfaces.
+  - Created the sentry enemy
+  - Created the fifth level
+  - Not well polished, but a basic system for saving
+    and loading the game. Will probably only be able
+    to happen at level starts.
+  - Created an absolutely giant clock, which will be
+    (hopefully if trialists like it) used in the
+    final level (l6) of the game
