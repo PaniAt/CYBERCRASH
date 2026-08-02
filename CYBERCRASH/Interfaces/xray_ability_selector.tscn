@@ -1,0 +1,365 @@
+[gd_scene load_steps=23 format=3 uid="uid://qhfgb4uqovgr"]
+
+[ext_resource type="Script" uid="uid://dex0qerw2ykxi" path="res://Interfaces/xray_ability_selector.gd" id="1_x7v66"]
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="2_2eudi"]
+[ext_resource type="Texture2D" uid="uid://bnrslf3pnp2nk" path="res://Interfaces/Graphics/abilityIcons/ability_1.png" id="3_j74ad"]
+[ext_resource type="Texture2D" uid="uid://bhh8vun4jn2gb" path="res://Interfaces/Graphics/abilityIcons/ability_07.png" id="3_x7v66"]
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="4_migb6"]
+[ext_resource type="Texture2D" uid="uid://c38i7em2usl3g" path="res://Interfaces/Graphics/abilityIcons/ability_08.png" id="5_x7v66"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_caf5v"]
+font = ExtResource("2_2eudi")
+font_size = 128
+font_color = Color(0, 0.78431374, 0, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_muufr"]
+colors = PackedColorArray(0.19607843, 0.19607843, 0.19607843, 1, 0.19607843, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_caf5v"]
+gradient = SubResource("Gradient_muufr")
+
+[sub_resource type="Gradient" id="Gradient_caf5v"]
+colors = PackedColorArray(0.09803922, 0.09803922, 0.09803922, 1, 0.09803922, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8db00"]
+gradient = SubResource("Gradient_caf5v")
+
+[sub_resource type="Gradient" id="Gradient_prvyg"]
+colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1, 0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7bkb2"]
+gradient = SubResource("Gradient_prvyg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_prvyg"]
+font = ExtResource("4_migb6")
+font_size = 64
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8db00"]
+font = ExtResource("4_migb6")
+font_size = 32
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dagsi"]
+font = ExtResource("4_migb6")
+font_size = 64
+font_color = Color(0, 0.7176471, 0, 0.19607843)
+outline_size = 8
+outline_color = Color(0, 0, 0, 0.19607843)
+
+[sub_resource type="Gradient" id="Gradient_8db00"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.19607843, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_prvyg"]
+gradient = SubResource("Gradient_8db00")
+
+[sub_resource type="Gradient" id="Gradient_7bkb2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.11764706, 0.11764706, 0.11764706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6kp4"]
+gradient = SubResource("Gradient_7bkb2")
+
+[sub_resource type="Gradient" id="Gradient_l6kp4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jtnwv"]
+gradient = SubResource("Gradient_l6kp4")
+
+[node name="XrayAbilitySelector" type="CanvasLayer"]
+script = ExtResource("1_x7v66")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="SelectText" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -742.5
+offset_top = 40.0
+offset_right = 742.5
+offset_bottom = 201.0
+grow_horizontal = 2
+text = "SELECT YOUR ABILITY"
+label_settings = SubResource("LabelSettings_caf5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Selection" type="HBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CorruptButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/CorruptButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_x7v66")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/CorruptButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/CorruptButton/Text"]
+layout_mode = 2
+text = "CORRUPT"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/CorruptButton/Text"]
+layout_mode = 2
+text = "I did not even try to
+make this a balanced
+ability. It eats a tonne
+of concentration.
+
+Enjoy."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="PredictButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/PredictButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_x7v66")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/PredictButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/PredictButton/Text"]
+layout_mode = 2
+text = "PREDICT"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/PredictButton/Text"]
+layout_mode = 2
+text = "Passively allows you to
+see enemies through
+walls."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="InvisibilityButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/InvisibilityButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/InvisibilityButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/InvisibilityButton/Text"]
+layout_mode = 2
+text = "INVISIBILITY"
+label_settings = SubResource("LabelSettings_dagsi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/InvisibilityButton/Text"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="XrayButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_j74ad")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text"]
+layout_mode = 2
+text = "X-RAY"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text"]
+layout_mode = 2
+text = "You seriously want
+to continue with
+X-Ray? Well, be my
+guest. Just know
+that you could turn
+invisible or laser beam
+enemies through walls."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="Main"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -201.0
+offset_right = 320.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = SubResource("GradientTexture2D_prvyg")
+texture_pressed = SubResource("GradientTexture2D_l6kp4")
+texture_hover = SubResource("GradientTexture2D_jtnwv")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ConfirmText" type="Label" parent="Main/ConfirmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONFIRM"
+label_settings = SubResource("LabelSettings_caf5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Main/Selection/CorruptButton" to="." method="_on_xray_button_pressed"]
+[connection signal="pressed" from="Main/Selection/PredictButton" to="." method="_on_glitch_button_pressed"]
+[connection signal="pressed" from="Main/Selection/InvisibilityButton" to="." method="_on_agility_button_pressed"]
+[connection signal="pressed" from="Main/Selection/XrayButton" to="." method="_on_none_button_pressed"]
+[connection signal="pressed" from="Main/ConfirmButton" to="." method="_on_confirm_button_pressed"]

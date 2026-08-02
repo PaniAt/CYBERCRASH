@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var last_scene := ""
+var scene_path := ""
 var changing_scene := false
 
 ## Changes the current scene to a specified file over a given amount of time
@@ -12,6 +13,7 @@ func change_scene(path: String, speed := 1.0) -> void:
 	changing_scene = true
 	await get_tree().create_timer(1.0 / speed).timeout
 	get_tree().change_scene_to_file(path)
+	scene_path = path
 	await $Animation.animation_finished
 	$Animation.speed_scale = 1.0
 	changing_scene = false
