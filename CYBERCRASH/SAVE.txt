@@ -1,0 +1,7 @@
+5131178946377850
+在res://Levels/level_5.tscn
+死25|2|2|true|0.2|0.7|res://GFX/GunTextures/pickup_pistol.png三30|3|3|true|0.1|1.1|res://GFX/GunTextures/pickup_rifle.png三
+比30|3|3|true|0.1|1.1|res://GFX/GunTextures/pickup_rifle.png
+我70
+觉100.0
+会2

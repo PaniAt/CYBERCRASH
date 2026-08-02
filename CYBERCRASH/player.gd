@@ -40,24 +40,24 @@ const ITEM_WHEEL_SCENE = preload("res://Interfaces/item_wheel.tscn")
 # Signals
 signal shoot()	## Player shoots
 signal hurt(amount: int, health: int) ## Nine Inch Nails?
-signal heal(amount: int, health: int)
+signal heal(amount: int, health: int) ## When the player unhurts 
 
-# Enum for player abilities
+## Enum for player abilities
 enum Ability
 {
-	NONE,
-	XRAY,
-	GLITCH,
-	AGILITY,
-	GLITCH_FAR, # Glitch 2: Electric Boogaloo
-	SLOW_TIME,
-	SWAP,
-	CORRUPT,
-	PREDICT,
-	INVISIBILITY,
-	TRIPLE_JUMP,
-	HIGH_JUMP,
-	BASH,
+	NONE, ## No abilty
+	XRAY, ## Can see through walls
+	GLITCH, ## Can teleport
+	AGILITY, ## Moves faster & jumps higher
+	GLITCH_FAR, ## Glitch 2: Electric Boogaloo
+	SLOW_TIME, ## Slows down time for enemies
+	SWAP, ## Swaps position with and enemy
+	CORRUPT, ## Look at enemies to kill them
+	PREDICT, ## Passively sees through walls
+	INVISIBILITY, ## Enemies can't detect the player
+	TRIPLE_JUMP, ## Triple jump
+	HIGH_JUMP, ## High jump
+	BASH, ## Run into enemies to deal damage
 }
 
 # Pseudo-constant Static Variables
@@ -76,7 +76,7 @@ static var weapon := weapon_inventory[0]
 static var queued_weapon := -1
 static var health := MAX_HEALTH
 static var sprint := MAX_SPRINT
-static var ability := Ability.CORRUPT
+static var ability := Ability.NONE
 static var concentration := MAX_CONCENTRATION
 static var slow_time := 0.0
 static var corrupt_time := 0.0
@@ -129,6 +129,78 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_B):
 		get_tree().paused = true
 		# TEMPORARY
+	
+	if Input.is_key_pressed(KEY_P):
+		save_to_file("./SAVE.txt")
+	
+	if Input.is_key_pressed(KEY_O):
+		load_from_file("./SAVE.txt")
+
+func save_to_file(file_path: String) -> int:
+	var file := FileAccess.open(file_path, FileAccess.WRITE_READ)
+	var content: PackedStringArray
+	content.push_back("在" + get_tree().current_scene.scene_file_path)
+	var weaponry_string = ""
+	for weap: Weapon in weapon_inventory:
+		weaponry_string += weap.str_encode() + "三"
+	content.push_back("死" + weaponry_string)
+	content.push_back("比" + Player.weapon.str_encode())
+	content.push_back("我" + str(Player.health))
+	content.push_back("觉" + str(Player.concentration))
+	content.push_back("会" + str(Player.ability))
+	var save: String = ""
+	for line: String in content:
+		save += line + '\n'
+	var file_hash := hash(save)
+	file_hash ^= file_hash << 17
+	file_hash ^= file_hash >> 13
+	file_hash ^= file_hash << 5
+	save = str(file_hash) + '\n' + save
+	file.store_string(save)
+	return 0
+
+func load_from_file(file_path: String) -> int:
+	var file := FileAccess.open(file_path, FileAccess.READ)
+	var file_hash := file.get_line()
+	var contents := file.get_as_text(false)
+	if len(contents.split("\n", true, 1)) != 2:
+		return 1
+	contents = contents.split("\n", true, 1)[1]
+	var expected_hash := hash(contents)
+	expected_hash ^= expected_hash << 17
+	expected_hash ^= expected_hash >> 13
+	expected_hash ^= expected_hash << 5
+	if str(expected_hash) != file_hash:
+		return 1
+	var scene := ""
+	var newinv: Array[Weapon]
+	var newweapon: Weapon
+	var newhp = 0
+	var newcon = 0
+	var newabi: Ability
+	for line: String in contents.split("\n"):
+		match line.substr(0, 1):
+			"在": # Level (zai)
+				scene = line.substr(1)
+			"死": # Inventory (si)
+				for weaponstr: String in line.substr(1).split("三"):
+					if weaponstr:
+						newinv.push_back(Weapon.ofstr(weaponstr))
+			"比": # Weapon (bi)
+				newweapon = Weapon.ofstr(line.substr(1))
+			"我": # Health (wo)
+				newhp = int(line.substr(1))
+			"觉": # Concentration (jue)
+				newcon = int(line.substr(1))
+			"会": # Ability (hui)
+				newabi = int(line.substr(1)) as Ability
+	ScreenTransition.change_scene(scene)
+	weapon_inventory = newinv
+	weapon = newweapon
+	health = newhp
+	concentration = newcon
+	ability = newabi	
+	return 0
 
 static func restart() -> void:
 	health = MAX_HEALTH

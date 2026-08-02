@@ -6,6 +6,7 @@ extends Node3D
 func _ready() -> void:
 	CameraController.world_environment = $WorldEnvironment
 	CameraController.has_world_environment = true
+	$Music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

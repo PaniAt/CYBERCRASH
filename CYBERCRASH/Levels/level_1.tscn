@@ -523,5 +523,8 @@ skeleton = NodePath("../..")
 [node name="Hitbox" parent="WinPortal/Detection" index="0"]
 shape = SubResource("BoxShape3D_0urlm")
 
+[node name="Music" parent="." index="7"]
+attenuation_model = 3
+
 [connection signal="body_entered" from="Geometry/Death" to="." method="_on_death_body_entered"]
 [connection signal="body_entered" from="Enemies/NoticeArea" to="." method="_on_notice_area_body_entered"]
