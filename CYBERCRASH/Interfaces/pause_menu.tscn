@@ -81,13 +81,12 @@ vertical_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="Main"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
-offset_top = -144.0
 offset_right = 256.0
 offset_bottom = 144.0
 grow_horizontal = 2
@@ -130,5 +129,62 @@ label_settings = SubResource("LabelSettings_yvgl8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SaveQuitButton" type="TextureButton" parent="Main/Buttons"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yvgl8")
+texture_pressed = SubResource("GradientTexture2D_ntuyk")
+texture_hover = SubResource("GradientTexture2D_ib6ty")
+
+[node name="SaveQuitText" type="Label" parent="Main/Buttons/SaveQuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SAVE & QUIT"
+label_settings = SubResource("LabelSettings_yvgl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="Main/Buttons"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yvgl8")
+texture_pressed = SubResource("GradientTexture2D_ntuyk")
+texture_hover = SubResource("GradientTexture2D_ib6ty")
+
+[node name="QuitText" type="Label" parent="Main/Buttons/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_yvgl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="Main/Buttons"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yvgl8")
+texture_pressed = SubResource("GradientTexture2D_ntuyk")
+texture_hover = SubResource("GradientTexture2D_ib6ty")
+
+[node name="LoadText" type="Label" parent="Main/Buttons/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOAD GAME"
+label_settings = SubResource("LabelSettings_yvgl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Main/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Main/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/LoadButton" to="." method="_on_load_button_pressed"]

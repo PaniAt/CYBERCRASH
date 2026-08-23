@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://do2rqfbqnejja"]
+[gd_scene load_steps=9 format=3 uid="uid://do2rqfbqnejja"]
 
 [ext_resource type="Script" uid="uid://cicggdpw2pj3o" path="res://Interfaces/death_scene.gd" id="1_amd8i"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_nll34"]
+[ext_resource type="AudioStream" uid="uid://3h3kbfvlntru" path="res://SFX/FemurBreaker.ogg" id="3_krutr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amd8i"]
 font = ExtResource("1_nll34")
@@ -162,5 +163,8 @@ text = "Retry?"
 label_settings = SubResource("LabelSettings_nll34")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_krutr")
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]

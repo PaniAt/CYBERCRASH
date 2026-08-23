@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://fgwwgq1ibfyp"]
+
+[ext_resource type="Script" uid="uid://k2epna5k37h3" path="res://Interfaces/fancy_text_display.gd" id="1_k57mb"]
+
+[node name="FancyTextDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_k57mb")
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+autowrap_mode = 3
+visible_characters = 0
