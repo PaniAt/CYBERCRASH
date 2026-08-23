@@ -35,3 +35,12 @@
   - Created an absolutely giant clock, which will be
     (hopefully if trialists like it) used in the
     final level (l6) of the game
+
+23/08/2026 Version 1.2.2-s3
+  - Created the sixth level
+  - Added some some cool cutscenes to the sixth, as well
+    as a boss-type thingy
+  - Added saving and loading into the pause menu, the
+    save directory is not saved
+  - Some various other refactors which hopefully make
+    development easier in the future
