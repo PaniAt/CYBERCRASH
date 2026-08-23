@@ -70,7 +70,7 @@ static var pos := Vector3.ZERO
 static var crouching := false
 static var hit_something := 0.0
 static var weapon_inventory: Array[Weapon] = [
-	Weapon.of(25, 2, 0.2, 0.7) # Default weapon
+	Weapon.of(25000, 2, 0.2, 0.7) # Default weapon
 ]
 static var weapon := weapon_inventory[0]
 static var queued_weapon := -1
@@ -81,6 +81,7 @@ static var concentration := MAX_CONCENTRATION
 static var slow_time := 0.0
 static var corrupt_time := 0.0
 static var invisible_time := 0.0
+static var dead := false
 
 # Pseudo-constants
 var speed := BASE_SPEED	## Player move speed
@@ -109,6 +110,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if CameraController.paused:
 		return
+	if dead:
+		move_and_slide() # Process remaining velocity
+		return # Nope your too late i already died
+	
 	set_look_direction()
 	calculate_speed(delta)
 	player_movement(delta)
@@ -129,83 +134,78 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_B):
 		get_tree().paused = true
 		# TEMPORARY
-	
-	if Input.is_key_pressed(KEY_P):
-		save_to_file("./SAVE.txt")
-	
-	if Input.is_key_pressed(KEY_O):
-		load_from_file("./SAVE.txt")
 
-func save_to_file(file_path: String) -> int:
-	var file := FileAccess.open(file_path, FileAccess.WRITE_READ)
-	var content: PackedStringArray
-	content.push_back("在" + get_tree().current_scene.scene_file_path)
-	var weaponry_string = ""
-	for weap: Weapon in weapon_inventory:
-		weaponry_string += weap.str_encode() + "三"
-	content.push_back("死" + weaponry_string)
-	content.push_back("比" + Player.weapon.str_encode())
-	content.push_back("我" + str(Player.health))
-	content.push_back("觉" + str(Player.concentration))
-	content.push_back("会" + str(Player.ability))
-	var save: String = ""
-	for line: String in content:
-		save += line + '\n'
-	var file_hash := hash(save)
-	file_hash ^= file_hash << 17
-	file_hash ^= file_hash >> 13
-	file_hash ^= file_hash << 5
-	save = str(file_hash) + '\n' + save
-	file.store_string(save)
-	return 0
-
-func load_from_file(file_path: String) -> int:
-	var file := FileAccess.open(file_path, FileAccess.READ)
-	var file_hash := file.get_line()
-	var contents := file.get_as_text(false)
-	if len(contents.split("\n", true, 1)) != 2:
-		return 1
-	contents = contents.split("\n", true, 1)[1]
-	var expected_hash := hash(contents)
-	expected_hash ^= expected_hash << 17
-	expected_hash ^= expected_hash >> 13
-	expected_hash ^= expected_hash << 5
-	if str(expected_hash) != file_hash:
-		return 1
-	var scene := ""
-	var newinv: Array[Weapon]
-	var newweapon: Weapon
-	var newhp = 0
-	var newcon = 0
-	var newabi: Ability
-	for line: String in contents.split("\n"):
-		match line.substr(0, 1):
-			"在": # Level (zai)
-				scene = line.substr(1)
-			"死": # Inventory (si)
-				for weaponstr: String in line.substr(1).split("三"):
-					if weaponstr:
-						newinv.push_back(Weapon.ofstr(weaponstr))
-			"比": # Weapon (bi)
-				newweapon = Weapon.ofstr(line.substr(1))
-			"我": # Health (wo)
-				newhp = int(line.substr(1))
-			"觉": # Concentration (jue)
-				newcon = int(line.substr(1))
-			"会": # Ability (hui)
-				newabi = int(line.substr(1)) as Ability
-	ScreenTransition.change_scene(scene)
-	weapon_inventory = newinv
-	weapon = newweapon
-	health = newhp
-	concentration = newcon
-	ability = newabi	
-	return 0
+#func save_to_file(file_path: String) -> int:
+	#var file := FileAccess.open(file_path, FileAccess.WRITE_READ)
+	#var content: PackedStringArray
+	#content.push_back("在" + get_tree().current_scene.scene_file_path)
+	#var weaponry_string = ""
+	#for weap: Weapon in weapon_inventory:
+		#weaponry_string += weap.str_encode() + "三"
+	#content.push_back("死" + weaponry_string)
+	#content.push_back("比" + Player.weapon.str_encode())
+	#content.push_back("我" + str(Player.health))
+	#content.push_back("觉" + str(Player.concentration))
+	#content.push_back("会" + str(Player.ability))
+	#var save: String = ""
+	#for line: String in content:
+		#save += line + '\n'
+	#var file_hash := hash(save)
+	#file_hash ^= file_hash << 17
+	#file_hash ^= file_hash >> 13
+	#file_hash ^= file_hash << 5
+	#save = str(file_hash) + '\n' + save
+	#file.store_string(save)
+	#return 0
+#
+#func load_from_file(file_path: String) -> int:
+	#var file := FileAccess.open(file_path, FileAccess.READ)
+	#var file_hash := file.get_line()
+	#var contents := file.get_as_text(false)
+	#if len(contents.split("\n", true, 1)) != 2:
+		#return 1
+	#contents = contents.split("\n", true, 1)[1]
+	#var expected_hash := hash(contents)
+	#expected_hash ^= expected_hash << 17
+	#expected_hash ^= expected_hash >> 13
+	#expected_hash ^= expected_hash << 5
+	#if str(expected_hash) != file_hash:
+		#return 1
+	#var scene := ""
+	#var newinv: Array[Weapon]
+	#var newweapon: Weapon
+	#var newhp = 0
+	#var newcon = 0
+	#var newabi: Ability
+	#for line: String in contents.split("\n"):
+		#match line.substr(0, 1):
+			#"在": # Level (zai)
+				#scene = line.substr(1)
+			#"死": # Inventory (si)
+				#for weaponstr: String in line.substr(1).split("三"):
+					#if weaponstr:
+						#newinv.push_back(Weapon.ofstr(weaponstr))
+			#"比": # Weapon (bi)
+				#newweapon = Weapon.ofstr(line.substr(1))
+			#"我": # Health (wo)
+				#newhp = int(line.substr(1))
+			#"觉": # Concentration (jue)
+				#newcon = int(line.substr(1))
+			#"会": # Ability (hui)
+				#newabi = int(line.substr(1)) as Ability
+	#ScreenTransition.change_scene(scene)
+	#weapon_inventory = newinv
+	#weapon = newweapon
+	#health = newhp
+	#concentration = newcon
+	#ability = newabi	
+	#return 0
 
 static func restart() -> void:
 	health = MAX_HEALTH
 	sprint = MAX_SPRINT
 	concentration = MAX_CONCENTRATION
+	dead = false
 
 func set_look_direction() -> void:
 	var target := CameraController.get_camera_direction()
@@ -445,7 +445,7 @@ func gun_fire() -> void:
 	
 	if $Raycast.is_colliding():
 		var collider = $Raycast.get_collider()
-		if collider is Enemy:
+		if collider is Enemy or collider is ServerBoss:
 			collider.take_damage(weapon.damage)
 			Player.hit_something = 1.0
 
@@ -602,6 +602,7 @@ func damage(amount: int, iframe := 0.1) -> int:
 	hurt.emit(amount, Player.health)
 	iframes += iframe
 	if Player.health <= 0:
+		Player.dead = true
 		ScreenTransition.change_scene("res://Interfaces/death_scene.tscn")
 	return Player.health
 

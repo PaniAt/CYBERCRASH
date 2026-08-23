@@ -9,6 +9,7 @@ func _process(delta: float) -> void:
 func _on_detection_body_entered(body: Node3D) -> void:
 	super._on_detection_body_entered(body)
 	
+	# Switch to the proper ability selection interface
 	var scn := "Levels/level_5"
 	
 	match(Player.ability):

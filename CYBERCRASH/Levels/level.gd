@@ -12,6 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$WorldEnvironment.environment.tonemap_exposure = Settings.gamma
 
+## When the player wins the level
 func _on_detection_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected player: " + str(body))
 	body.call_deferred("queue_free")

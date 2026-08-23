@@ -20,12 +20,14 @@ var pause_menu: CanvasLayer
 var has_world_environment: bool
 var world_environment: WorldEnvironment
 var free_mouse := false
+var always_shake := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	process_mode = Node.PROCESS_MODE_ALWAYS # Никогда не умереть
 
 func _process(delta: float) -> void:
+	# The giant if, elif statement of doom
 	if ScreenTransition.changing_scene:
 		paused = false
 		get_tree().paused = paused
@@ -50,14 +52,19 @@ func _process(delta: float) -> void:
 			add_child(pause_menu)
 		get_tree().paused = paused
 	
-	if paused:
+	if paused: # Don't move when paused
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if always_shake: # Evil
+			internal_timer += delta
+			camera_shake(delta, get_camera())
 	else:
 		internal_timer += delta
 		update_camera(delta)
 
+## Mouses make the camera move
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		# It might've been a bad idea to switch x and y here
 		camera_move.x += -event.relative.x * mouse_sensitivity
 		camera_move.y += -event.relative.y * mouse_sensitivity
 		if max_move:
@@ -73,11 +80,12 @@ func update_camera(delta: float) -> void:
 	elif free_mouse:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
+		# What the hell?
 		Input.mouse_mode = int(not paused) * 2 as Input.MouseMode
-	camera.rotation_degrees.x += camera_move.y * delta
-	if max_pitch:
+	camera.rotation_degrees.x += camera_move.y * delta # Vertical rotation
+	if max_pitch: # Prevent neck snapping
 		camera.rotation.x = clampf(camera.rotation.x, -max_pitch, max_pitch)
-	camera.rotation_degrees.y += camera_move.x * delta
+	camera.rotation_degrees.y += camera_move.x * delta # Horizontal rotation
 	
 	calculate_fov(delta, camera)
 	
@@ -85,12 +93,17 @@ func update_camera(delta: float) -> void:
 	
 	camera_move /= mouse_smooth
 	
-	if camera_shake_time > 0.0:
+	camera_shake(delta, camera)
+
+## Makes the camera shake
+func camera_shake(delta: float, camera: Camera3D) -> void:
+	if not camera: return
+	if camera_shake_time > 0.0: # Camera is shaking
 		camera_shake_time -= delta
 		var mult := camera_shake_power * delta
 		camera.h_offset += sin(internal_timer * 60) * mult
 		camera.v_offset += cos(internal_timer * 60) * mult
-	else:
+	else: # Stop shaking the camera
 		camera_shake_time = 0.0
 		camera_shake_power = DEFAULT_CAMERA_SHAKE_POWER
 		camera.h_offset = move_toward(camera.h_offset, 0, delta * 60)
@@ -98,11 +111,12 @@ func update_camera(delta: float) -> void:
 	
 	camera_shake_power = move_toward(camera_shake_power, DEFAULT_CAMERA_SHAKE_POWER, delta)
 
+## This approach to FOV modifiers is certainly an approach
 func calculate_fov(delta: float, camera: Camera3D) -> void:
 	var target_fov := DEFAULT_CAMERA_FOV
 	
 	for key: StringName in fov_modifiers:
-		var modifier = fov_modifiers[key]
+		var modifier := fov_modifiers[key]
 		target_fov += modifier.get_strength()
 		if modifier.duration >= 0:
 			modifier.duration -= delta
@@ -112,19 +126,26 @@ func calculate_fov(delta: float, camera: Camera3D) -> void:
 	# Tiny bit more interp, makes it so much cleaner
 	camera.fov = move_toward(camera.fov, target_fov, delta * 30.0)
 
+## FOV mod checker
 func has_fov_mod(key: StringName) -> bool:
 	return fov_modifiers.has(key)
+## FOV mod getter
 func get_fov_mod(key: StringName) -> Modifier:
 	return fov_modifiers.get(key)
+## FOV mod remover
 func del_fov_mod(key: StringName) -> bool:
 	return fov_modifiers.erase(key)
+## FOV mod setter
 func set_fov_mod(key: StringName, modifier: Modifier) -> bool:
 	return fov_modifiers.set(key, modifier)
 
+## HACKS!!
 func calculate_aim_assist(delta: float, camera: Camera3D) -> void:
-	if Settings.aim_assist == 0.0:
+	if Settings.aim_assist == 0.0: # Aim assist disabled
 		return
 	
+	# This could probably be improved by a different metric for
+	# finding the target enemy. I will not however
 	var closest: Enemy
 	var target_dir: Vector2
 	var ang_dist: float
@@ -142,20 +163,21 @@ func calculate_aim_assist(delta: float, camera: Camera3D) -> void:
 			dist = ang_dist
 			closest = enemy
 	
-	if not closest:
+	if not closest: # None found
 		return
 	
 	target_dir = Math.atan3(Player.pos - (closest.global_position - Vector3(0.0, 1.0, 0.0)))
 	#ang_dist = angle_difference(get_camera_direction().y, target_dir.x)
 	#if abs(rad_to_deg(ang_dist)) <= Settings.aim_assist:
-	if dist <= deg_to_rad(Settings.aim_assist) ** 2:
+	if dist <= deg_to_rad(Settings.aim_assist) ** 2: # Move camera towards target
 		camera.rotation.y = lerp_angle(camera.rotation.y, target_dir.x, delta * 12.0)
 		camera.rotation.x = lerp_angle(camera.rotation.x, target_dir.y, delta * 12.0)
 
+## Gets the camera
 func get_camera() -> Camera3D:
 	return get_viewport().get_camera_3d()
 
-## Returns the camera's direction in radians
+## Returns the camera's direction in radians (or degrees)
 func get_camera_direction(deg := false) -> Vector3:
 	if get_camera():
 		if deg:
@@ -165,8 +187,8 @@ func get_camera_direction(deg := false) -> Vector3:
 	else:
 		return Vector3.ZERO
 
-## Attempts to unpause the game, returning whether
-## the operation was successful
+## Attempts to unpause the game, returning whether the
+## operation was successful
 func unpause() -> bool:
 	if paused_by_force:
 		return false

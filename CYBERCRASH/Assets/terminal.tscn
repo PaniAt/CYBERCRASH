@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4q7iajpl0day"]
+[gd_scene load_steps=10 format=3 uid="uid://c4q7iajpl0day"]
 
 [ext_resource type="Texture2D" uid="uid://cnfu77lo1mvhl" path="res://GFX/terminals/terminal_0.png" id="1_764e4"]
+[ext_resource type="Script" uid="uid://dai6t8yqyjmxw" path="res://Assets/terminal.gd" id="2_urqps"]
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="3_l8sxy"]
+[ext_resource type="PackedScene" uid="uid://fgwwgq1ibfyp" path="res://Interfaces/fancy_text_display.tscn" id="3_vps1q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lat63"]
 transparency = 1
@@ -11,11 +14,25 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_lat63")
 size = Vector3(2, 2, 2)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ymul7"]
+font = ExtResource("3_l8sxy")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 1, 0, 1)
+shadow_size = 12
+shadow_color = Color(0, 1, 0, 0.5019608)
+shadow_offset = Vector2(0, 0)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lat63"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_764e4"]
+size = Vector3(3, 3, 3)
+
 [node name="Terminal" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_764e4")
+script = ExtResource("2_urqps")
+style = SubResource("LabelSettings_ymul7")
 
 [node name="Collision" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -32,3 +49,36 @@ light_color = Color(0, 1, 0, 1)
 light_energy = 0.5
 omni_attenuation = 0.0
 metadata/_edit_lock_ = true
+
+[node name="Detect" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="Hitbox" type="CollisionShape3D" parent="Detect"]
+shape = SubResource("BoxShape3D_764e4")
+
+[node name="Display" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="ColorRect" parent="Display"]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="Text" parent="Display" instance=ExtResource("3_vps1q")]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+special_codes = true
+caret = "_"
+skip_spaces = true
+speed = 20.0
+
+[connection signal="body_entered" from="Detect" to="." method="_on_detect_body_entered"]

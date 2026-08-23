@@ -1,6 +1,7 @@
 class_name Modifier
 extends Object
 
+## Fade types
 enum Fade
 {
 	NONE,
@@ -12,13 +13,16 @@ enum Fade
 	SMOOTHSTEP,
 	SINE,
 }
-var value := 0.0
-var duration := 0.0
-var initial_duration := 0.0
-var fade := Fade.NONE
-var inverse_fade := false
-var custom_exp := 1.0
 
+# Modifier instance values
+var value := 0.0 ## Intensity 
+var duration := 0.0 ## How long it lasts
+var initial_duration := 0.0 ## How long it started with
+var fade := Fade.NONE ## Fade mode
+var inverse_fade := false ## Does it fade inversely
+var custom_exp := 1.0 ## For custom exponential fade mode
+
+## Constructs a new modifier
 static func of(
 	val: float, time: float, 
 	fades := Fade.NONE, expo := 1.0,
@@ -32,7 +36,7 @@ static func of(
 	modifier.inverse_fade = inverse
 	return modifier
 
-
+## Gets the intensity of the modifier
 func get_strength() -> float:
 	var ratio = duration / initial_duration
 	ratio = clampf(ratio, 0.0, 1.0)

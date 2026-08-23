@@ -1,6 +1,7 @@
 class_name Weapon
 extends Object
 
+# Weapon parameters
 var damage: int
 var clip_size: int
 var bullets: int
@@ -9,6 +10,7 @@ var attack_speed: float
 var reload_speed: float
 var texture: CompressedTexture2D
 
+## Constructs a new weapon
 static func of(
 	weapon_damage: int,
 	weapon_clip: int,
@@ -40,18 +42,24 @@ static func ofstr(weapon_string: String) -> Weapon:
 	weapon.texture = load(values[6]) as CompressedTexture2D
 	return weapon
 
+## Returns whether the weapon can be fired
 func is_fireable() -> bool:
 	return bullets > 0 and can_shoot
 
+## Retuns whether the weapon has any bullets loaded
 func is_loaded() -> bool:
 	return bullets > 0
 
+## Reloads the weapon
 func reload() -> void:
 	bullets = clip_size
 
+## Gets amount of ammo this wepaon has as some nicely formatted 
+## text (this is for the GUI)
 func ammo_text() -> String:
 	return str(bullets) + " / " + str(clip_size)
 
+## Encodes this weapon into a string
 func str_encode() -> String:
 	var out := ""
 	out += str(damage) + "|"

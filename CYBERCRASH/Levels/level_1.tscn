@@ -1,10 +1,11 @@
-[gd_scene load_steps=67 format=3 uid="uid://s7d1hrsqavbj"]
+[gd_scene load_steps=68 format=3 uid="uid://s7d1hrsqavbj"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_n0qsc"]
 [ext_resource type="Script" uid="uid://iragup6ai864" path="res://Levels/level_1.gd" id="2_dilhk"]
 [ext_resource type="Texture2D" uid="uid://blbrfaomfxe1h" path="res://GFX/binarywall.png" id="3_3mhv4"]
 [ext_resource type="Texture2D" uid="uid://ddly7bpvflwdt" path="res://GFX/floorTexture.png" id="3_syshm"]
 [ext_resource type="PackedScene" uid="uid://c67cgtkg4mqpm" path="res://Assets/weapon_console.tscn" id="4_rf6l5"]
+[ext_resource type="PackedScene" uid="uid://c4q7iajpl0day" path="res://Assets/terminal.tscn" id="6_77x7w"]
 [ext_resource type="PackedScene" uid="uid://b6yj7uv7il1fx" path="res://Enemies/basic_enemy.tscn" id="6_rfktq"]
 [ext_resource type="PackedScene" uid="uid://vm0sjrweh8ni" path="res://Enemies/enemy_strengthened.tscn" id="7_0urlm"]
 
@@ -397,6 +398,17 @@ mesh = SubResource("BoxMesh_dilhk")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13, 1.5, -3)
 metadata/_edit_lock_ = true
 
+[node name="Terminal" parent="Geometry" index="5" instance=ExtResource("6_77x7w")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -8, 1.5, 0)
+text = "== TERMINAL VERSION 1.2.2 ==<
+Log Entry 23b:<
+I walked down the cold street, the moonlight illuminating the pavement in between glowing street lamps.| I whistled to myself, some old melody that I had long forgotten the lyrics to.
+\"I sure hope I don't walk into a pole,\" I says to myself with glee.
+.<.<.<
+.<.<.<
+.<.<.<
+I was then shot 47 times.>"
+
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.811218, 0)
 
@@ -522,9 +534,6 @@ skeleton = NodePath("../..")
 
 [node name="Hitbox" parent="WinPortal/Detection" index="0"]
 shape = SubResource("BoxShape3D_0urlm")
-
-[node name="Music" parent="." index="7"]
-attenuation_model = 3
 
 [connection signal="body_entered" from="Geometry/Death" to="." method="_on_death_body_entered"]
 [connection signal="body_entered" from="Enemies/NoticeArea" to="." method="_on_notice_area_body_entered"]

@@ -16,13 +16,13 @@ size = Vector3(16, 1, 24)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pses1"]
 load_path = "res://.godot/imported/floorTexture.png-40a2cf75561e619c3bac439e1e2aea8f.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0s3x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrvfs"]
 albedo_texture = SubResource("CompressedTexture2D_pses1")
 uv1_scale = Vector3(4, 4, 1)
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ki7po"]
-material = SubResource("StandardMaterial3D_u0s3x")
+material = SubResource("StandardMaterial3D_rrvfs")
 size = Vector3(16, 1, 24)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ftuqy"]

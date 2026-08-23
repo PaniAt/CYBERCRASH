@@ -1,9 +1,14 @@
+## WARNING: DO NOT USE THIS IS DEPRECATED
 class_name EnemyDefault
 extends CharacterBody3D
 
 # WARNING This class is the old version of the enemy class for the
 # WARNING demo version of the game. It is no longer supported and
 # WARNING should not be used.
+
+# ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT
+# DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
+# ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT ALERT
 
 # Constants
 const SPEED = 5.0

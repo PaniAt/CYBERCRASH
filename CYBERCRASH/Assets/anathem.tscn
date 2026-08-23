@@ -1,9 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg2psvl8ecveg"]
+[gd_scene load_steps=16 format=3 uid="uid://cg2psvl8ecveg"]
 
 [ext_resource type="Script" uid="uid://ddovmuunsut4p" path="res://Assets/anathem.gd" id="1_vbiwf"]
-[ext_resource type="AudioStream" uid="uid://y2vd230te5ee" path="res://SFX/Bell1.ogg" id="2_7kwep"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ahvm6"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ahvm6"]
 top_radius = 28.3
@@ -41,10 +38,10 @@ material = SubResource("StandardMaterial3D_y8b7w")
 size = Vector2(1, 10)
 center_offset = Vector3(0, 0, -4.5)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_y8b7w"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_vbiwf"]
 top_radius = 40.0
 bottom_radius = 40.0
-height = 40.0
+height = 80.0
 radial_segments = 8
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7kwep"]
@@ -69,112 +66,8 @@ cap_bottom = false
 [sub_resource type="BoxMesh" id="BoxMesh_vbiwf"]
 size = Vector3(40, 40, 80)
 
-[sub_resource type="Animation" id="Animation_7kwep"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(85, 2, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.5235988, 1.5707964, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:moving")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_vbiwf"]
-resource_name = "show_clocktower"
-length = 12.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2, 4, 5.9666667),
-"transitions": PackedFloat32Array(2, 0.5, 1),
-"update": 0,
-"values": [Vector3(85, 2, 0), Vector3(42, 31, 75), Vector3(0, 60, 150)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2, 4, 6),
-"transitions": PackedFloat32Array(2, 0.5, 1),
-"update": 0,
-"values": [Vector3(0.5235988, 1.5707964, 0), Vector3(0.2617994, 0.7853982, 0), Vector3(0, 0, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BellToll")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("2_7kwep")
-}],
-"times": PackedFloat32Array(7)
-}
-tracks/2/use_blend = true
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:moving")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7kwep"]
-_data = {
-&"RESET": SubResource("Animation_7kwep"),
-&"show_clocktower": SubResource("Animation_vbiwf")
-}
-
 [node name="Anathem" type="Node3D"]
 script = ExtResource("1_vbiwf")
-
-[node name="Refplayer" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 0, 0)
-mesh = SubResource("CapsuleMesh_ahvm6")
 
 [node name="Clock" type="Node3D" parent="."]
 
@@ -199,15 +92,11 @@ mesh = SubResource("PlaneMesh_y8b7w")
 transform = Transform3D(-0.9396926, 0, -0.34202015, 0, 1, 0, 0.34202015, 0, -0.9396926, 0, 1.001, 0)
 mesh = SubResource("PlaneMesh_p6vb3")
 
-[node name="Face2" type="MeshInstance3D" parent="Clock"]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 60, -41)
-mesh = SubResource("CylinderMesh_ahvm6")
-skeleton = NodePath("../..")
-
 [node name="Præsidium" type="Node3D" parent="."]
 
 [node name="Block1" type="MeshInstance3D" parent="Præsidium"]
-mesh = SubResource("CylinderMesh_y8b7w")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+mesh = SubResource("CylinderMesh_vbiwf")
 
 [node name="Block2" type="MeshInstance3D" parent="Præsidium"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
@@ -224,16 +113,3 @@ mesh = SubResource("CylinderMesh_p6vb3")
 [node name="Block5" type="MeshInstance3D" parent="Præsidium"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
 mesh = SubResource("BoxMesh_vbiwf")
-
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0.5, 0.8660254, 0, 0.8660254, -0.5, -1, -2.1855694e-08, -3.7855173e-08, 85, 2, 0)
-visible = false
-
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_7kwep")
-}
-autoplay = "show_clocktower"
-
-[node name="BellToll" type="AudioStreamPlayer3D" parent="."]
-attenuation_model = 3

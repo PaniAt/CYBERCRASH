@@ -1,4 +1,5 @@
 extends Node
+# Some math utilities that I like using
 
 ## Projects 2 angles from polar to cartesian normalised
 func proj(angs: Vector3) -> Vector3:

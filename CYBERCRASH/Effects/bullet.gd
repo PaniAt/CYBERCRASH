@@ -1,5 +1,6 @@
 class_name Bullet
 extends CharacterBody3D
+# For the sentry enemy's bullets
 
 var initial_velocity: Vector3
 var power: int

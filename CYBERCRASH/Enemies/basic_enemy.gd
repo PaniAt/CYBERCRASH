@@ -3,6 +3,7 @@ extends Enemy
 
 func take_damage(amount: int) -> int:
 	velocity.y += amount / 15.0
+	velocity.y = min(velocity.y, 10.0) # They go flying sometimes
 	return super.take_damage(amount)
 
 func _process(delta: float) -> void:
