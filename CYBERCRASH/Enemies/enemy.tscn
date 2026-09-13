@@ -57,6 +57,7 @@ metadata/_edit_group_ = true
 mesh = SubResource("PlaneMesh_rt1x0")
 
 [node name="HitArea" type="Area3D" parent="."]
+visible = false
 collision_layer = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -64,6 +65,7 @@ metadata/_edit_group_ = true
 [node name="Hitbox" type="CollisionShape3D" parent="HitArea"]
 
 [node name="DetectArea" type="Area3D" parent="."]
+visible = false
 collision_layer = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true

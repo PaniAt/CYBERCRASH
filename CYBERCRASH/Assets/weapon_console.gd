@@ -1,6 +1,7 @@
 class_name WeaponConsole
 extends StaticBody3D
 
+## Opens the weapon console screen
 func _on_detection_body_entered(body: Node3D) -> void:
 	# This is not where the actual customisation happens, it only
 	# triggers it. See:
@@ -12,6 +13,7 @@ func _on_detection_body_entered(body: Node3D) -> void:
 	add_sibling(screen)
 	screen.connect("exit", _on_screen_exit)
 
+## When the screen is exited
 func _on_screen_exit() -> void:
 	CameraController.paused_by_force = false
 	CameraController.paused = false

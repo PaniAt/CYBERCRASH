@@ -69,11 +69,17 @@ mesh = SubResource("CylinderMesh_306t6")
 [node name="Health" parent="HealthBar" index="0"]
 mesh = SubResource("PlaneMesh_1cmov")
 
+[node name="HitArea" parent="." index="3"]
+visible = false
+
 [node name="Hitbox" parent="HitArea" index="0"]
 shape = SubResource("ConvexPolygonShape3D_104oh")
 
 [node name="Hitbox2" type="CollisionShape3D" parent="HitArea" index="1"]
 shape = SubResource("BoxShape3D_104oh")
+
+[node name="DetectArea" parent="." index="4"]
+visible = false
 
 [node name="Hitbox" parent="DetectArea" index="0"]
 shape = SubResource("SphereShape3D_104oh")

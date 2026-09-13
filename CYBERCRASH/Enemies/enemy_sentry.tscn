@@ -92,7 +92,6 @@ TEXTURES = Array[CompressedTexture2D]([ExtResource("4_7e7p8"), ExtResource("4_gn
 
 [node name="Hitbox" parent="." index="0"]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0.05, 0)
-visible = true
 shape = SubResource("BoxShape3D_45qde")
 
 [node name="Texture" parent="." index="1"]

@@ -62,20 +62,23 @@ MAX_HEALTH = 40
 BASE_STRENGTH = 30
 TEXTURES = Array[CompressedTexture2D]([ExtResource("3_qenpu"), ExtResource("4_e4a15"), ExtResource("5_85m4s"), ExtResource("6_p61vm"), ExtResource("7_yx26b")])
 
-[node name="Hitbox" parent="." index="0"]
-visible = true
-
 [node name="Texture" parent="." index="1"]
 mesh = SubResource("CylinderMesh_85m4s")
 
 [node name="Health" parent="HealthBar" index="0"]
 mesh = SubResource("PlaneMesh_85m4s")
 
+[node name="HitArea" parent="." index="3"]
+visible = false
+
 [node name="Hitbox" parent="HitArea" index="0"]
 shape = SubResource("ConvexPolygonShape3D_qenpu")
 
 [node name="Hitbox2" type="CollisionShape3D" parent="HitArea" index="1"]
 shape = SubResource("BoxShape3D_qenpu")
+
+[node name="DetectArea" parent="." index="4"]
+visible = false
 
 [node name="Hitbox" parent="DetectArea" index="0"]
 shape = SubResource("SphereShape3D_qenpu")

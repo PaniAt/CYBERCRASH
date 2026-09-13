@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4q7iajpl0day"]
+[gd_scene load_steps=13 format=3 uid="uid://c4q7iajpl0day"]
 
 [ext_resource type="Texture2D" uid="uid://cnfu77lo1mvhl" path="res://GFX/terminals/terminal_0.png" id="1_764e4"]
 [ext_resource type="Script" uid="uid://dai6t8yqyjmxw" path="res://Assets/terminal.gd" id="2_urqps"]
 [ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="3_l8sxy"]
 [ext_resource type="PackedScene" uid="uid://fgwwgq1ibfyp" path="res://Interfaces/fancy_text_display.tscn" id="3_vps1q"]
+[ext_resource type="Texture2D" uid="uid://dfbq6xvm1fpuk" path="res://Interfaces/Graphics/exitButton/exitbutton_0.png" id="5_ymul7"]
+[ext_resource type="Texture2D" uid="uid://ca3p0eufggris" path="res://Interfaces/Graphics/exitButton/exitbutton_2.png" id="6_2enc0"]
+[ext_resource type="Texture2D" uid="uid://cd34ekv6l7gro" path="res://Interfaces/Graphics/exitButton/exitbutton_1.png" id="7_qrmrl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lat63"]
 transparency = 1
@@ -81,4 +84,19 @@ caret = "_"
 skip_spaces = true
 speed = 20.0
 
+[node name="ExitButton" type="TextureButton" parent="Display/Text"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+rotation = -1.5707964
+texture_normal = ExtResource("5_ymul7")
+texture_pressed = ExtResource("6_2enc0")
+texture_hover = ExtResource("7_qrmrl")
+stretch_mode = 0
+
 [connection signal="body_entered" from="Detect" to="." method="_on_detect_body_entered"]
+[connection signal="pressed" from="Display/Text/ExitButton" to="." method="_on_exit_button_pressed"]

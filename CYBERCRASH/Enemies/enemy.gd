@@ -154,6 +154,9 @@ func enemy_die() -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	
+	if Player.get_player():
+		@warning_ignore("integer_division") # JUST SHUT UP
+		Player.get_player().undamage(MAX_HEALTH / 10)
 	die.emit()
 	call_deferred("queue_free")
 

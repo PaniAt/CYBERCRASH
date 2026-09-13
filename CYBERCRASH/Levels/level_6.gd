@@ -26,6 +26,8 @@ func _on_animation_animation_finished(anim_name: StringName) -> void:
 		$HUD/CutsceneOverlay.hide()
 	elif anim_name == &"anathem_chime":
 		$Player.damage(1000)
+	elif anim_name == &"win":
+		ScreenTransition.change_scene("res://Interfaces/win_scene.tscn")
 
 ## For animations shaking the camera
 func shake_camera(power: float, time: float) -> void:
@@ -78,3 +80,9 @@ func _on_anathem_chime() -> void:
 func _on_death_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected Player: " + str(body))
 	body.damage(1000)
+
+
+func _on_server_die() -> void:
+	$Geometry/Block1/Movement.speed_scale = 0.0
+	$Geometry/Block2/Movement.speed_scale = 0.0
+	$Animation.play("win")

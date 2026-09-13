@@ -16,6 +16,7 @@ func _process(_delta: float) -> void:
 func _on_detection_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected player: " + str(body))
 	body.call_deferred("queue_free")
+# (26/08/2026) why the hell did I write this?
 
 #I wish you'd get me, I know you never could
 #You think I'm lazy, always misunderstood
