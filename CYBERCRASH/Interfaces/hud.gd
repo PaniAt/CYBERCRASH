@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Main/Bars.hide()
 	for player: Player in get_tree().get_nodes_in_group("Players"):
@@ -8,17 +7,17 @@ func _ready() -> void:
 		player.connect("hurt", healthbar_damage)
 		player.connect("heal", healthbar_heal)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	manage_crosshair(delta)
 	manage_bars(delta)
 	
 	if not Settings.flashy_visuals:
-		$Main/Flash.hide()
+		$Main/Flash.hide() # eppy lepsy mode
 	
 	$Main/Weapon/Display.texture = Player.weapon.texture
 	$Main/Weapon/Ammo.text = Player.weapon.ammo_text()
 
+## The function name speaks for itself
 func manage_crosshair(delta: float) -> void:
 	if Player.hit_something > 0.0:
 		var hitmarker: TextureRect = $Main/Crosshair/Hitmarker
@@ -29,6 +28,7 @@ func manage_crosshair(delta: float) -> void:
 		Player.hit_something = 0.0
 		$Main/Crosshair/Hitmarker.hide()
 
+## Manages ALL the bars (health, sprint & concentration)
 func manage_bars(delta: float) -> void:
 	# Health bar
 	var bar: TextureProgressBar = $Main/Bars/Health
@@ -63,6 +63,7 @@ func manage_bars(delta: float) -> void:
 func fsi(x: float) -> String:
 	return str(int(round(x)))
 
+## Owie!
 func healthbar_damage(amount: int, _health: int) -> void:
 	var mat = $Main/Bars/Health.material
 	mat.set_shader_parameter("progress", mat.get_shader_parameter(
@@ -72,6 +73,7 @@ func healthbar_damage(amount: int, _health: int) -> void:
 	var flash := 1.0 * amount / Player.MAX_HEALTH
 	$Main/Flash.color = Color(1.0, 0.0, 0.0, flash)
 
+## !eiwO
 func healthbar_heal(amount: int, _health: int) -> void:
 	var mat = $Main/Bars/Health.material
 	mat.set_shader_parameter("progress", mat.get_shader_parameter(

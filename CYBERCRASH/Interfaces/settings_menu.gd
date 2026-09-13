@@ -26,6 +26,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		Settings.update_keybinds()
 		selecting_key = ""
 
+## As of writing this comment, I have forgotten how this function
+## works, therefore, do not try to touch it. Perhaps I will
+## remember some later day. (26/08/2026)
 func update_control_button_text() -> void:
 	# This code carefully relies upon the button name being
 	# the same (case insensitive) to both the one supplied

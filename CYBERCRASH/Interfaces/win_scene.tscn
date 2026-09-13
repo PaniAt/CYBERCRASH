@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://capq8d4eueduc"]
+[gd_scene load_steps=7 format=3 uid="uid://capq8d4eueduc"]
 
+[ext_resource type="Script" uid="uid://bqo8i7fhc31qk" path="res://Interfaces/win_scene.gd" id="1_lm16p"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_v1bgv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amd8i"]
@@ -51,6 +52,7 @@ _data = {
 }
 
 [node name="WinScene" type="CanvasLayer"]
+script = ExtResource("1_lm16p")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -74,8 +76,25 @@ vertical_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 
+[node name="NoHitText" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = 412.5
+offset_right = 129.5
+offset_bottom = 435.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nicely done, you no-hit the game!"
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_amd8i")
 }
 autoplay = "death_text"
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

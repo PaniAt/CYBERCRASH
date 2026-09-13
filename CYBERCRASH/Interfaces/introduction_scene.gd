@@ -1,4 +1,6 @@
 extends CanvasLayer
+# The sky above the port was the colour of a television, tuned
+# to a dead channel.
 
 func _ready() -> void:
 	CameraController.paused_by_force = true

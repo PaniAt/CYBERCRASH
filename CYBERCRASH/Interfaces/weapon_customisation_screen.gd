@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal exit()
 
+## Gun textures
 const TEXTURES: Array[CompressedTexture2D] = [
 	preload("res://GFX/GunTextures/pickup_pistol.png"),
 	preload("res://GFX/GunTextures/pickup_rifle.png"),
@@ -33,6 +34,7 @@ func _process(_delta: float) -> void:
 	firespeed = $GUI/Customisation/Sliders/FirespeedSlider.value
 	reload = $GUI/Customisation/Sliders/ReloadSlider.value
 	
+	# Refresh the stat display
 	var statdisp := $GUI/CurrentWeapon/Stats
 	statdisp.text = ""
 	statdisp.text += "Damage: " + str(damage) + "\n"

@@ -9,18 +9,22 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$Main/ConfirmButton.visible = selected
 
+## This is triple-jump, ignore the name
 func _on_xray_button_pressed() -> void:
 	selected = true
 	ability = Player.Ability.TRIPLE_JUMP
 
+## This is high-jump, ignore the name
 func _on_glitch_button_pressed() -> void:
 	selected = true
 	ability = Player.Ability.HIGH_JUMP
 
+## This is bash, ignore the name
 func _on_agility_button_pressed() -> void:
 	selected = true
 	ability = Player.Ability.BASH
 
+## This is agility, ignore the name
 func _on_none_button_pressed() -> void:
 	selected = true
 	ability = Player.Ability.AGILITY

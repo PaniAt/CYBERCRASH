@@ -3,10 +3,12 @@ const SETTINGS_SCENE := preload("res://Interfaces/settings_menu.tscn")
 const SAVE_FILE_PATH := "./CYBERCRASH_SAVE.txt"
 var settings_menu: CanvasLayer
 
+## Resume the game
 func _on_resume_button_pressed() -> void:
 	if CameraController.unpause():
 		call_deferred("queue_free")
 
+## Open settings menu
 func _on_settings_button_pressed() -> void:
 	hide()
 	settings_menu = SETTINGS_SCENE.instantiate() as CanvasLayer

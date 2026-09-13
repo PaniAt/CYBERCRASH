@@ -1,7 +1,10 @@
 class_name ServerBoss
 extends StaticBody3D
+# Perhaps I should've moved this to 'res://Enemies/' however I
+# put it into 'res://Levels/' and cannot be bothered to move it,
+# it only exists in the 6th level anyways so who cares
 
-const MAX_HEALTH := 16384 # 2 ** 14
+const MAX_HEALTH := 4096 # 2 ** 12
 
 signal die()
 
@@ -24,7 +27,7 @@ func _process(delta: float) -> void:
 
 	try_summon()
 
-## Formula created after about 5 minutes of tinkering on Desmos.
+## Formula created after about 5 minutes of tinkering in Desmos.
 ## W(t, M) = (e^((t/M)^5) - 1) / (e - 1)
 ## where t is the time since the last spawn and M is the max
 ## time between spawns.
@@ -33,6 +36,7 @@ func sweight(t_d: float, t_M: float) -> float:
 	# 1.718281828459045 = e - 1
 	return (exp((t_d / t_M) ** 5.0) - 1.0) / 1.718281828459045;
 
+## Tries to summon an enemy
 func try_summon() -> void:
 	var time := internal_timer - last_spawn
 	var prob = sweight(time, max_spawn_time)
@@ -52,6 +56,7 @@ func try_summon() -> void:
 			summon_enemy(SENTRY_SCENE)
 		last_spawn = internal_timer
 
+## Actually summons an enemy
 func summon_enemy(scene: PackedScene) -> void:
 	var enemy := scene.instantiate() as Enemy
 	add_sibling(enemy)
@@ -61,6 +66,7 @@ func summon_enemy(scene: PackedScene) -> void:
 	enemy.velocity.y = abs(enemy.velocity.y) / 64.0
 	enemy.always_sees_player = true
 
+## Ripped from the enemise script
 func tick_damage_flash(delta: float) -> void:
 	#var healthmesh: Mesh = $HealthBar/Health.mesh
 	#var target = (2.0 * self.health) / MAX_HEALTH
@@ -80,6 +86,7 @@ func tick_damage_flash(delta: float) -> void:
 		dmg = clampf(dmg, 0.0, 1.0)
 		tex.set_instance_shader_parameter("progress", dmg)
 
+## Once again, ripped from the enemies script
 func take_damage(amount: int) -> int:
 	health = max(health - amount, 0)
 	$Texture1.set_instance_shader_parameter("progress", 1.0)
@@ -90,6 +97,7 @@ func take_damage(amount: int) -> int:
 	
 	return health
 
+## And thy punishment, is:
 func server_die() -> void:
 	dead = true
 	collision_layer = 0 # No more collisions
@@ -98,7 +106,7 @@ func server_die() -> void:
 	
 	var tween := get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN)
-	tween.set_trans(Tween.TRANS_BACK) # possible: spring, back, circ
+	tween.set_trans(Tween.TRANS_BACK) # feedback: TRANS_BACK is best
 	tween.tween_property(self, "rotation", Vector3(PI / 2.0, 0.0, 0.0), 2.0)
 	
 	await get_tree().create_timer(2.0).timeout
@@ -117,3 +125,4 @@ func server_die() -> void:
 			explosion.scale *= i
 			explosion.position = position
 			add_sibling(explosion)
+# DEATH!

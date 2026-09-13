@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://bfn1gqoew5m7x"]
+[gd_scene load_steps=65 format=4 uid="uid://bfn1gqoew5m7x"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_r2npx"]
 [ext_resource type="Script" uid="uid://cnmger4w0553g" path="res://Levels/level_6.gd" id="2_eoqu3"]
@@ -398,6 +398,42 @@ tracks/11/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Geometry:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.0455568e-06, 0.38016424, 1.4439226e-07, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_al66v"]
 resource_name = "anathem_chime"
@@ -645,11 +681,52 @@ tracks/9/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_5q244"]
+resource_name = "win"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Geometry:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -500, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.01, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.0455568e-06, 0.38016424, 1.4439226e-07, 1), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lr4b"]
 _data = {
 &"RESET": SubResource("Animation_4lr4b"),
 &"anathem_chime": SubResource("Animation_al66v"),
-&"anathem_intro": SubResource("Animation_2vdoi")
+&"anathem_intro": SubResource("Animation_2vdoi"),
+&"win": SubResource("Animation_5q244")
 }
 
 [node name="Level" instance=ExtResource("1_r2npx")]
@@ -836,7 +913,7 @@ shape = SubResource("WorldBoundaryShape3D_al66v")
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Camera" parent="Player" index="6"]
+[node name="Camera" parent="Player" index="7"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1, 0)
 
 [node name="Sunlight" parent="Lights" index="0"]
@@ -888,4 +965,5 @@ libraries = {
 [connection signal="chime" from="Geometry/Anathem" to="." method="_on_anathem_chime"]
 [connection signal="body_entered" from="Geometry/CutsceneTrigger" to="." method="_on_cutscene_trigger_body_entered"]
 [connection signal="body_entered" from="Geometry/Death" to="." method="_on_death_body_entered"]
+[connection signal="die" from="Enemies/Server" to="." method="_on_server_die"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

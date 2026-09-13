@@ -1,4 +1,4 @@
-@tool
+@tool # whoa there buster
 class_name FancyTextDisplay
 extends Control
 
@@ -103,6 +103,11 @@ func reload() -> void:
 		$Text.text = $Text.text.replace(">", "")
 	$Text.label_settings = style
 	$Text.visible_characters = 0
+	internal_timer = 0.0
+	visible_characters = 0.0
+	visible_ratio = 0.0
+	running = false
+	pausetime = 0.0
 
 func start() -> void:
 	running = true
