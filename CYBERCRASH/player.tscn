@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbu48bx10d67g"]
+[gd_scene load_steps=16 format=3 uid="uid://bbu48bx10d67g"]
 
 [ext_resource type="Script" uid="uid://4rpuhdtpch76" path="res://player.gd" id="1_4flbx"]
 
@@ -34,6 +34,27 @@ size = 0.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(2, 2.4, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4flbx"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+albedo_color = Color(0.098098494, 0.098098524, 0.09809851, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_onrkg"]
+material = SubResource("StandardMaterial3D_onrkg")
+top_radius = 0.23
+bottom_radius = 0.23
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+albedo_color = Color(1, 0.2509804, 0.16078432, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4flbx"]
+material = SubResource("StandardMaterial3D_hqtel")
+size = Vector2(0.025, 0.25)
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 collision_mask = 262
@@ -81,6 +102,18 @@ collision_mask = 2
 
 [node name="Hitbox" type="CollisionShape3D" parent="BashArea"]
 shape = SubResource("BoxShape3D_onrkg")
+
+[node name="Compass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5736346, 0, -1.6110095)
+mesh = SubResource("CylinderMesh_4flbx")
+
+[node name="Black" type="MeshInstance3D" parent="Compass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+mesh = SubResource("CylinderMesh_onrkg")
+
+[node name="Needle" type="MeshInstance3D" parent="Compass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052, 0.125)
+mesh = SubResource("PlaneMesh_4flbx")
 
 [connection signal="timeout" from="Timers/Reload" to="." method="_on_reload_cooldown_timeout"]
 [connection signal="timeout" from="Timers/Attack" to="." method="_on_attack_timeout"]

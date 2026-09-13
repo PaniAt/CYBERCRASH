@@ -21,12 +21,14 @@ var has_world_environment: bool
 var world_environment: WorldEnvironment
 var free_mouse := false
 var always_shake := false
+var do_stuff := true # TODO: Remove this in a later update
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	process_mode = Node.PROCESS_MODE_ALWAYS # Никогда не умереть
 
 func _process(delta: float) -> void:
+	if not do_stuff: return
 	# The giant if, elif statement of doom
 	if ScreenTransition.changing_scene:
 		paused = false

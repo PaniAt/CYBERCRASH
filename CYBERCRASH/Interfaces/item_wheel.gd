@@ -1,4 +1,5 @@
 extends CanvasLayer
+# acutally just an inventory
 
 func _ready() -> void:
 	for weapon: Weapon in Player.weapon_inventory:

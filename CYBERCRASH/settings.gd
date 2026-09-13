@@ -42,6 +42,7 @@ func update_keybinds() -> void:
 		InputMap.action_add_event(keybind, key_evt)
 	
 
+## Saves the game to the given file path
 func save_to_file(file_path: String) -> int:
 	var file := FileAccess.open(file_path, FileAccess.WRITE_READ)
 	var content: PackedStringArray
@@ -65,6 +66,8 @@ func save_to_file(file_path: String) -> int:
 	file.store_string(save)
 	return 0
 
+## Loads the game from the given file path, this is magically an
+## actually safe operation!
 func load_from_file(file_path: String) -> int:
 	if not FileAccess.file_exists(file_path):
 		return 1
