@@ -1,7 +1,7 @@
-12386283405480181
-在res://Levels/level_2.tscn
-死25|2|2|true|0.2|0.7|res://GFX/GunTextures/pickup_pistol.png三
-比25|2|2|true|0.2|0.7|res://GFX/GunTextures/pickup_pistol.png
-我100
+15421254588547450
+在res://Levels/level_5.tscn
+死25|2|2|true|0.05|0.7|res://GFX/GunTextures/pickup_pistol.png三
+比25|2|2|true|0.05|0.7|res://GFX/GunTextures/pickup_pistol.png
+我90
 觉100.0
-会0
+会4

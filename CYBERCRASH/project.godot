@@ -12,6 +12,7 @@ config_version=5
 
 config/name="CYBERCRASH"
 config/description="CYBERCRASH"
+run/main_scene="uid://cydmmgv7h24dm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -120,6 +121,7 @@ ITEMWHEEL={
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Enemies"
 3d_physics/layer_3="Objects"
+3d_physics/layer_4="EnemyBlocks"
 3d_physics/layer_9="Moving Platforms"
 
 [rendering]

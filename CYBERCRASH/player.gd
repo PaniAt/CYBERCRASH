@@ -70,7 +70,7 @@ static var pos := Vector3.ZERO ## The global position of the player
 static var crouching := false
 static var hit_something := 0.0
 static var weapon_inventory: Array[Weapon] = [
-	Weapon.of(25, 2, 0.2, 0.7) # Default weapon
+	Weapon.of(25, 2, 0.05, 0.7) # Default weapon
 ]
 static var weapon := weapon_inventory[0]
 static var queued_weapon := -1
@@ -92,17 +92,22 @@ var deceleration := BASE_DECELERATION	## Multiplier for decel
 
 # General Variables
 var camera_direction := Vector3.ZERO	## Direction of camera
+var grounded := false ## Is the player PERCIEVED to be grounded
+var coyote_time := 0.0 ## Coyote time
 var double_jump := true	## Can the player double jump
 var triple_jump := false ## Can the player triple jump
+var added_velocity := Vector3.ZERO ## Velocity added from weird stuff
 var is_crouching := false	## Is the player crouching
 var iframes := 0.0
 var is_sprinting := false
 var can_use_ability := true
 var regen_concentration := MAX_CONCENTRATION
 var item_wheel: CanvasLayer
+var LARRYGUN := Weapon.of(20, 200, 0.05, 1.0, preload("res://GFX/larry.jpg"))
 
 func _ready() -> void:
 	# This is usually for debugging purposes
+	weapon_inventory.append(LARRYGUN)
 	
 	Settings.update_keybinds()
 	$Texture.hide()
@@ -111,8 +116,6 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	$Compass.rotation.y = Math.atan2d(Vector3.ZERO, global_position)
-	
 	if CameraController.paused:
 		return
 	if dead:
@@ -149,6 +152,20 @@ func _process(_delta: float) -> void:
 		CameraController.unpause()
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		# TEMPORARY
+	if Input.is_key_pressed(KEY_M):
+		for obj in get_recursive_children(get_tree().current_scene, []):
+			if obj.has_method("take_damage"):
+				obj.take_damage(1)
+
+## TEMPORARY
+func get_recursive_children(node: Node, arr: Array[Node]) -> Array[Node]:
+	arr.append(node)
+	if node.get_children(true):
+		for child in node.get_children(true):
+			get_recursive_children(child, arr)
+		return arr
+	else:
+		return arr
 
 static func restart() -> void:
 	health = MAX_HEALTH
@@ -220,7 +237,15 @@ func calculate_speed(delta: float) -> void:
 
 ## Makes the player move (muscles make the body move)
 func player_movement(delta: float) -> void:
+	# Grounded check & coyote time
+	if not is_on_floor():
+		grounded = coyote_time > 0.0
+		coyote_time -= delta
+	else:
+		grounded = true
+		coyote_time = 0.166 # Tuning parameter
 	# Gravity
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		if velocity.y < -1.0:
@@ -250,7 +275,7 @@ func player_movement(delta: float) -> void:
 	
 	# Jump
 	if Input.is_action_just_pressed("JUMP"):
-		if is_on_floor():
+		if grounded: # Use coyote timed measure
 			velocity.y = jump_velocity
 		elif double_jump:
 			double_jump = false
@@ -317,6 +342,10 @@ func player_movement(delta: float) -> void:
 		CameraController.set_fov_mod(&"MOVEMENT_FADE", modifier)
 		CameraController.del_fov_mod(&"MOVEMENT")
 	
+	velocity += added_velocity
+	added_velocity *= deceleration
+	if added_velocity.y > 0.0 and not is_on_floor():
+		added_velocity += get_gravity() * delta
 	move_and_slide()
 
 func player_hotbar() -> void:
@@ -455,16 +484,39 @@ func player_abilities(delta: float) -> void:
 		concentration = clampf(concentration, 0.0, regen_concentration)
 	if ABILITY_COSTS[ability] > concentration:
 		return
+	$GlitchProjection.hide()
 	if Input.is_action_just_pressed("ATTACK_RIGHT") and can_use_ability:
-		can_use_ability = false
-		concentration -= ABILITY_COSTS[ability]
-		regen_concentration = concentration + clampf(ABILITY_COSTS[ability], 0.0, 25.0)
-		var cooldown = use_player_ability()
-		if cooldown == 0.0: # No ability used value
-			can_use_ability = true # We actually can
+		if ability == Ability.GLITCH:
+			render_glitch_ability(16.0)
+		elif ability == Ability.GLITCH_FAR:
+			render_glitch_ability(24.0)
 		else:
-			$Timers/Ability.wait_time = cooldown
-			$Timers/Ability.start()
+			can_use_ability = false
+			concentration -= ABILITY_COSTS[ability]
+			regen_concentration = concentration + clampf(ABILITY_COSTS[ability], 0.0, 25.0)
+			var cooldown = use_player_ability()
+			if cooldown == 0.0: # No ability used value
+				can_use_ability = true # We actually can
+			else:
+				$Timers/Ability.wait_time = cooldown
+				$Timers/Ability.start()
+	# Very evil
+	elif Input.is_action_pressed("ATTACK_RIGHT") and can_use_ability:
+		if ability == Ability.GLITCH:
+			render_glitch_ability(16.0)
+		elif ability == Ability.GLITCH_FAR:
+			render_glitch_ability(24.0)
+	if Input.is_action_just_released("ATTACK_RIGHT") and can_use_ability:
+		if ability == Ability.GLITCH or ability == Ability.GLITCH_FAR:
+			can_use_ability = false
+			concentration -= ABILITY_COSTS[ability]
+			regen_concentration = concentration + clampf(ABILITY_COSTS[ability], 0.0, 25.0)
+			var cooldown = use_player_ability()
+			if cooldown == 0.0:
+				can_use_ability = true
+			else:
+				$Timers/Ability.wait_time = cooldown
+				$Timers/Ability.start()	
 
 ## Triggers a player ability function, and returns the
 ## cooldown depending on which ability was activated
@@ -503,9 +555,11 @@ func use_xray_ability() -> void:
 	for enemy: Enemy in get_tree().get_nodes_in_group(&"Enemies"):
 		enemy.xray_time = 25.0
 
-func use_glitch_ability(power: float) -> void:
+## Because I used this code so much. Returns with
+## global coordinates
+func get_glitch_ability_position(power: float) -> Vector3:
 	var disp = Math.proj(camera_direction)
-	disp *= (power + 1.0) # (+1 discarded later)
+	disp *= (power + 1.0) # (+1.0 discarded later)
 	$Raycast.target_position = disp
 	$Raycast.force_raycast_update()
 	var target: Vector3
@@ -515,10 +569,24 @@ func use_glitch_ability(power: float) -> void:
 	else:
 		target = global_position + disp
 	
-	# Move 1 unit towards the player again (prevent into walls)
-	target = Math.towards(target, global_position, 1.0)
+	$Raycast.global_position = target + Vector3(0.0, 1.0, 0.0)
+	$Raycast.target_position = Vector3.DOWN * 2.0
+	$Raycast.force_raycast_update()
+	if $Raycast.is_colliding():
+		target = $Raycast.get_collision_point() + Vector3(0.0, 1.0, 0.0)
 	
-	global_position = target
+	$Raycast.position = Vector3(0.0, 1.0, 0.0)
+	
+	return target
+
+func render_glitch_ability(power: float) -> void:
+	$GlitchProjection.show()
+	$GlitchProjection.global_position = get_glitch_ability_position(power)
+
+func use_glitch_ability(power: float) -> void:
+	if not is_on_floor():
+		added_velocity += Math.proj(camera_direction) * 10.0 * Vector3(1.0, 0.0, 1.0)
+	global_position = get_glitch_ability_position(power)
 
 func use_slow_time_ability() -> void:
 	slow_time = 15.0
@@ -564,7 +632,7 @@ func undamage(amount: int) -> int:
 	heal.emit(amount, Player.health)
 	return Player.health
 
-## Returns the player instance, if there is one
+## Returns the player instance, if there is one...
 static func get_player() -> Player:
 	return me
 
