@@ -8,6 +8,9 @@ enum FancyTextMode
 	TOTAL_TIME,
 }
 
+## Broadcasted ONCE when the display has rendered all its text
+signal finished()
+
 const MODE_BY_CHARACTER = FancyTextMode.BY_CHARACTER
 const MODE_TOTAL_TIME = FancyTextMode.TOTAL_TIME
 
@@ -41,6 +44,7 @@ var visible_characters := 0.0
 var visible_ratio := 0.0
 var running := false
 var pausetime := 0.0
+var finished_emitted := false
 
 func _ready() -> void:
 	reload()
@@ -65,7 +69,12 @@ func _process(delta: float) -> void:
 	internal_timer += delta * speed
 	visible_characters += delta * speed
 	visible_ratio = internal_timer / total_time
-	visible_ratio = clampf(visible_ratio, 0.0, 1.0)
+	visible_ratio = max(visible_ratio, 0.0)
+	if visible_ratio >= 1.0:
+		visible_ratio = 1.0
+		if not finished_emitted:
+			finished.emit()
+			finished_emitted = true
 	
 	if mode == MODE_BY_CHARACTER:
 		$Text.visible_characters = visible_characters
@@ -108,6 +117,7 @@ func reload() -> void:
 	visible_ratio = 0.0
 	running = false
 	pausetime = 0.0
+	finished_emitted = false
 
 func start() -> void:
 	running = true

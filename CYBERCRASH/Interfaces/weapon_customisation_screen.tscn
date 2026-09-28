@@ -348,9 +348,9 @@ label_settings = SubResource("LabelSettings_psrol")
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-min_value = 1.0
-max_value = 40.0
-value = 1.0
+min_value = 10.0
+max_value = 25.0
+value = 10.0
 
 [node name="ClipLabel" type="Label" parent="GUI/Customisation/Sliders"]
 layout_mode = 2
@@ -362,8 +362,8 @@ label_settings = SubResource("LabelSettings_psrol")
 layout_mode = 2
 size_flags_vertical = 3
 min_value = 1.0
-max_value = 4.0
-value = 1.0
+max_value = 3.0
+value = 2.0
 
 [node name="FirespeedLabel" type="Label" parent="GUI/Customisation/Sliders"]
 layout_mode = 2
@@ -374,10 +374,10 @@ label_settings = SubResource("LabelSettings_psrol")
 [node name="FirespeedSlider" type="HSlider" parent="GUI/Customisation/Sliders"]
 layout_mode = 2
 size_flags_vertical = 3
-min_value = 0.1
+min_value = 0.3
 max_value = 0.5
 step = 0.1
-value = 0.1
+value = 0.3
 
 [node name="ReloadLabel" type="Label" parent="GUI/Customisation/Sliders"]
 layout_mode = 2
@@ -388,10 +388,10 @@ label_settings = SubResource("LabelSettings_psrol")
 [node name="ReloadSlider" type="HSlider" parent="GUI/Customisation/Sliders"]
 layout_mode = 2
 size_flags_vertical = 15
-min_value = 0.5
-max_value = 1.5
+min_value = 0.7
+max_value = 1.1
 step = 0.1
-value = 0.5
+value = 0.7
 
 [node name="Icons" type="HBoxContainer" parent="GUI/Customisation"]
 layout_mode = 1
