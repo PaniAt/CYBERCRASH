@@ -1,0 +1,362 @@
+[gd_scene load_steps=23 format=3 uid="uid://vac33c8xx7mc"]
+
+[ext_resource type="Script" uid="uid://wdmlpjxmc8ef" path="res://Interfaces/first_ability_selector.gd" id="1_jtnwv"]
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_muufr"]
+[ext_resource type="Texture2D" uid="uid://bnrslf3pnp2nk" path="res://Interfaces/Graphics/abilityIcons/ability_1.png" id="2_caf5v"]
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="3_8db00"]
+[ext_resource type="Texture2D" uid="uid://cwfbgy12emm5y" path="res://Interfaces/Graphics/abilityIcons/ability_2.png" id="4_prvyg"]
+[ext_resource type="Texture2D" uid="uid://cqnw566n3i071" path="res://Interfaces/Graphics/abilityIcons/ability_3.png" id="5_7bkb2"]
+[ext_resource type="Texture2D" uid="uid://cb3j5ms21cjq7" path="res://Interfaces/Graphics/abilityIcons/ability_0.png" id="6_l6kp4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_caf5v"]
+font = ExtResource("1_muufr")
+font_size = 128
+font_color = Color(0, 0.78431374, 0, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_muufr"]
+colors = PackedColorArray(0.19607843, 0.19607843, 0.19607843, 1, 0.19607843, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_caf5v"]
+gradient = SubResource("Gradient_muufr")
+
+[sub_resource type="Gradient" id="Gradient_caf5v"]
+colors = PackedColorArray(0.09803922, 0.09803922, 0.09803922, 1, 0.09803922, 0.09803922, 0.09803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8db00"]
+gradient = SubResource("Gradient_caf5v")
+
+[sub_resource type="Gradient" id="Gradient_prvyg"]
+colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1, 0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7bkb2"]
+gradient = SubResource("Gradient_prvyg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_prvyg"]
+font = ExtResource("3_8db00")
+font_size = 64
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8db00"]
+font = ExtResource("3_8db00")
+font_size = 32
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_8db00"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.19607843, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_prvyg"]
+gradient = SubResource("Gradient_8db00")
+
+[sub_resource type="Gradient" id="Gradient_7bkb2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.11764706, 0.11764706, 0.11764706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6kp4"]
+gradient = SubResource("Gradient_7bkb2")
+
+[sub_resource type="Gradient" id="Gradient_l6kp4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jtnwv"]
+gradient = SubResource("Gradient_l6kp4")
+
+[node name="FirstAbilitySelector" type="CanvasLayer"]
+script = ExtResource("1_jtnwv")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="SelectText" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -742.5
+offset_top = 40.0
+offset_right = 742.5
+offset_bottom = 201.0
+grow_horizontal = 2
+text = "SELECT YOUR ABILITY"
+label_settings = SubResource("LabelSettings_caf5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Selection" type="HBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="XrayButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_caf5v")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text"]
+layout_mode = 2
+text = "X-RAY"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text"]
+layout_mode = 2
+text = "Lets you see enemies
+through walls when used.
+Lasts for 25 seconds, and
+has a cooldown of 20
+seconds afterwards."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="GlitchButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/GlitchButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_prvyg")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/GlitchButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/GlitchButton/Text"]
+layout_mode = 2
+text = "GLITCH"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/GlitchButton/Text"]
+layout_mode = 2
+text = "Teleport forwards in
+the direction you are
+facing, not allowing
+you to go through walls.
+Has a cooldown of
+2 seconds."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="AgilityButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/AgilityButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_7bkb2")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/AgilityButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/AgilityButton/Text"]
+layout_mode = 2
+text = "AGILITY"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/AgilityButton/Text"]
+layout_mode = 2
+text = "Will permanently increase
+your movement speed
+and jump height. This
+is a passive ability and
+has no cooldown."
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="NoneButton" type="TextureButton" parent="Main/Selection"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_caf5v")
+texture_pressed = SubResource("GradientTexture2D_8db00")
+texture_hover = SubResource("GradientTexture2D_7bkb2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="Main/Selection/NoneButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_l6kp4")
+
+[node name="Text" type="VBoxContainer" parent="Main/Selection/NoneButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main/Selection/NoneButton/Text"]
+layout_mode = 2
+text = "NONE"
+label_settings = SubResource("LabelSettings_prvyg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Main/Selection/NoneButton/Text"]
+layout_mode = 2
+text = "Who needs those stupid
+abilities anyways!"
+label_settings = SubResource("LabelSettings_8db00")
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="TextureButton" parent="Main"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -201.0
+offset_right = 320.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = SubResource("GradientTexture2D_prvyg")
+texture_pressed = SubResource("GradientTexture2D_l6kp4")
+texture_hover = SubResource("GradientTexture2D_jtnwv")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ConfirmText" type="Label" parent="Main/ConfirmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONFIRM"
+label_settings = SubResource("LabelSettings_caf5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Main/Selection/XrayButton" to="." method="_on_xray_button_pressed"]
+[connection signal="pressed" from="Main/Selection/GlitchButton" to="." method="_on_glitch_button_pressed"]
+[connection signal="pressed" from="Main/Selection/AgilityButton" to="." method="_on_agility_button_pressed"]
+[connection signal="pressed" from="Main/Selection/NoneButton" to="." method="_on_none_button_pressed"]
+[connection signal="pressed" from="Main/ConfirmButton" to="." method="_on_confirm_button_pressed"]

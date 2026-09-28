@@ -1,0 +1,273 @@
+[gd_scene load_steps=13 format=3 uid="uid://csim8fjrw37mv"]
+
+[ext_resource type="Script" uid="uid://ol2in30k7clb" path="res://Interfaces/settings_menu.gd" id="1_chwrh"]
+[ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="2_lcx7s"]
+[ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="3_6ce7x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mm2rv"]
+font = ExtResource("2_lcx7s")
+font_size = 128
+font_color = Color(0, 0.78431374, 0, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_5cmvl"]
+colors = PackedColorArray(0, 0, 0, 0.39215687, 0, 0, 0, 0.39215687)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v7r3e"]
+gradient = SubResource("Gradient_5cmvl")
+width = 512
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_ib6ty"]
+colors = PackedColorArray(0, 0, 0, 0.5882353, 0, 0, 0, 0.5882353)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3a2t"]
+gradient = SubResource("Gradient_ib6ty")
+width = 512
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_yvgl8"]
+colors = PackedColorArray(0, 0, 0, 0.29411766, 0, 0, 0, 0.29411766)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ti01d"]
+gradient = SubResource("Gradient_yvgl8")
+width = 512
+height = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_sathk"]
+font = ExtResource("3_6ce7x")
+font_size = 64
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcx7s"]
+font = ExtResource("3_6ce7x")
+font_size = 48
+font_color = Color(0, 0.7176471, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_chwrh")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+metadata/_edit_lock_ = true
+
+[node name="SettingsText" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -269.0
+offset_right = 269.0
+offset_bottom = 161.0
+grow_horizontal = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_mm2rv")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="TextureButton" parent="Main"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -168.0
+offset_right = 552.0
+offset_bottom = -40.0
+grow_vertical = 0
+texture_normal = SubResource("GradientTexture2D_v7r3e")
+texture_pressed = SubResource("GradientTexture2D_s3a2t")
+texture_hover = SubResource("GradientTexture2D_ti01d")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="BackText" type="Label" parent="Main/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+label_settings = SubResource("LabelSettings_sathk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="Main"]
+layout_mode = 1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Sliders" type="VBoxContainer" parent="Main/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="AimAssistLabel" type="Label" parent="Main/Settings/Sliders"]
+layout_mode = 2
+text = "Aim-Assist Strength"
+label_settings = SubResource("LabelSettings_lcx7s")
+
+[node name="AimAssistSlider" type="HSlider" parent="Main/Settings/Sliders/AimAssistLabel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 69.0
+offset_right = 460.0
+offset_bottom = 85.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+max_value = 5.0
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="GammaLabel" type="Label" parent="Main/Settings/Sliders"]
+layout_mode = 2
+text = "Brightness"
+label_settings = SubResource("LabelSettings_lcx7s")
+
+[node name="GammaSlider" type="HSlider" parent="Main/Settings/Sliders/GammaLabel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 69.0
+offset_right = 460.0
+offset_bottom = 85.0
+scale = Vector2(2, 2)
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="FlashyVisualsLabel" type="Label" parent="Main/Settings/Sliders"]
+layout_mode = 2
+text = "Flashy Visuals"
+label_settings = SubResource("LabelSettings_lcx7s")
+
+[node name="VisualsButton" type="CheckButton" parent="Main/Settings/Sliders/FlashyVisualsLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -460.0
+offset_bottom = -28.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+button_pressed = true
+
+[node name="Controls" type="VBoxContainer" parent="Main/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Forwards" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Forwards: W"
+
+[node name="Left" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Left: A"
+
+[node name="Backwards" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Backwards: S"
+
+[node name="Right" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Right: D"
+
+[node name="Jump" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Jump: Space"
+
+[node name="Reload" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Reload: R"
+
+[node name="Crouch" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Crouch: C"
+
+[node name="Sprint" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "Sprint: Shift"
+
+[node name="ItemWheel" type="Button" parent="Main/Settings/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
+text = "ItemWheel: I"
+
+[connection signal="pressed" from="Main/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Main/Settings/Sliders/AimAssistLabel/AimAssistSlider" to="." method="_on_aim_assist_slider_value_changed"]
+[connection signal="value_changed" from="Main/Settings/Sliders/GammaLabel/GammaSlider" to="." method="_on_gamma_slider_value_changed"]
+[connection signal="toggled" from="Main/Settings/Sliders/FlashyVisualsLabel/VisualsButton" to="." method="_on_visuals_button_toggled"]
+[connection signal="pressed" from="Main/Settings/Controls/Forwards" to="." method="_on_forwards_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Backwards" to="." method="_on_backwards_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Jump" to="." method="_on_jump_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Crouch" to="." method="_on_crouch_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/Sprint" to="." method="_on_sprint_pressed"]
+[connection signal="pressed" from="Main/Settings/Controls/ItemWheel" to="." method="_on_item_wheel_pressed"]
