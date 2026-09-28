@@ -44,3 +44,9 @@
     save directory is not saved
   - Some various other refactors which hopefully make
     development easier in the future
+
+29/09/2026 Version 1.3.0
+  - Some polishing changes
+  - Implemented some trialling feedback
+  - Added coyote jumping
+  - Made the boss fight a bit cooler
