@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vm0sjrweh8ni"]
+[gd_scene load_steps=19 format=3 uid="uid://vm0sjrweh8ni"]
 
 [ext_resource type="PackedScene" uid="uid://c146xlq5td6mn" path="res://Enemies/enemy.tscn" id="1_4aavr"]
 [ext_resource type="Script" uid="uid://cii06xa3q44ks" path="res://Enemies/enemy_strengthened.gd" id="2_1cmov"]
@@ -56,6 +56,9 @@ size = Vector3(1.2, 2.4, 1.2)
 [sub_resource type="SphereShape3D" id="SphereShape3D_104oh"]
 radius = 12.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_uqpg5"]
+radius = 16.0
+
 [node name="StrongEnemy" instance=ExtResource("1_4aavr")]
 script = ExtResource("2_1cmov")
 MAX_SPEED = 4.0
@@ -69,17 +72,17 @@ mesh = SubResource("CylinderMesh_306t6")
 [node name="Health" parent="HealthBar" index="0"]
 mesh = SubResource("PlaneMesh_1cmov")
 
-[node name="HitArea" parent="." index="3"]
-visible = false
-
 [node name="Hitbox" parent="HitArea" index="0"]
 shape = SubResource("ConvexPolygonShape3D_104oh")
 
 [node name="Hitbox2" type="CollisionShape3D" parent="HitArea" index="1"]
 shape = SubResource("BoxShape3D_104oh")
 
-[node name="DetectArea" parent="." index="4"]
-visible = false
-
 [node name="Hitbox" parent="DetectArea" index="0"]
 shape = SubResource("SphereShape3D_104oh")
+
+[node name="ChainAlertRadius" parent="." index="5"]
+visible = false
+
+[node name="Hitbox" parent="ChainAlertRadius" index="0"]
+shape = SubResource("SphereShape3D_uqpg5")

@@ -8,8 +8,9 @@ func _ready() -> void:
 	$Geometry/Block1.global_position = Vector3(0.0, 28.5, -76.0)
 	$Geometry/Block2.global_position = Vector3(80.0, 28.5, -40.0)
 
-func _on_cutscene_trigger_body_entered(_body: Node3D) -> void:
+func _on_cutscene_trigger_body_exited(_body: Node3D) -> void:
 	if intro_cutscene_played: return # Only play it once.
+	if ScreenTransition.changing_scene: return # Don't play while paused
 	CameraController.paused_by_force = true
 	$HUD/CutsceneOverlay.show()
 	$Geometry/Block1/Movement.play(&"move")
@@ -19,13 +20,13 @@ func _on_cutscene_trigger_body_entered(_body: Node3D) -> void:
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == &"anathem_intro":
-		#Engine.time_scale = 30.0
 		CameraController.paused_by_force = false
 		CameraController.paused = false
 		CameraController.always_shake = false
 		$HUD/CutsceneOverlay.hide()
 	elif anim_name == &"anathem_chime":
 		$Player.damage(1000)
+		CameraController.paused_by_force = false
 	elif anim_name == &"win":
 		ScreenTransition.change_scene("res://Interfaces/win_scene.tscn")
 
@@ -85,4 +86,6 @@ func _on_death_body_entered(body: Node3D) -> void:
 func _on_server_die() -> void:
 	$Geometry/Block1/Movement.speed_scale = 0.0
 	$Geometry/Block2/Movement.speed_scale = 0.0
-	$Animation.play("win")
+	$Player.collision_layer = 0
+	$Player.collision_mask = 0
+	$Animation.play(&"win")

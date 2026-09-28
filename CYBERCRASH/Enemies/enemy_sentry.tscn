@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpecf50j6qf77"]
+[gd_scene load_steps=28 format=3 uid="uid://bpecf50j6qf77"]
 
 [ext_resource type="PackedScene" uid="uid://c146xlq5td6mn" path="res://Enemies/enemy.tscn" id="1_6i5pt"]
 [ext_resource type="Script" uid="uid://b26vhhmegik6f" path="res://Enemies/enemy_sentry.gd" id="2_u71v2"]
@@ -84,6 +84,9 @@ radius = 20.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_u71v2"]
 radius = 40.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pb6li"]
+radius = 48.0
+
 [node name="SentryEnemy" instance=ExtResource("1_6i5pt")]
 script = ExtResource("2_u71v2")
 MAX_HEALTH = 1000
@@ -141,6 +144,12 @@ debug_color = Color(0.9882353, 0, 0.3137255, 1)
 
 [node name="Hitbox" parent="DetectArea" index="0"]
 shape = SubResource("SphereShape3D_u71v2")
+
+[node name="ChainAlertRadius" parent="." index="6"]
+visible = false
+
+[node name="Hitbox" parent="ChainAlertRadius" index="0"]
+shape = SubResource("SphereShape3D_pb6li")
 
 [node name="Attack" parent="Timers" index="0"]
 wait_time = 0.5

@@ -92,6 +92,10 @@ func take_damage(amount: int) -> int:
 	$Texture1.set_instance_shader_parameter("progress", 1.0)
 	$Texture2.set_instance_shader_parameter("progress", 1.0)
 	
+	# Could +1 internal_timer, but I prefer to leave it pure
+	last_spawn -= 1.0
+	try_summon()
+	
 	if health <= 0 and not dead:
 		server_die()
 	
@@ -114,7 +118,7 @@ func server_die() -> void:
 	
 	await get_tree().create_timer(2.0).timeout
 	die.emit()
-	call_deferred("queue_free")
+	#call_deferred("queue_free")
 	
 	if Settings.flashy_visuals:
 		CameraController.camera_shake_time += 0.25
@@ -125,4 +129,7 @@ func server_die() -> void:
 			explosion.scale *= i
 			explosion.position = position
 			add_sibling(explosion)
+	
+	# Calling queue_free caused a caching error
+	global_position = Vector3(-999999, -999999, -999999)
 # DEATH!

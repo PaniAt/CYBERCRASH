@@ -6,7 +6,7 @@ func _process(delta: float) -> void:
 
 func _on_detection_body_entered(body: Node3D) -> void:
 	super._on_detection_body_entered(body)
-	
+	WeaponCustomisationScreen.weapon_unlocks["SHOTGUN"] = true
 	ScreenTransition.change_scene("res://Interfaces/first_ability_selector.tscn")
 
 func _on_death_body_entered(body: Node3D) -> void:
@@ -17,5 +17,6 @@ func _on_death_body_entered(body: Node3D) -> void:
 func _on_notice_area_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected Player: " + str(body))
 	for enemy: Enemy in get_tree().get_nodes_in_group("Enemies"):
-		enemy.always_sees_player = true
-		enemy.speed *= 1.5
+		#enemy.always_sees_player = true
+		# Made easier due to trialling
+		pass

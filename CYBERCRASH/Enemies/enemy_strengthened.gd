@@ -16,8 +16,11 @@ func enemy_die() -> void:
 	await super.enemy_die()
 	
 	if Settings.flashy_visuals:
-		CameraController.camera_shake_time += 0.25
-		CameraController.camera_shake_power += 0.75
+		var div = global_position.distance_squared_to(Player.pos)
+		div /= 500.0
+		div += 0.8
+		CameraController.camera_shake_time += 0.25 / div
+		CameraController.camera_shake_power += 0.75 / div
 		const SCENE := preload("res://Effects/blood_explosion.tscn")
 		var explosion = SCENE.instantiate() as BloodExplosion
 		explosion.scale *= 2.0

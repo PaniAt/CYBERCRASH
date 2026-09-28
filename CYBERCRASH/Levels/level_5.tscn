@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bd775icgqyc3s"]
+[gd_scene load_steps=115 format=3 uid="uid://bd775icgqyc3s"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_a6k8o"]
 [ext_resource type="PackedScene" uid="uid://bpecf50j6qf77" path="res://Enemies/enemy_sentry.tscn" id="2_ftuqy"]
@@ -369,6 +369,15 @@ size = Vector3(36, 14, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1xify"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jyfw"]
+size = Vector3(16, 1.05, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_308mu"]
+size = Vector3(8, 1.05, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtidu"]
+size = Vector3(48, 1.05, 0.25)
+
 [sub_resource type="FogMaterial" id="FogMaterial_1xify"]
 density = 0.02
 albedo = Color(0.6089856, 1.6364455e-06, 4.3317675e-07, 1)
@@ -648,6 +657,23 @@ collision_layer = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 shape = SubResource("WorldBoundaryShape3D_1xify")
 
+[node name="InvisibleWalls" type="StaticBody3D" parent="Geometry" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/InvisibleWalls" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 87.125)
+shape = SubResource("BoxShape3D_2jyfw")
+
+[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/InvisibleWalls" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 126.125)
+shape = SubResource("BoxShape3D_308mu")
+
+[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/InvisibleWalls" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 152.125)
+shape = SubResource("BoxShape3D_xtidu")
+
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
@@ -800,4 +826,5 @@ mesh = SubResource("BoxMesh_rrvfs")
 [node name="Hitbox" parent="WinPortal/Detection" index="0"]
 shape = SubResource("BoxShape3D_gmfyt")
 
+[connection signal="opened" from="Geometry/WeaponConsole" to="." method="_on_weapon_console_opened"]
 [connection signal="body_entered" from="Geometry/Death" to="." method="_on_death_body_entered"]

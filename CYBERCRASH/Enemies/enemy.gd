@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var MAX_HEALTH: int
 @export var BASE_STRENGTH: int
 @export var TEXTURES: Array[CompressedTexture2D]
+@export var ALERTS_OTHERS := true
 
 # Signals
 signal die() ## умерать
@@ -143,6 +144,7 @@ func set_texture(textureID: int) -> void:
 func take_damage(amount: int) -> int:
 	health = max(health - amount, 0)
 	$Texture.set_instance_shader_parameter("progress", 1.0)
+	sees_player = true
 	if health <= 0 and not dead:
 		enemy_die()
 	return health
@@ -175,7 +177,14 @@ func _on_attack_timeout() -> void:
 func _on_detect_area_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected Player: " + str(body))
 	sees_player = true
+	if ALERTS_OTHERS:
+		alert_nearby_enemies()
 
 func _on_detect_area_body_exited(body: Node3D) -> void:
 	assert(body is Player, "Expected Player: " + str(body))
 	sees_player = false
+
+func alert_nearby_enemies() -> void:
+	for comrade in $ChainAlertRadius.get_overlapping_bodies():
+		assert(comrade is Enemy, "Expected Enemy: " + str(comrade))
+		comrade.sees_player = true

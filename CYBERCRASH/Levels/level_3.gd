@@ -15,4 +15,11 @@ func _on_notice_area_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected Player: " + str(body))
 	for enemy: Enemy in get_tree().get_nodes_in_group("Enemies"):
 		enemy.always_sees_player = true
-		enemy.speed *= 1.5
+
+func _on_weapon_console_opened() -> void:
+	$Geometry/WeaponConsole.usable = false
+	var tweener = get_tree().create_tween()
+	$Geometry/WeaponConsole.collision_layer = 0
+	tweener.tween_property($Geometry/WeaponConsole, "global_position", Vector3(13.0, 36.5, -3.0), 3.0)
+	await tweener.finished
+	$Geometry/WeaponConsole.global_position.y = -999999.9

@@ -19,7 +19,9 @@ func _on_detection_body_entered(body: Node3D) -> void:
 			scn = "Interfaces/xray_ability_selector"
 		Player.Ability.AGILITY:
 			scn = "Interfaces/agility_ability_selector"
-
+			
+	WeaponCustomisationScreen.weapon_unlocks["CROSSBOW"] = true
+	
 	ScreenTransition.change_scene("res://" + scn + ".tscn")
 
 func _on_platform_squash_body_entered(body: Node3D) -> void:

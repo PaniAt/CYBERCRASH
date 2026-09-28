@@ -35,7 +35,7 @@ orientation = 2
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 2
-collision_mask = 261
+collision_mask = 269
 platform_floor_layers = 4294967040
 script = ExtResource("1_bxkaj")
 
@@ -71,6 +71,12 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Hitbox" type="CollisionShape3D" parent="DetectArea"]
+
+[node name="ChainAlertRadius" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Hitbox" type="CollisionShape3D" parent="ChainAlertRadius"]
 
 [node name="Timers" type="Node" parent="."]
 

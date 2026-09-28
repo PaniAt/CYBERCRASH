@@ -18,7 +18,7 @@ func take_damage(amount: int) -> int:
 	return super.take_damage(amount)
 
 func try_hitting_player() -> void:
-	if not hurting_player or not can_hit_player:
+	if (not hurting_player and not always_sees_player) or not can_hit_player:
 		return
 	
 	can_hit_player = false
