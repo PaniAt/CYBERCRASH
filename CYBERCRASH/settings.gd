@@ -29,7 +29,8 @@ var key_controls: Dictionary[StringName, Key] = {
 	&"ITEMWHEEL": KEY_I,
 }
 var flashy_visuals := true
-
+var volume := 100.0
+var mouse_sensitivity := 10.0
 
 ## Updates all of the InputMappings
 func update_keybinds() -> void:
@@ -40,7 +41,11 @@ func update_keybinds() -> void:
 		key_evt.keycode = key_controls[keybind]
 		InputMap.action_erase_events(keybind)
 		InputMap.action_add_event(keybind, key_evt)
-	
+
+func update_volume() -> void:
+	AudioServer.set_bus_volume_linear(
+		AudioServer.get_bus_index("Master"), Settings.volume / 100.0
+		)
 
 ## Saves the game to the given file path
 func save_to_file(file_path: String) -> int:

@@ -132,4 +132,5 @@ func server_die() -> void:
 	
 	# Calling queue_free caused a caching error
 	global_position = Vector3(-999999, -999999, -999999)
+	$DeathSound.play()
 # DEATH!

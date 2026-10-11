@@ -72,7 +72,8 @@ static var hit_something := 0.0
 static var weapon_inventory: Array[Weapon] = [
 	Weapon.of(25, 2, 0.05, 0.7) # Default weapon
 ]
-static var weapon := weapon_inventory[0]
+static var weapon_index := 0
+static var weapon := weapon_inventory[weapon_index]
 static var queued_weapon := -1
 static var health := MAX_HEALTH
 static var sprint := MAX_SPRINT
@@ -107,9 +108,11 @@ var LARRYGUN := Weapon.of(20, 200, 0.05, 1.0, preload("res://GFX/larry.jpg"))
 
 func _ready() -> void:
 	# This is usually for debugging purposes
-	weapon_inventory.append(LARRYGUN)
+	#weapon_inventory.append(LARRYGUN)
 	
 	Settings.update_keybinds()
+	if not self.weapon.is_loaded():
+		self.weapon.reload()
 	$Texture.hide()
 	me = self
 	
@@ -135,37 +138,37 @@ func _physics_process(delta: float) -> void:
 	iframes = max(iframes, 0.0)
 
 ## TEMPORARY
-func _process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_H):
-		restart()
-		get_tree().call_deferred("reload_current_scene")
-		# TEMPORARY
-	if Input.is_key_pressed(KEY_B):
-		get_tree().paused = true
-		CameraController.do_stuff = false
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		process_mode = Node.PROCESS_MODE_ALWAYS
-		# TEMPORARY
-	if Input.is_key_pressed(KEY_N):
-		get_tree().paused = false
-		CameraController.do_stuff = true
-		CameraController.unpause()
-		process_mode = Node.PROCESS_MODE_PAUSABLE
-		# TEMPORARY
-	if Input.is_key_pressed(KEY_M):
-		for obj in get_recursive_children(get_tree().current_scene, []):
-			if obj.has_method("take_damage"):
-				obj.take_damage(1)
+#func _process(_delta: float) -> void:
+	#if Input.is_key_pressed(KEY_H):
+		#restart()
+		#get_tree().call_deferred("reload_current_scene")
+		## TEMPORARY
+	#if Input.is_key_pressed(KEY_B):
+		#get_tree().paused = true
+		#CameraController.do_stuff = false
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#process_mode = Node.PROCESS_MODE_ALWAYS
+		## TEMPORARY
+	#if Input.is_key_pressed(KEY_N):
+		#get_tree().paused = false
+		#CameraController.do_stuff = true
+		#CameraController.unpause()
+		#process_mode = Node.PROCESS_MODE_PAUSABLE
+		## TEMPORARY
+	#if Input.is_key_pressed(KEY_M):
+		#for obj in get_recursive_children(get_tree().current_scene, []):
+			#if obj.has_method("take_damage"):
+				#obj.take_damage(1)
 
 ## TEMPORARY
-func get_recursive_children(node: Node, arr: Array[Node]) -> Array[Node]:
-	arr.append(node)
-	if node.get_children(true):
-		for child in node.get_children(true):
-			get_recursive_children(child, arr)
-		return arr
-	else:
-		return arr
+#func get_recursive_children(node: Node, arr: Array[Node]) -> Array[Node]:
+	#arr.append(node)
+	#if node.get_children(true):
+		#for child in node.get_children(true):
+			#get_recursive_children(child, arr)
+		#return arr
+	#else:
+		#return arr
 
 static func restart() -> void:
 	health = MAX_HEALTH
@@ -376,14 +379,21 @@ static func queue_weapon(index: int) -> void:
 func switch_weapon(index: int) -> void:
 	if len(Player.weapon_inventory) <= index:
 		return
+	if weapon_index == index:
+		return
+	
+	weapon_index = index
 	
 	weapon = weapon_inventory[index]
 	weapon.can_shoot = false
-	weapon.reload()
+	
 	$Timers/Attack.wait_time = weapon.attack_speed
 	$Timers/Attack.start()
-	$Timers/Reload.wait_time = weapon.reload_speed
-	$Timers/Reload.stop()
+	if not weapon.is_loaded():
+		$Timers/Reload.wait_time = weapon.reload_speed
+		$Timers/Reload.start()
+	else:
+		$Timers/Reload.stop()
 
 ## Checks for the player attempting to shoot
 func player_shoot() -> void:
@@ -426,6 +436,8 @@ func gun_fire() -> void:
 		if collider is Enemy or collider is ServerBoss:
 			collider.take_damage(weapon.damage)
 			Player.hit_something = 1.0
+			$SFX/HitSomething.pitch_scale = randf_range(1.5, 1.8)
+			$SFX/HitSomething.play()
 
 func player_abilities(delta: float) -> void:
 	# Slow time ability
@@ -619,6 +631,8 @@ func damage(amount: int, iframe := 0.1) -> int:
 	Player.health = clampi(Player.health, 0, Player.MAX_HEALTH)
 	hurt.emit(amount, Player.health)
 	iframes += iframe
+	if amount >= 10:
+		$SFX/Hurt.play()
 	if Player.health <= 0:
 		Player.dead = true
 		ScreenTransition.change_scene("res://Interfaces/death_scene.tscn")

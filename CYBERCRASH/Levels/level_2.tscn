@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d2d6x73dtflkm"]
+[gd_scene load_steps=67 format=3 uid="uid://d2d6x73dtflkm"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_ll1bl"]
 [ext_resource type="Script" uid="uid://dg847d8o3487t" path="res://Levels/level_2.gd" id="2_kbe2v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://iwhxserxe325" path="res://GFX/metalPanel.png" id="4_dgq3b"]
 [ext_resource type="Texture2D" uid="uid://blbrfaomfxe1h" path="res://GFX/binarywall.png" id="5_bcgyv"]
 [ext_resource type="PackedScene" uid="uid://b6yj7uv7il1fx" path="res://Enemies/basic_enemy.tscn" id="6_fbld2"]
+[ext_resource type="PackedScene" uid="uid://c4q7iajpl0day" path="res://Assets/terminal.tscn" id="6_pml6m"]
 [ext_resource type="PackedScene" uid="uid://vm0sjrweh8ni" path="res://Enemies/enemy_strengthened.tscn" id="7_s275v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kbe2v"]
@@ -377,6 +378,12 @@ collision_layer = 0
 [node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Death" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
 shape = SubResource("WorldBoundaryShape3D_kbe2v")
+
+[node name="Terminal" parent="Geometry" index="2" instance=ExtResource("6_pml6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -60)
+text = "== TERMINAL VERSION 4.5.1 ==<
+Audio Log <-< Dr|. Schtein<:<
+Auditory Log of Doctor Malcome Schtein. October tenth, I think. The days don't seem to pass in this place, so I have to track time with my watch. This is such a fascinating place to study, except for the fact that the inhabitants don't seem awfully friendly. Three more days they said, then they jack me out. Three more days."
 
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 33.01803)

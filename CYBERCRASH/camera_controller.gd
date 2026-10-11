@@ -6,7 +6,7 @@ const PAUSE_SCENE = preload("res://Interfaces/pause_menu.tscn")
 
 var max_pitch := PI / 2.0
 var max_move := 180.0
-var mouse_sensitivity := 10.0
+
 var mouse_smooth := 4.0
 var camera_move := Vector3.ZERO
 var camera_shake_time := 0.0
@@ -67,10 +67,10 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		# It might've been a bad idea to switch x and y here
-		camera_move.x += -event.relative.x * mouse_sensitivity
-		camera_move.y += -event.relative.y * mouse_sensitivity
+		camera_move.x += -event.relative.x * Settings.mouse_sensitivity
+		camera_move.y += -event.relative.y * Settings.mouse_sensitivity
 		if max_move:
-			var limit = max_move * mouse_sensitivity
+			var limit = max_move * Settings.mouse_sensitivity
 			camera_move.x = clampf(camera_move.x, -limit, limit)
 			camera_move.y = clampf(camera_move.y, -limit, limit)
 

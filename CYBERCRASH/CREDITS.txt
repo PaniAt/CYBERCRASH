@@ -8,4 +8,22 @@ http://creativecommons.org/licenses/by-sa/3.0/
 FONTS:
 Black Ops One, by James Grieshaber, and Eben Sorkin
 Roboto, by Christian Robertson, ParaType, and Font Bureau
+
+SOUND EFFECTS
 079.ogg, from SCP: Containment Breach
+Bell3.ogg, edited version, from SCP: Containment Breach
+Bell1.ogg, edited version, from SCP: Containment Breach
+1499Danger.ogg, from SCP: Containment Breach
+FemurBreaker.ogg, edited version, from SCP: Containment Breach
+CYBERCRASH.ogg, made by me, samples "Lost" by CRIM3S
+LarryExplode.ogg, edited version, from SCP: Containment Breach
+PlayerHurt.ogg, edited version, from SCP: Containment Breach
+HouseExplode.ogg, edited version, from SCP: Containment Breach
+Button.ogg, from SCP: Containment Breach
+ButtonErr.ogg, from SCP: Containment Breach
+KeyCardUse1.ogg, edited version, from SCP: Containment Breach
+LeverFlip.ogg, edited version, from SCP: Containment Breach
+Item.ogg, from SCP: Containment Breach
+HitSomething, edited version, from SCP: Containment Breach
+Scanner.ogg, from SCP: Containment Breach
+ScannerErr.ogg, from SCP: Containment Breach

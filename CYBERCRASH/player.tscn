@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbu48bx10d67g"]
+[gd_scene load_steps=16 format=3 uid="uid://bbu48bx10d67g"]
 
 [ext_resource type="Script" uid="uid://4rpuhdtpch76" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://5jnh840dtyle" path="res://SFX/PlayerHurt.ogg" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://djro234pliveq" path="res://SFX/HitSomething.ogg" id="3_i3pqv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4flbx"]
 size = Vector3(1, 2, 1)
@@ -109,6 +111,17 @@ shape = SubResource("BoxShape3D_onrkg")
 [node name="GlitchProjection" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_2hs0m")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_onrkg")
+volume_db = -5.0
+
+[node name="HitSomething" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_i3pqv")
+volume_db = -5.0
+pitch_scale = 1.7
 
 [connection signal="timeout" from="Timers/Reload" to="." method="_on_reload_cooldown_timeout"]
 [connection signal="timeout" from="Timers/Attack" to="." method="_on_attack_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=66 format=3 uid="uid://dendmtisqleso"]
+[gd_scene load_steps=67 format=3 uid="uid://dendmtisqleso"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_ftfcu"]
 [ext_resource type="Texture2D" uid="uid://iwhxserxe325" path="res://GFX/metalPanel.png" id="2_e78ah"]
 [ext_resource type="Script" uid="uid://c8fpm5bleqpfo" path="res://Levels/level_4.gd" id="2_t60mx"]
 [ext_resource type="Texture2D" uid="uid://ddly7bpvflwdt" path="res://GFX/floorTexture.png" id="3_nsqb1"]
 [ext_resource type="PackedScene" uid="uid://b6yj7uv7il1fx" path="res://Enemies/basic_enemy.tscn" id="5_ujo87"]
+[ext_resource type="PackedScene" uid="uid://c4q7iajpl0day" path="res://Assets/terminal.tscn" id="5_waaef"]
 [ext_resource type="PackedScene" uid="uid://vm0sjrweh8ni" path="res://Enemies/enemy_strengthened.tscn" id="6_hvgxt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ftfcu"]
@@ -461,6 +462,12 @@ collision_mask = 3
 [node name="Hitbox" type="CollisionShape3D" parent="Geometry/Platform/PlatformSquash" index="0"]
 shape = SubResource("BoxShape3D_utic7")
 debug_color = Color(0.99215686, 0, 0.2627451, 1)
+
+[node name="Terminal" parent="Geometry" index="2" instance=ExtResource("5_waaef")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55, 21.5, -36)
+text = "== TERMINAL VERSION 4.5.1 ==<
+Audio Log <-< Dr|. Schtein<:<
+Auditory Log of Doctor Malcome Schtein. October nineteenth.< They're late. I don't know how much longer I can go on like this. Those metal things have started taking more notice of my presence. I just hope they'll get me out quick."
 
 [node name="Player" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 35)

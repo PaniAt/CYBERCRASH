@@ -51,6 +51,13 @@ func _on_hint_1_body_entered(body: Node3D) -> void:
 	$HUD/HintDisplay.reload()
 	$HUD/HintDisplay.start()
 
+func _on_hint_2_body_entered(body: Node3D) -> void:
+	assert(body is Player, "Expected Player: " + str(body))
+	hint_fade_timer = 999999.0
+	$HUD/HintDisplay.text = "You can hold SHIFT to sprint, and double jump. Move around to avoid taking damage from your enemies."
+	$HUD/HintDisplay.reload()
+	$HUD/HintDisplay.start()
+
 func _on_weapon_console_opened() -> void:
 	weapon_console_opened = true
 	$Geometry/WeaponConsole.usable = false

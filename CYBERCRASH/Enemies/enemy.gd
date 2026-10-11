@@ -159,6 +159,8 @@ func enemy_die() -> void:
 	if Player.get_player():
 		@warning_ignore("integer_division") # JUST SHUT UP
 		Player.get_player().undamage(MAX_HEALTH / 10)
+		Player.concentration += 5.0
+		Player.concentration = clampf(Player.concentration, 0.0, 100.0)
 	die.emit()
 	call_deferred("queue_free")
 
