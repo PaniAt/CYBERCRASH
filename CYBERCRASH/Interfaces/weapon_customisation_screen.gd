@@ -91,8 +91,8 @@ func _process(_delta: float) -> void:
 	statdisp.text = ""
 	statdisp.text += "Damage: " + str(damage) + "\n"
 	statdisp.text += "Clip Size: " + str(clip) + "\n"
-	statdisp.text += "Firing Speed: " + str(firespeed) + "\n"
-	statdisp.text += "Reload Speed: " + str(reload) + "\n"
+	statdisp.text += "Firing Speed: " + str(firespeed) + "s\n"
+	statdisp.text += "Reload Speed: " + str(reload) + "s\n"
 	$GUI/CurrentWeapon/WeaponDisplay.texture = texture
 
 func exit_menu() -> void:
@@ -100,6 +100,7 @@ func exit_menu() -> void:
 	Player.weapon_inventory.push_back(Weapon.of(
 		damage, clip, firespeed, reload, texture
 	))
+	Player.queue_weapon(len(Player.weapon_inventory) - 1)
 	call_deferred("queue_free")
 
 ## This method is probably not safe, it assumes you supply it the

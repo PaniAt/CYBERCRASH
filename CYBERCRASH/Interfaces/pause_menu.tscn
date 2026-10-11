@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://hlqix1yd7cxu"]
+[gd_scene load_steps=15 format=3 uid="uid://hlqix1yd7cxu"]
 
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_vvf2u"]
 [ext_resource type="Script" uid="uid://crfmrpc0avlpc" path="res://Interfaces/pause_menu.gd" id="1_yvgl8"]
 [ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="2_5cmvl"]
+[ext_resource type="AudioStream" uid="uid://bofj0s1d3ctjv" path="res://SFX/Button.ogg" id="4_ib6ty"]
+[ext_resource type="AudioStream" uid="uid://5x2pcnouy36v" path="res://SFX/Scanner.ogg" id="5_ntuyk"]
+[ext_resource type="AudioStream" uid="uid://c4kq1add18rnh" path="res://SFX/Item.ogg" id="6_6l8df"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5cmvl"]
 font = ExtResource("1_vvf2u")
@@ -182,6 +185,19 @@ text = "LOAD GAME"
 label_settings = SubResource("LabelSettings_yvgl8")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_ib6ty")
+volume_db = -3.0
+
+[node name="Scanner" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_ntuyk")
+
+[node name="Open" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_6l8df")
+volume_db = -5.0
 
 [connection signal="pressed" from="Main/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Main/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]

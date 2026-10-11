@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://csim8fjrw37mv"]
+[gd_scene load_steps=15 format=3 uid="uid://csim8fjrw37mv"]
 
 [ext_resource type="Script" uid="uid://ol2in30k7clb" path="res://Interfaces/settings_menu.gd" id="1_chwrh"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="2_lcx7s"]
 [ext_resource type="FontFile" uid="uid://c7tqda1inwob0" path="res://Fonts/Roboto.ttf" id="3_6ce7x"]
+[ext_resource type="AudioStream" uid="uid://bofj0s1d3ctjv" path="res://SFX/Button.ogg" id="4_6ce7x"]
+[ext_resource type="AudioStream" uid="uid://m5hd54qa5j3o" path="res://SFX/LeverFlip.ogg" id="5_mm2rv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mm2rv"]
 font = ExtResource("2_lcx7s")
@@ -183,15 +185,59 @@ label_settings = SubResource("LabelSettings_lcx7s")
 
 [node name="VisualsButton" type="CheckButton" parent="Main/Settings/Sliders/FlashyVisualsLabel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -460.0
-offset_bottom = -28.5
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -29.0
+offset_right = -48.0
+offset_bottom = -0.5
+grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(2, 2)
 button_pressed = true
+icon_alignment = 2
+
+[node name="VolumeLabel" type="Label" parent="Main/Settings/Sliders"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_lcx7s")
+
+[node name="VolumeSlider" type="HSlider" parent="Main/Settings/Sliders/VolumeLabel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 69.0
+offset_right = 460.0
+offset_bottom = 85.0
+scale = Vector2(2, 2)
+max_value = 150.0
+step = 25.0
+value = 100.0
+tick_count = 7
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="SensitivityLabel" type="Label" parent="Main/Settings/Sliders"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+label_settings = SubResource("LabelSettings_lcx7s")
+
+[node name="SensitivitySlider" type="HSlider" parent="Main/Settings/Sliders/SensitivityLabel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 69.0
+offset_right = 460.0
+offset_bottom = 85.0
+scale = Vector2(2, 2)
+min_value = 2.0
+max_value = 18.0
+step = 0.5
+value = 10.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
 
 [node name="Controls" type="VBoxContainer" parent="Main/Settings"]
 layout_mode = 1
@@ -258,10 +304,21 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0.87058824, 0, 1)
 text = "ItemWheel: I"
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_6ce7x")
+volume_db = -3.0
+
+[node name="LevelFlip" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_mm2rv")
+
 [connection signal="pressed" from="Main/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="Main/Settings/Sliders/AimAssistLabel/AimAssistSlider" to="." method="_on_aim_assist_slider_value_changed"]
 [connection signal="value_changed" from="Main/Settings/Sliders/GammaLabel/GammaSlider" to="." method="_on_gamma_slider_value_changed"]
 [connection signal="toggled" from="Main/Settings/Sliders/FlashyVisualsLabel/VisualsButton" to="." method="_on_visuals_button_toggled"]
+[connection signal="value_changed" from="Main/Settings/Sliders/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="Main/Settings/Sliders/SensitivityLabel/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="Main/Settings/Controls/Forwards" to="." method="_on_forwards_pressed"]
 [connection signal="pressed" from="Main/Settings/Controls/Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="Main/Settings/Controls/Backwards" to="." method="_on_backwards_pressed"]

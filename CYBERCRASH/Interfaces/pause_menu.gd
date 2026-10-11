@@ -3,15 +3,22 @@ const SETTINGS_SCENE := preload("res://Interfaces/settings_menu.tscn")
 const SAVE_FILE_PATH := "./CYBERCRASH_SAVE.txt"
 var settings_menu: CanvasLayer
 
+func _ready() -> void:
+	$SFX/Open.play()
+
 ## Resume the game
 func _on_resume_button_pressed() -> void:
 	if CameraController.unpause():
+		var dying_breath = $SFX/ButtonClick.duplicate()
+		add_sibling(dying_breath)
+		dying_breath.play()
 		call_deferred("queue_free")
 
 ## Open settings menu
 func _on_settings_button_pressed() -> void:
 	hide()
 	settings_menu = SETTINGS_SCENE.instantiate() as CanvasLayer
+	$SFX/ButtonClick.play()
 	add_child(settings_menu)
 	settings_menu.connect(&"exit", _on_settings_menu_exit)
 
@@ -27,4 +34,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	Settings.load_from_file(SAVE_FILE_PATH)
+	var scanner_sfx = $SFX/Scanner.duplicate()
+	add_sibling(scanner_sfx)
+	scanner_sfx.play()
 	_on_resume_button_pressed()
