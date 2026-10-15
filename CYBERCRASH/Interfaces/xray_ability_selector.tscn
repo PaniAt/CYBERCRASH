@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://qhfgb4uqovgr"]
+[gd_scene format=3 uid="uid://qhfgb4uqovgr"]
 
 [ext_resource type="Script" uid="uid://dex0qerw2ykxi" path="res://Interfaces/xray_ability_selector.gd" id="1_x7v66"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="2_2eudi"]
@@ -74,10 +74,10 @@ colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jtnwv"]
 gradient = SubResource("Gradient_l6kp4")
 
-[node name="XrayAbilitySelector" type="CanvasLayer"]
+[node name="XrayAbilitySelector" type="CanvasLayer" unique_id=2029411376]
 script = ExtResource("1_x7v66")
 
-[node name="Main" type="Control" parent="."]
+[node name="Main" type="Control" parent="." unique_id=580591868]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +86,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="Main"]
+[node name="Background" type="ColorRect" parent="Main" unique_id=615304290]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +96,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="SelectText" type="Label" parent="Main"]
+[node name="SelectText" type="Label" parent="Main" unique_id=400319616]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -112,7 +112,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Selection" type="HBoxContainer" parent="Main"]
+[node name="Selection" type="HBoxContainer" parent="Main" unique_id=1097248840]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -129,7 +129,7 @@ theme_override_constants/separation = 16
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CorruptButton" type="TextureButton" parent="Main/Selection"]
+[node name="CorruptButton" type="TextureButton" parent="Main/Selection" unique_id=1328707350]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -140,7 +140,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/CorruptButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/CorruptButton" unique_id=597228375]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -153,7 +153,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_x7v66")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/CorruptButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/CorruptButton" unique_id=1039523083]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -162,14 +162,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/CorruptButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/CorruptButton/Text" unique_id=1523145318]
 layout_mode = 2
 text = "CORRUPT"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/CorruptButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/CorruptButton/Text" unique_id=1425407545]
 layout_mode = 2
 text = "I did not even try to
 make this a balanced
@@ -180,7 +180,7 @@ Enjoy."
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="PredictButton" type="TextureButton" parent="Main/Selection"]
+[node name="PredictButton" type="TextureButton" parent="Main/Selection" unique_id=29850890]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -191,7 +191,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/PredictButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/PredictButton" unique_id=231946015]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -204,7 +204,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_x7v66")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/PredictButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/PredictButton" unique_id=1096591941]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -213,14 +213,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/PredictButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/PredictButton/Text" unique_id=1888845585]
 layout_mode = 2
 text = "PREDICT"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/PredictButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/PredictButton/Text" unique_id=440546918]
 layout_mode = 2
 text = "Passively allows you to
 see enemies through
@@ -228,7 +228,7 @@ walls."
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="InvisibilityButton" type="TextureButton" parent="Main/Selection"]
+[node name="InvisibilityButton" type="TextureButton" parent="Main/Selection" unique_id=1507681949]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -239,7 +239,7 @@ stretch_mode = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/InvisibilityButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/InvisibilityButton" unique_id=846133392]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -251,7 +251,7 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/InvisibilityButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/InvisibilityButton" unique_id=850341323]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -260,19 +260,19 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/InvisibilityButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/InvisibilityButton/Text" unique_id=667375322]
 layout_mode = 2
 text = "INVISIBILITY"
 label_settings = SubResource("LabelSettings_dagsi")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/InvisibilityButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/InvisibilityButton/Text" unique_id=1617785036]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="XrayButton" type="TextureButton" parent="Main/Selection"]
+[node name="XrayButton" type="TextureButton" parent="Main/Selection" unique_id=1052206462]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -283,7 +283,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton" unique_id=1294577596]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -296,7 +296,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_j74ad")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton" unique_id=733195438]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -305,14 +305,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text" unique_id=938221618]
 layout_mode = 2
 text = "X-RAY"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text" unique_id=1487674582]
 layout_mode = 2
 text = "You seriously want
 to continue with
@@ -324,7 +324,7 @@ enemies through walls."
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="ConfirmButton" type="TextureButton" parent="Main"]
+[node name="ConfirmButton" type="TextureButton" parent="Main" unique_id=558443647]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -346,7 +346,7 @@ stretch_mode = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="ConfirmText" type="Label" parent="Main/ConfirmButton"]
+[node name="ConfirmText" type="Label" parent="Main/ConfirmButton" unique_id=594537023]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
