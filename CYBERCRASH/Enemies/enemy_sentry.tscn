@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bpecf50j6qf77"]
+[gd_scene format=3 uid="uid://bpecf50j6qf77"]
 
 [ext_resource type="PackedScene" uid="uid://c146xlq5td6mn" path="res://Enemies/enemy.tscn" id="1_6i5pt"]
 [ext_resource type="Script" uid="uid://b26vhhmegik6f" path="res://Enemies/enemy_sentry.gd" id="2_u71v2"]
@@ -72,7 +72,7 @@ albedo_color = Color(0.57254905, 0, 0, 1)
 albedo_texture = SubResource("GradientTexture2D_47qgu")
 billboard_mode = 2
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_u71v2"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_gn7r5"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_572h1")
 size = Vector2(2, 0.25)
@@ -87,7 +87,7 @@ radius = 40.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_pb6li"]
 radius = 48.0
 
-[node name="SentryEnemy" instance=ExtResource("1_6i5pt")]
+[node name="SentryEnemy" unique_id=1032849428 instance=ExtResource("1_6i5pt")]
 script = ExtResource("2_u71v2")
 MAX_HEALTH = 1000
 BASE_STRENGTH = 20
@@ -101,42 +101,42 @@ shape = SubResource("BoxShape3D_45qde")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CylinderMesh_u57q3")
 
-[node name="Turret" type="MeshInstance3D" parent="Texture" index="0"]
+[node name="Turret" type="MeshInstance3D" parent="Texture" index="0" unique_id=335275184]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0.85, 0.35, 0)
 mesh = SubResource("CylinderMesh_4gtrt")
 skeleton = NodePath("../..")
 
-[node name="OtherTextures" type="Node3D" parent="." index="2"]
+[node name="OtherTextures" type="Node3D" parent="." index="2" unique_id=317184116]
 
-[node name="Body" type="MeshInstance3D" parent="OtherTextures" index="0"]
+[node name="Body" type="MeshInstance3D" parent="OtherTextures" index="0" unique_id=1879178849]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_bxkaj")
 mesh = SubResource("CapsuleMesh_u71v2")
 skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="Leg1" type="MeshInstance3D" parent="OtherTextures" index="1"]
+[node name="Leg1" type="MeshInstance3D" parent="OtherTextures" index="1" unique_id=1486637498]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.3)
 mesh = SubResource("CylinderMesh_45qde")
 skeleton = NodePath("../..")
 
-[node name="Leg2" type="MeshInstance3D" parent="OtherTextures" index="2"]
+[node name="Leg2" type="MeshInstance3D" parent="OtherTextures" index="2" unique_id=187304144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.3)
 mesh = SubResource("CylinderMesh_45qde")
 skeleton = NodePath("../..")
 
-[node name="Leg3" type="MeshInstance3D" parent="OtherTextures" index="3"]
+[node name="Leg3" type="MeshInstance3D" parent="OtherTextures" index="3" unique_id=1445774875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.3)
 mesh = SubResource("CylinderMesh_45qde")
 skeleton = NodePath("../..")
 
-[node name="Leg4" type="MeshInstance3D" parent="OtherTextures" index="4"]
+[node name="Leg4" type="MeshInstance3D" parent="OtherTextures" index="4" unique_id=769656820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.3)
 mesh = SubResource("CylinderMesh_45qde")
 skeleton = NodePath("../..")
 
 [node name="Health" parent="HealthBar" index="0"]
-mesh = SubResource("PlaneMesh_u71v2")
+mesh = SubResource("PlaneMesh_gn7r5")
 
 [node name="Hitbox" parent="HitArea" index="0"]
 shape = SubResource("SphereShape3D_gn7r5")

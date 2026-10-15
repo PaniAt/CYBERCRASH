@@ -29,7 +29,8 @@ func try_hitting_player() -> void:
 func shoot_at_player() -> void:
 	var bullet := BULLET_SCENE.instantiate() as Bullet
 	bullet.power = strength
-	bullet.initial_velocity = global_position.direction_to(Player.pos) * 75.0 * Enemy.time_scale
+	#bullet.initial_velocity = global_position.direction_to(Player.pos) * 75.0 * Enemy.time_scale
+	bullet.initial_velocity = Math.proj(rotation + Vector3(0.0, -PI / 2, 0.0)) * 75.0 * Enemy.time_scale
 	add_sibling(bullet)
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation

@@ -78,7 +78,8 @@ func load_from_file(file_path: String) -> int:
 		return 1
 	var file := FileAccess.open(file_path, FileAccess.READ)
 	var file_hash := file.get_line()
-	var contents := file.get_as_text(false)
+	#var contents := file.get_as_text(false)
+	var contents := file.get_as_text()
 	if len(contents.split("\n", true, 1)) != 2:
 		return 1
 	contents = contents.split("\n", true, 1)[1]

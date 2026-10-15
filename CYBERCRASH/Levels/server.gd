@@ -21,7 +21,11 @@ func _process(delta: float) -> void:
 	if CameraController.paused: return
 	tick_damage_flash(delta)
 	
-	if not active or dead: return
+	if not active or dead:
+		$HealthBar.hide()
+		return
+	$HealthBar.show()
+	$HealthBar/Main/Bar.value = float(health) / MAX_HEALTH # It's a proportion
 	delta *= Enemy.time_scale
 	internal_timer += delta
 
