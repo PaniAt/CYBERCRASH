@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://vac33c8xx7mc"]
+[gd_scene format=3 uid="uid://vac33c8xx7mc"]
 
 [ext_resource type="Script" uid="uid://wdmlpjxmc8ef" path="res://Interfaces/first_ability_selector.gd" id="1_jtnwv"]
 [ext_resource type="FontFile" uid="uid://6kxh4wrx2nmj" path="res://Fonts/BlackOpsOne.ttf" id="1_muufr"]
@@ -68,10 +68,10 @@ colors = PackedColorArray(0.27450982, 0.27450982, 0.27450982, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jtnwv"]
 gradient = SubResource("Gradient_l6kp4")
 
-[node name="FirstAbilitySelector" type="CanvasLayer"]
+[node name="FirstAbilitySelector" type="CanvasLayer" unique_id=2094940937]
 script = ExtResource("1_jtnwv")
 
-[node name="Main" type="Control" parent="."]
+[node name="Main" type="Control" parent="." unique_id=1586974730]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="Main"]
+[node name="Background" type="ColorRect" parent="Main" unique_id=80196170]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,7 +90,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="SelectText" type="Label" parent="Main"]
+[node name="SelectText" type="Label" parent="Main" unique_id=244978472]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -106,7 +106,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Selection" type="HBoxContainer" parent="Main"]
+[node name="Selection" type="HBoxContainer" parent="Main" unique_id=313479882]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -123,7 +123,7 @@ theme_override_constants/separation = 16
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="XrayButton" type="TextureButton" parent="Main/Selection"]
+[node name="XrayButton" type="TextureButton" parent="Main/Selection" unique_id=33598813]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -134,7 +134,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/XrayButton" unique_id=1495821847]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -147,7 +147,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_caf5v")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/XrayButton" unique_id=819565928]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -156,14 +156,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/XrayButton/Text" unique_id=678753986]
 layout_mode = 2
 text = "X-RAY"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/XrayButton/Text" unique_id=932992144]
 layout_mode = 2
 text = "Lets you see enemies
 through walls when used.
@@ -173,7 +173,7 @@ seconds afterwards."
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="GlitchButton" type="TextureButton" parent="Main/Selection"]
+[node name="GlitchButton" type="TextureButton" parent="Main/Selection" unique_id=91505325]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -184,7 +184,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/GlitchButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/GlitchButton" unique_id=1679017144]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -197,7 +197,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("4_prvyg")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/GlitchButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/GlitchButton" unique_id=1401376973]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -206,14 +206,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/GlitchButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/GlitchButton/Text" unique_id=268127496]
 layout_mode = 2
 text = "GLITCH"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/GlitchButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/GlitchButton/Text" unique_id=1757285214]
 layout_mode = 2
 text = "Teleport forwards in
 the direction you are
@@ -224,7 +224,7 @@ Has a cooldown of
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="AgilityButton" type="TextureButton" parent="Main/Selection"]
+[node name="AgilityButton" type="TextureButton" parent="Main/Selection" unique_id=1871751917]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -235,7 +235,7 @@ stretch_mode = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/AgilityButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/AgilityButton" unique_id=1853009165]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -248,7 +248,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_7bkb2")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/AgilityButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/AgilityButton" unique_id=1034994465]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -257,14 +257,14 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/AgilityButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/AgilityButton/Text" unique_id=1178779150]
 layout_mode = 2
 text = "AGILITY"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/AgilityButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/AgilityButton/Text" unique_id=995495026]
 layout_mode = 2
 text = "Will permanently increase
 your movement speed
@@ -274,7 +274,7 @@ has no cooldown."
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="NoneButton" type="TextureButton" parent="Main/Selection"]
+[node name="NoneButton" type="TextureButton" parent="Main/Selection" unique_id=337244397]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = SubResource("GradientTexture2D_caf5v")
@@ -285,7 +285,7 @@ stretch_mode = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Icon" type="TextureRect" parent="Main/Selection/NoneButton"]
+[node name="Icon" type="TextureRect" parent="Main/Selection/NoneButton" unique_id=1626830105]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -298,7 +298,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_l6kp4")
 
-[node name="Text" type="VBoxContainer" parent="Main/Selection/NoneButton"]
+[node name="Text" type="VBoxContainer" parent="Main/Selection/NoneButton" unique_id=1685286823]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -307,21 +307,21 @@ offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Main/Selection/NoneButton/Text"]
+[node name="Title" type="Label" parent="Main/Selection/NoneButton/Text" unique_id=2029589322]
 layout_mode = 2
 text = "NONE"
 label_settings = SubResource("LabelSettings_prvyg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Main/Selection/NoneButton/Text"]
+[node name="Description" type="Label" parent="Main/Selection/NoneButton/Text" unique_id=1201998715]
 layout_mode = 2
 text = "Who needs those stupid
 abilities anyways!"
 label_settings = SubResource("LabelSettings_8db00")
 horizontal_alignment = 1
 
-[node name="ConfirmButton" type="TextureButton" parent="Main"]
+[node name="ConfirmButton" type="TextureButton" parent="Main" unique_id=1114167072]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -343,7 +343,7 @@ stretch_mode = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="ConfirmText" type="Label" parent="Main/ConfirmButton"]
+[node name="ConfirmText" type="Label" parent="Main/ConfirmButton" unique_id=792557368]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

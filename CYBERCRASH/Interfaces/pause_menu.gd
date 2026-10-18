@@ -1,6 +1,6 @@
 extends CanvasLayer
 const SETTINGS_SCENE := preload("res://Interfaces/settings_menu.tscn")
-const SAVE_FILE_PATH := "./CYBERCRASH_SAVE.txt"
+const SAVE_FILE_PATH := "user://CYBERCRASH_SAVE.txt"
 var settings_menu: CanvasLayer
 
 func _ready() -> void:
