@@ -17,24 +17,4 @@ func _on_detection_body_entered(body: Node3D) -> void:
 	assert(body is Player, "Expected player: " + str(body))
 	body.call_deferred("queue_free")
 # (26/08/2026) why the hell did I write this?
-
-#I wish you'd get me, I know you never could
-#You think I'm lazy, always misunderstood
-#I used to have dreams, but they all went away
-#Replaced with visions of killing myself every day
-
-#Oh, I just hate this
-#Everything sucks, life's overrated
-#Oh, I can't take it
-#It's my life and I'm gonna waste it!
-
-#I have no more hope left in store
-#I have no more hope left in store
-#I have no more hope left in store
-#I have no more hope left in store
-#I have no more, I have no more
-
-#Oh, I just hate this
-#Everything sucks, life's overrated
-#Oh, I can't take it
-#It's my life and I'm gonna take it!
+# (16/10/2026) removed what I wrote.

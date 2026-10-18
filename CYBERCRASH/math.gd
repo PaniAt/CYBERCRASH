@@ -59,3 +59,5 @@ func towards(from: Vector3, to: Vector3, delta: float) -> Vector3:
 	# NOTE: value of a float is equivalent to taking the
 	# NOTE: length of a vector, and taking the sign is
 	# NOTE: equivalent to taking the normalisation
+	#
+	# (16/10/2026) I realise Godot has an inbuilt method for this.

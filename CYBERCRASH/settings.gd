@@ -50,6 +50,8 @@ func update_volume() -> void:
 ## Saves the game to the given file path
 func save_to_file(file_path: String) -> int:
 	var file := FileAccess.open(file_path, FileAccess.WRITE_READ)
+	if not file:
+		return 1
 	var content: PackedStringArray
 	content.push_back("在" + get_tree().current_scene.scene_file_path)
 	var weaponry_string = ""

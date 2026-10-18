@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://s7d1hrsqavbj"]
+[gd_scene format=3 uid="uid://s7d1hrsqavbj"]
 
 [ext_resource type="PackedScene" uid="uid://7valxkinj4rw" path="res://Levels/level.tscn" id="1_n0qsc"]
 [ext_resource type="Script" uid="uid://iragup6ai864" path="res://Levels/level_1.gd" id="2_dilhk"]
@@ -269,10 +269,10 @@ size = Vector3(20, 20, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0urlm"]
 size = Vector3(1, 20, 20)
 
-[node name="Level" instance=ExtResource("1_n0qsc")]
+[node name="Level" unique_id=851836369 instance=ExtResource("1_n0qsc")]
 script = ExtResource("2_dilhk")
 
-[node name="HintDisplay" parent="HUD" index="2" instance=ExtResource("3_xoyoh")]
+[node name="HintDisplay" parent="HUD" parent_id_path=PackedInt32Array(1529149527) index="2" unique_id=1595746128 instance=ExtResource("3_xoyoh")]
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.8
@@ -284,150 +284,150 @@ style = SubResource("LabelSettings_62b6n")
 skip_spaces = true
 speed = 32.0
 
-[node name="Geometry" parent="." index="1"]
+[node name="Geometry" parent="." index="1" unique_id=282931903]
 metadata/_edit_group_ = true
 
-[node name="Floor" type="StaticBody3D" parent="Geometry" index="0"]
+[node name="Floor" type="StaticBody3D" parent="Geometry" index="0" unique_id=1937472827]
 collision_layer = 4
 collision_mask = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Floor" index="0"]
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Floor" index="0" unique_id=2046774773]
 shape = SubResource("BoxShape3D_dilhk")
 
-[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Floor" index="1"]
+[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Floor" index="1" unique_id=583538970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 0)
 shape = SubResource("BoxShape3D_3mhv4")
 
-[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/Floor" index="2"]
+[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/Floor" index="2" unique_id=946068407]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 shape = SubResource("BoxShape3D_rf6l5")
 
-[node name="Hitbox4" type="CollisionShape3D" parent="Geometry/Floor" index="3"]
+[node name="Hitbox4" type="CollisionShape3D" parent="Geometry/Floor" index="3" unique_id=997733371]
 transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 68, 2.5, 0)
 shape = SubResource("BoxShape3D_syshm")
 
-[node name="Hitbox5" type="CollisionShape3D" parent="Geometry/Floor" index="4"]
+[node name="Hitbox5" type="CollisionShape3D" parent="Geometry/Floor" index="4" unique_id=1338132729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.53, 5.071, 0)
 shape = SubResource("BoxShape3D_rf6l5")
 
-[node name="Hitbox6" type="CollisionShape3D" parent="Geometry/Floor" index="5"]
+[node name="Hitbox6" type="CollisionShape3D" parent="Geometry/Floor" index="5" unique_id=848556436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 5, -40)
 shape = SubResource("BoxShape3D_3mhv4")
 
-[node name="Hitbox7" type="CollisionShape3D" parent="Geometry/Floor" index="6"]
+[node name="Hitbox7" type="CollisionShape3D" parent="Geometry/Floor" index="6" unique_id=570880643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, -50, -32)
 shape = SubResource("BoxShape3D_77x7w")
 
-[node name="Hitbox8" type="CollisionShape3D" parent="Geometry/Floor" index="7"]
+[node name="Hitbox8" type="CollisionShape3D" parent="Geometry/Floor" index="7" unique_id=1620739252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -50, -32)
 shape = SubResource("BoxShape3D_xoyoh")
 
-[node name="Texture1" type="MeshInstance3D" parent="Geometry/Floor" index="8"]
+[node name="Texture1" type="MeshInstance3D" parent="Geometry/Floor" index="8" unique_id=1715497059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("PlaneMesh_0urlm")
 
-[node name="Texture2" type="MeshInstance3D" parent="Geometry/Floor" index="9"]
+[node name="Texture2" type="MeshInstance3D" parent="Geometry/Floor" index="9" unique_id=1984193804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.5, 0)
 mesh = SubResource("PlaneMesh_77x7w")
 
-[node name="Texture3" type="MeshInstance3D" parent="Geometry/Floor" index="10"]
+[node name="Texture3" type="MeshInstance3D" parent="Geometry/Floor" index="10" unique_id=680118696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.5, 0)
 mesh = SubResource("PlaneMesh_xoyoh")
 
-[node name="Texture4" type="MeshInstance3D" parent="Geometry/Floor" index="11"]
+[node name="Texture4" type="MeshInstance3D" parent="Geometry/Floor" index="11" unique_id=1377694878]
 transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 68, 3, 0)
 mesh = SubResource("PlaneMesh_f4pg2")
 
-[node name="Texture5" type="MeshInstance3D" parent="Geometry/Floor" index="12"]
+[node name="Texture5" type="MeshInstance3D" parent="Geometry/Floor" index="12" unique_id=1032422410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5, 5.5, 0)
 mesh = SubResource("PlaneMesh_62b6n")
 
-[node name="Texture6" type="MeshInstance3D" parent="Geometry/Floor" index="13"]
+[node name="Texture6" type="MeshInstance3D" parent="Geometry/Floor" index="13" unique_id=525206767]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 5.5, -40)
 mesh = SubResource("PlaneMesh_rs4xw")
 
-[node name="Texture7" type="MeshInstance3D" parent="Geometry/Floor" index="14"]
+[node name="Texture7" type="MeshInstance3D" parent="Geometry/Floor" index="14" unique_id=1543511916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, -49.5, -32)
 mesh = SubResource("PlaneMesh_lk57d")
 
-[node name="Texture8" type="MeshInstance3D" parent="Geometry/Floor" index="15"]
+[node name="Texture8" type="MeshInstance3D" parent="Geometry/Floor" index="15" unique_id=1277878489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -49.5, -32)
 mesh = SubResource("PlaneMesh_2hkqn")
 
-[node name="Death" type="Area3D" parent="Geometry" index="1"]
+[node name="Death" type="Area3D" parent="Geometry" index="1" unique_id=18196457]
 collision_layer = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Death" index="0"]
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Death" index="0" unique_id=199768862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, -18, 14)
 shape = SubResource("BoxShape3D_rs4xw")
 
-[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Death" index="1"]
+[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Death" index="1" unique_id=2046163195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
 shape = SubResource("BoxShape3D_lk57d")
 
-[node name="Texture1" type="MeshInstance3D" parent="Geometry/Death" index="2"]
+[node name="Texture1" type="MeshInstance3D" parent="Geometry/Death" index="2" unique_id=499367648]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.999744, -17.801071, 14.055)
 mesh = SubResource("PlaneMesh_c7pbv")
 
-[node name="Texture2" type="MeshInstance3D" parent="Geometry/Death" index="3"]
+[node name="Texture2" type="MeshInstance3D" parent="Geometry/Death" index="3" unique_id=176380879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
 mesh = SubResource("PlaneMesh_77l7m")
 
-[node name="Walls" type="StaticBody3D" parent="Geometry" index="2"]
+[node name="Walls" type="StaticBody3D" parent="Geometry" index="2" unique_id=608874634]
 collision_layer = 4
 collision_mask = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Walls" index="0"]
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Walls" index="0" unique_id=692175710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -10)
 shape = SubResource("BoxShape3D_f4pg2")
 
-[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Walls" index="1"]
+[node name="Hitbox2" type="CollisionShape3D" parent="Geometry/Walls" index="1" unique_id=68209090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 10)
 shape = SubResource("BoxShape3D_f4pg2")
 
-[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/Walls" index="2"]
+[node name="Hitbox3" type="CollisionShape3D" parent="Geometry/Walls" index="2" unique_id=1457729698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 10, 0)
 shape = SubResource("BoxShape3D_62b6n")
 
-[node name="Texture1" type="MeshInstance3D" parent="Geometry/Walls" index="3"]
+[node name="Texture1" type="MeshInstance3D" parent="Geometry/Walls" index="3" unique_id=1123530931]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -10)
 mesh = SubResource("PlaneMesh_rf6l5")
 skeleton = NodePath("../Hitbox1")
 
-[node name="Texture2" type="MeshInstance3D" parent="Geometry/Walls" index="4"]
+[node name="Texture2" type="MeshInstance3D" parent="Geometry/Walls" index="4" unique_id=571168346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 10)
 mesh = SubResource("PlaneMesh_rf6l5")
 skeleton = NodePath("../Hitbox1")
 
-[node name="Texture3" type="MeshInstance3D" parent="Geometry/Walls" index="5"]
+[node name="Texture3" type="MeshInstance3D" parent="Geometry/Walls" index="5" unique_id=202922882]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 10, 0)
 mesh = SubResource("PlaneMesh_k2bse")
 skeleton = NodePath("../Hitbox1")
 
-[node name="Pillar1" type="StaticBody3D" parent="Geometry" index="3"]
+[node name="Pillar1" type="StaticBody3D" parent="Geometry" index="3" unique_id=2073250928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -32)
 collision_layer = 4
 collision_mask = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Pillar1" index="0"]
+[node name="Hitbox1" type="CollisionShape3D" parent="Geometry/Pillar1" index="0" unique_id=844288486]
 shape = SubResource("BoxShape3D_rfktq")
 
-[node name="Texture1" type="MeshInstance3D" parent="Geometry/Pillar1" index="1"]
+[node name="Texture1" type="MeshInstance3D" parent="Geometry/Pillar1" index="1" unique_id=1418483762]
 mesh = SubResource("BoxMesh_dilhk")
 
-[node name="WeaponConsole" parent="Geometry" index="4" instance=ExtResource("4_rf6l5")]
+[node name="WeaponConsole" parent="Geometry" index="4" unique_id=1589506394 instance=ExtResource("4_rf6l5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13, 1.5, -3)
 metadata/_edit_lock_ = true
 
-[node name="TerminalOld" parent="Geometry" index="5" instance=ExtResource("6_77x7w")]
+[node name="TerminalOld" parent="Geometry" index="5" unique_id=1798465981 instance=ExtResource("6_77x7w")]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -23.695862, 1.5, 0)
 text = "== TERMINAL VERSION 1.2.2 ==<
 Log Entry 23b:<
@@ -438,7 +438,7 @@ I walked down the cold street, the moonlight illuminating the pavement in betwee
 .<.<.<
 I was then shot 47 times.>"
 
-[node name="Terminal" parent="Geometry" index="6" instance=ExtResource("6_77x7w")]
+[node name="Terminal" parent="Geometry" index="6" unique_id=1886373743 instance=ExtResource("6_77x7w")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 1.5, 0)
 text = "== TERMINAL VERSION 4.5.1 ==<
 Log Entry 004-b:<
@@ -452,114 +452,114 @@ Log Entry 004-b:<
 » Reconnecting<.<.<.<
 » Pipeline Closed via< E|x|t|e|r|n|a|l| |P|r|o|x|y<"
 
-[node name="Hint1" type="Area3D" parent="Geometry" index="7"]
+[node name="Hint1" type="Area3D" parent="Geometry" index="7" unique_id=1405913873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 6, 0)
 collision_layer = 0
 
-[node name="Hitbox" type="CollisionShape3D" parent="Geometry/Hint1" index="0"]
+[node name="Hitbox" type="CollisionShape3D" parent="Geometry/Hint1" index="0" unique_id=1155201859]
 shape = SubResource("BoxShape3D_34erp")
 
-[node name="Hint2" type="Area3D" parent="Geometry" index="8"]
+[node name="Hint2" type="Area3D" parent="Geometry" index="8" unique_id=682325959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.08596, 13.919201, 0)
 collision_layer = 0
 
-[node name="Hitbox" type="CollisionShape3D" parent="Geometry/Hint2" index="0"]
+[node name="Hitbox" type="CollisionShape3D" parent="Geometry/Hint2" index="0" unique_id=1392874778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -4, 0)
 shape = SubResource("BoxShape3D_k2bse")
 
-[node name="Player" parent="." index="2"]
+[node name="Player" parent="." index="2" unique_id=667608973]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.811218, 0)
 
-[node name="Sunlight" parent="Lights" index="0"]
+[node name="Sunlight" parent="Lights" parent_id_path=PackedInt32Array(1019710025) index="0" unique_id=890074726]
 transform = Transform3D(0.7071067, -0.49999997, 0.4999999, 0, 0.70710665, 0.70710677, -0.7071067, -0.49999997, 0.4999999, 0, 0, 0)
 
-[node name="SpawnLight" type="OmniLight3D" parent="Lights" index="1"]
+[node name="SpawnLight" type="OmniLight3D" parent="Lights" parent_id_path=PackedInt32Array(1019710025) index="1" unique_id=668555872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.55301, 0)
 light_energy = 16.0
 omni_range = 24.0
 
-[node name="BasicEnemy1" parent="Enemies" index="0" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy1" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="0" unique_id=537334140 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 9, -7)
 platform_floor_layers = 4294967295
 metadata/_edit_lock_ = true
 
-[node name="BasicEnemy2" parent="Enemies" index="1" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="1" unique_id=816616471 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 9, 8)
 platform_floor_layers = 4294967295
 metadata/_edit_lock_ = true
 
-[node name="BasicEnemy3" parent="Enemies" index="2" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy3" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="2" unique_id=1073841530 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -45, 0)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy4" parent="Enemies" index="3" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy4" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="3" unique_id=486100378 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.37051, -45, -22.027538)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy5" parent="Enemies" index="4" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy5" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="4" unique_id=351024844 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.367825, -45, -15.500647)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy6" parent="Enemies" index="5" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy6" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="5" unique_id=1013461499 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.728867, -45, -31.785717)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy7" parent="Enemies" index="6" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy7" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="6" unique_id=1550814597 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.699276, -45, -61.187996)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy8" parent="Enemies" index="7" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy8" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="7" unique_id=1572384498 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.094894, -45, -49.993885)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy9" parent="Enemies" index="8" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy9" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="8" unique_id=165260834 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.87067, -45, -41.593624)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy10" parent="Enemies" index="9" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy10" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="9" unique_id=1462533794 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.173397, -45, -46.342262)
 platform_floor_layers = 4294967295
 
-[node name="BasicEnemy11" parent="Enemies" index="10" instance=ExtResource("6_rfktq")]
+[node name="BasicEnemy11" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="10" unique_id=1200973174 instance=ExtResource("6_rfktq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.125305, -45, -24.680382)
 platform_floor_layers = 4294967295
 
-[node name="StrongEnemy1" parent="Enemies" index="11" instance=ExtResource("7_0urlm")]
+[node name="StrongEnemy1" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="11" unique_id=1050922836 instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -26.30798)
 platform_floor_layers = 4294967295
 
-[node name="StrongEnemy2" parent="Enemies" index="12" instance=ExtResource("7_0urlm")]
+[node name="StrongEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="12" unique_id=1984329568 instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -32.342728)
 platform_floor_layers = 4294967295
 
-[node name="StrongEnemy3" parent="Enemies" index="13" instance=ExtResource("7_0urlm")]
+[node name="StrongEnemy3" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="13" unique_id=1225804384 instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.658889, -45, -38.042534)
 platform_floor_layers = 4294967295
 
-[node name="StrongEnemy6" parent="Enemies" index="14" instance=ExtResource("7_0urlm")]
+[node name="StrongEnemy6" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="14" unique_id=192807505 instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.40567, -45, -9.821724)
 platform_floor_layers = 4294967295
 
-[node name="StrongEnemy7" parent="Enemies" index="15" instance=ExtResource("7_0urlm")]
+[node name="StrongEnemy7" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="15" unique_id=1746227562 instance=ExtResource("7_0urlm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.01317, -45, -61.29067)
 platform_floor_layers = 4294967295
 
-[node name="NoticeArea" type="Area3D" parent="Enemies" index="16"]
+[node name="NoticeArea" type="Area3D" parent="Enemies" parent_id_path=PackedInt32Array(334810027) index="16" unique_id=1725094395]
 collision_layer = 0
 
-[node name="Hitbox" type="CollisionShape3D" parent="Enemies/NoticeArea" index="0"]
+[node name="Hitbox" type="CollisionShape3D" parent="Enemies/NoticeArea" index="0" unique_id=1302733153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.72201, -43.934452, -65.88891)
 shape = SubResource("BoxShape3D_2hkqn")
 
-[node name="WinPortal" parent="." index="6"]
+[node name="WinPortal" parent="." index="6" unique_id=2127198310]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -40, -32)
 
-[node name="Texture" type="MeshInstance3D" parent="WinPortal" index="0"]
+[node name="Texture" type="MeshInstance3D" parent="WinPortal" index="0" unique_id=877264354]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("BoxMesh_rfktq")
 skeleton = NodePath("../..")
 
-[node name="Hitbox" parent="WinPortal/Detection" index="0"]
+[node name="Hitbox" parent="WinPortal/Detection" parent_id_path=PackedInt32Array(1096532760) index="0" unique_id=975235770]
 shape = SubResource("BoxShape3D_0urlm")
 
 [connection signal="finished" from="HUD/HintDisplay" to="." method="_on_hint_display_finished"]
