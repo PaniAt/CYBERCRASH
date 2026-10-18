@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blbrfaomfxe1h"
 path.s3tc="res://.godot/imported/binarywall.png-e1ddb8713b18baef3dbcab92554af50c.s3tc.ctex"
+path.etc2="res://.godot/imported/binarywall.png-e1ddb8713b18baef3dbcab92554af50c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://GFX/binarywall.png"
-dest_files=["res://.godot/imported/binarywall.png-e1ddb8713b18baef3dbcab92554af50c.s3tc.ctex"]
+dest_files=["res://.godot/imported/binarywall.png-e1ddb8713b18baef3dbcab92554af50c.s3tc.ctex", "res://.godot/imported/binarywall.png-e1ddb8713b18baef3dbcab92554af50c.etc2.ctex"]
 
 [params]
 

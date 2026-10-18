@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ujavksan2g5k"
 path.s3tc="res://.godot/imported/sentryBody.png-e51d818eef1cca3a0f78370cb00c660b.s3tc.ctex"
+path.etc2="res://.godot/imported/sentryBody.png-e51d818eef1cca3a0f78370cb00c660b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://GFX/characters/sentry/sentryBody.png"
-dest_files=["res://.godot/imported/sentryBody.png-e51d818eef1cca3a0f78370cb00c660b.s3tc.ctex"]
+dest_files=["res://.godot/imported/sentryBody.png-e51d818eef1cca3a0f78370cb00c660b.s3tc.ctex", "res://.godot/imported/sentryBody.png-e51d818eef1cca3a0f78370cb00c660b.etc2.ctex"]
 
 [params]
 

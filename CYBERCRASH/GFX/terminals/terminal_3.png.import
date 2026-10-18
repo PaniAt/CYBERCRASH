@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blm4f4r75wbut"
 path.s3tc="res://.godot/imported/terminal_3.png-8cf4ba78cfdab745d4942667f493b911.s3tc.ctex"
+path.etc2="res://.godot/imported/terminal_3.png-8cf4ba78cfdab745d4942667f493b911.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://GFX/terminals/terminal_3.png"
-dest_files=["res://.godot/imported/terminal_3.png-8cf4ba78cfdab745d4942667f493b911.s3tc.ctex"]
+dest_files=["res://.godot/imported/terminal_3.png-8cf4ba78cfdab745d4942667f493b911.s3tc.ctex", "res://.godot/imported/terminal_3.png-8cf4ba78cfdab745d4942667f493b911.etc2.ctex"]
 
 [params]
 
