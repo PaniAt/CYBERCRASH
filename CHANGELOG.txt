@@ -50,3 +50,12 @@
   - Implemented some trialling feedback
   - Added coyote jumping
   - Made the boss fight a bit cooler
+
+18/10/2026 Version 1.4.2
+  - Refined and polished the game
+  - Exported the game to run on windows (macOS insists
+    that it is a virus, and won't run it)
+  - Fully tested the game
+  - Fully trialled the game
+  - Fixed some minor bugs involving saving and loading
+  - Ported to run on higher versions of Godot
